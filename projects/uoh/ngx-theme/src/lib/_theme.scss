@@ -10,6 +10,7 @@
 @import './theme/accessibility';
 @import './theme/header';
 
+// TODO: Add an `all` parameter to include all the features of the uoh-theme
 @mixin uoh-theme($layout: true, $table: false, $accessibility: false, $header: false) {
   @if $layout {
     @include uoh-layout();

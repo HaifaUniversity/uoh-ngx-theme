@@ -3,7 +3,8 @@
 
 $config: (
   layout: true,
-  accessibility: true
+  accessibility: true,
+  header: true
 );
 
 @include uoh-theme($config...);
