@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "@uoh/ngx-theme": {
+      "root": "projects/uoh/ngx-theme",
+      "sourceRoot": "projects/uoh/ngx-theme/src",
+      "projectType": "library",
+      "prefix": "uoh",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/uoh/ngx-theme/tsconfig.lib.json",
+            "project": "projects/uoh/ngx-theme/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/uoh/ngx-theme/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/uoh/ngx-theme/src/test.ts",
+            "tsConfig": "projects/uoh/ngx-theme/tsconfig.spec.json",
+            "karmaConfig": "projects/uoh/ngx-theme/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/uoh/ngx-theme/tsconfig.lib.json",
+              "projects/uoh/ngx-theme/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "uoh-ngx-theme-app"

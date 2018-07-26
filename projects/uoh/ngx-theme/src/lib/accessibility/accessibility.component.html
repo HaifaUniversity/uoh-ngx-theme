@@ -1,0 +1,35 @@
+<mat-sidenav-container [ngClass]="[theme, 'font-size-' + fontSize]" [dir]="dir" [hasBackdrop]="true">
+  <mat-sidenav #sidenav mode="over" class="mat-body" position="end">
+    <h3>תפריט נגישות</h3>
+    <mat-list>
+      <mat-list-item>
+        <button mat-button (click)="increaseFontSize()">
+          הגדלת פונט
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="decreaseFontSize()">
+          הקטנת פונט
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="toggleTheme()">
+          ניגודיות {{(theme === DARK_THEME) ? 'בהירה' : 'כהה'}}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button (click)="reset()">
+          איפוס הגדרות
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-fab (click)="sidenav.toggle()" class="accessibility-btn">
+      <mat-icon aria-hidden="false" aria-label="נגישות">accessible</mat-icon>
+    </button>
+    <div class="uoh-body" role="region">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

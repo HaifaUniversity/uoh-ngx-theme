@@ -1,0 +1,21 @@
+.accessibility-btn {
+  position: fixed;
+  z-index: 999;
+  top: 14px;
+  left: 14px;
+  text-align: center;
+}
+
+.mat-sidenav {
+  text-align: center;
+}
+
+.uoh-body {
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 992px) {
+  .accessibility-btn {
+    display: none;
+  }
+}

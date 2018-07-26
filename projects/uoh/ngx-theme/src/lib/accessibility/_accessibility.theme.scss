@@ -1,0 +1,16 @@
+@mixin uoh-accessibility($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .uoh-body {
+    background-color: mat-color($background, background);
+  }
+
+  button.mat-fab.accessibility-btn {
+    background-color: mat-color($foreground, text);
+    color: mat-color($background, background);
+  }
+}
