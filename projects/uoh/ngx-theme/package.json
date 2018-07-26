@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.com:HaifaUniversity/hutheme.git"
+    "url": "git@github.com:HaifaUniversity/uoh-ngx-theme.git"
   },
   "keywords": [
     "SCSS"
@@ -11,7 +11,7 @@
   "author": "Pablo Saracusti",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HaifaUniversity/hutheme/issues"
+    "url": "https://github.com/HaifaUniversity/uoh-ngx-theme/issues"
   },
   "dependencies": {
     "@angular/cdk": "^6.0.0-rc.0 || ^6.0.0",
