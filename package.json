@@ -5,8 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "copy_theme": "cp -r projects/uoh/ngx-theme/src/lib/theme dist/uoh/ngx-theme/.",
-    "build_lib": "ng build --prod @uoh/ngx-theme && npm run copy_theme",
+    "build_lib": "ng build --prod @uoh/ngx-theme && node build-theme",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

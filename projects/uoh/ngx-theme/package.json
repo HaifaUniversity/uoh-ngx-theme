@@ -13,12 +13,10 @@
   "bugs": {
     "url": "https://github.com/HaifaUniversity/uoh-ngx-theme/issues"
   },
-  "dependencies": {
-    "@angular/cdk": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/material": "^6.0.0-rc.0 || ^6.0.0"
-  },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/cdk": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/material": "^6.0.0-rc.0 || ^6.0.0"
   }
 }
