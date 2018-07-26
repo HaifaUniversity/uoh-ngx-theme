@@ -2,6 +2,8 @@
 @import './theme/partials/layout';
 @import './theme/partials/table';
 
+@import './theme/accessibility';
+
 @mixin uoh-theme() {
   @include uoh-core();
   @include uoh-layout();

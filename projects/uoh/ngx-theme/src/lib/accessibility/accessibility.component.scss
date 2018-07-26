@@ -11,6 +11,9 @@
 }
 
 .uoh-body {
+  // Mock a body element - Use inline-block to avoid collapsing margin with its children
+  display: inline-block;
+  min-width: 100vw;
   min-height: 100vh;
 }
 
