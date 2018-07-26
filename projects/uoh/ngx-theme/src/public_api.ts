@@ -3,3 +3,5 @@
  */
 
 export * from './lib/accessibility/accessibility.module';
+export * from './lib/spinner/spinner.module';
+export * from './lib/spinner/spinner.service';
