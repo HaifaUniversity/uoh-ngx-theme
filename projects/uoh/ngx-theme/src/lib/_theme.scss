@@ -8,8 +8,9 @@
 @import './theme/partials/themes/dark';
 
 @import './theme/accessibility';
+@import './theme/header';
 
-@mixin uoh-theme($layout: true, $table: false, $accessibility: false) {
+@mixin uoh-theme($layout: true, $table: false, $accessibility: false, $header: false) {
   @if $layout {
     @include uoh-layout();
   }
@@ -40,6 +41,10 @@
     @include uoh-accessibility($default-theme);
   }
 
+  @if $header {
+    @include uoh-header($default-theme);
+  }
+
   .dark-theme {
     a {
       color: mat-color($dark-accent, A100);
@@ -48,6 +53,10 @@
 
     @if $accessibility {
       @include uoh-accessibility($dark-theme);
+    }
+
+    @if $header {
+      @include uoh-header($dark-theme);
     }
   }
 }
