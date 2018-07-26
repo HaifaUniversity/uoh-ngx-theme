@@ -1,0 +1,32 @@
+@mixin uoh-header($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .mat-toolbar {
+    h1,
+    h2 {
+      color: mat-color($background, background);
+    }
+    .controls,
+    .controls .mat-button {
+      color: mat-color($primary, 50);
+    }
+  }
+
+  .mat-toolbar {
+    background-image: linear-gradient(mat-color($primary, default) 100px, mat-color($primary, darker) 44px);
+  }
+
+  @media screen and (max-width: 600px) {
+    .mat-toolbar {
+      background-image: linear-gradient(mat-color($primary, default) 74px, mat-color($primary, darker) 36px);
+    }
+
+    .log-out .mat-icon {
+      color: mat-color($primary, 50);
+    }
+  }
+}
