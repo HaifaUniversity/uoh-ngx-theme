@@ -10,4 +10,4 @@ import { AccessibilityComponent } from './accessibility.component';
   declarations: [AccessibilityComponent],
   exports: [AccessibilityComponent]
 })
-export class AccessibilityModule {}
+export class UohAccessibilityModule {}
