@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
-import { SpinnerService } from './spinner.service';
+import { UohSpinner } from './spinner.service';
 import { Point, Size, Stops } from './models';
 
 @Component({
@@ -36,7 +36,7 @@ export class SpinnerComponent implements OnInit, OnDestroy {
   private _requestID: number;
   private _loading$: Subscription;
 
-  constructor(private _loader: SpinnerService) {}
+  constructor(private _loader: UohSpinner) {}
 
   ngOnInit(): void {
     this.size = this.size ? this.calcSize(this.size, this._svgSize) : this._defaultSize;

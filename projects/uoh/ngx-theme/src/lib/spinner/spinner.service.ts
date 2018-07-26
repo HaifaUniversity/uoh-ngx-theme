@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UohSpinnerService {
+export class UohSpinner {
   loading = new BehaviorSubject<boolean>(false);
 
   constructor() {}
