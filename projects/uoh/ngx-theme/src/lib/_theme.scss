@@ -9,10 +9,18 @@
 
 @import './theme/accessibility';
 
-@mixin uoh-core() {
+@mixin uoh-theme($layout: true, $table: false, $accessibility: false) {
+  @if $layout {
+    @include uoh-layout();
+  }
+  @if $table {
+    @include uoh-table();
+  }
+
   body {
     margin: 0px;
     font-family: mat-font-family($default-typography);
+    font-size: 14px;
   }
 
   a {
@@ -28,16 +36,18 @@
   @include angular-material-typography($default-typography);
   @include angular-material-theme($default-theme);
 
+  @if $accessibility {
+    @include uoh-accessibility($default-theme);
+  }
+
   .dark-theme {
     a {
       color: mat-color($dark-accent, A100);
     }
     @include angular-material-theme($dark-theme);
-  }
-}
 
-@mixin uoh-theme() {
-  @include uoh-core();
-  @include uoh-layout();
-  @include uoh-table();
+    @if $accessibility {
+      @include uoh-accessibility($dark-theme);
+    }
+  }
 }

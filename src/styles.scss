@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import './dist/uoh/ngx-theme/theme';
 
-@include uoh-theme();
-@include uoh-accessibility($default-theme);
+$config: (
+  layout: true,
+  accessibility: true
+);
 
-.dark-theme {
-  @include uoh-accessibility($dark-theme);
-}
+@include uoh-theme($config...);
