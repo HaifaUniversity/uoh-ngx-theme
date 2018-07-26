@@ -1,0 +1,5 @@
+$default-primary: mat-palette($hu-blue, 500, 300, 700);
+$default-accent: mat-palette($hu-red, 500, 50, 900);
+$default-warn: mat-palette($mat-deep-orange);
+
+$default-theme: mat-light-theme($default-primary, $default-accent, $default-warn);

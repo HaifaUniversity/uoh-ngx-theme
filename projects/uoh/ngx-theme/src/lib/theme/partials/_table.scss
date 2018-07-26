@@ -1,0 +1,112 @@
+@mixin uoh-table() {
+  // Responsive mat-table
+  .mat-table {
+    width: 100%;
+  }
+
+  .mat-table th {
+    text-align: justify;
+  }
+
+  .mat-table[dir='rtl'] td.mat-cell:first-child,
+  .mat-table[dir='rtl'] td.mat-footer-cell:first-child,
+  .mat-table[dir='rtl'] th:first-child {
+    padding-left: 0;
+    padding-right: 24px;
+  }
+
+  .mat-table[dir='rtl'] td.mat-cell:last-child,
+  .mat-table[dir='rtl'] td.mat-footer-cell:last-child,
+  .mat-table[dir='rtl'] th:last-child {
+    padding-right: 0;
+    padding-left: 24px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .mat-table table,
+    .mat-table thead,
+    .mat-table tbody,
+    .mat-table tr,
+    .mat-table th,
+    .mat-table td {
+      display: block;
+    }
+
+    .mat-table th {
+      display: none;
+    }
+
+    .mat-table tr.mat-header-row,
+    .mat-table tr.mat-footer-row,
+    .mat-table tr.mat-row {
+      height: auto;
+    }
+
+    .mat-table tr td.mat-cell {
+      width: 100%;
+      padding: 0;
+    }
+
+    .mat-table tr:last-child td.mat-cell,
+    .mat-table tr td.mat-cell:not(:last-child) {
+      border: none;
+    }
+
+    .mat-table tr td.mat-cell::before {
+      content: attr(title) ': ';
+      font-weight: bold;
+    }
+
+    .mat-table tr td.mat-cell {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    .mat-table tr td.mat-cell:first-child {
+      padding-top: 10px;
+    }
+
+    .mat-table tr td.mat-cell:last-child {
+      padding-bottom: 10px;
+    }
+
+    .mat-table tr td.mat-checkbox-cell::before,
+    .mat-table tr td.mat-checkbox-cell-rtl::before {
+      display: none;
+    }
+
+    .mat-table tr td.mat-checkbox-cell .mat-checkbox,
+    .mat-table tr td.mat-checkbox-cell-rtl .mat-checkbox {
+      margin-top: 0.6em;
+    }
+
+    .mat-table tr td.mat-checkbox-cell .mat-checkbox {
+      float: left;
+    }
+
+    .mat-table tr td.mat-checkbox-cell-rtl .mat-checkbox {
+      float: right;
+    }
+
+    .mat-table td.row-title {
+      font-size: 1.07em;
+      font-weight: bold;
+      line-height: 1.3em;
+    }
+
+    .mat-table td.row-title::before {
+      content: '';
+      display: none;
+    }
+
+    .mat-table[dir='rtl'] td.mat-cell:first-child,
+    .mat-table[dir='rtl'] td.mat-footer-cell:first-child,
+    .mat-table[dir='rtl'] th:first-child,
+    .mat-table[dir='rtl'] td.mat-cell:last-child,
+    .mat-table[dir='rtl'] td.mat-footer-cell:last-child,
+    .mat-table[dir='rtl'] th:last-child {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}

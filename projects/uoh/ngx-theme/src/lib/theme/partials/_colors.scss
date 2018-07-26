@@ -1,0 +1,70 @@
+// University of Haifa palette colors blue and red
+$hu-blue: (
+  50: #e1ecf5,
+  100: #b4d1e6,
+  200: #83b2d5,
+  300: #5193c4,
+  400: #2b7bb7,
+  500: #0664aa,
+  600: #055189,
+  700: #043d67,
+  800: #03375f,
+  900: #032f54,
+  A100: #adc9ff,
+  A200: #7aa8ff,
+  A400: #4786ff,
+  A700: #2d75ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
+  )
+);
+
+$hu-red: (
+  50: #fae2e2,
+  100: #f2b8b8,
+  200: #ea8888,
+  300: #e25858,
+  400: #db3535,
+  500: #d51111,
+  600: #d00f0f,
+  700: #ca0c0c,
+  800: #c40a0a,
+  900: #ba0505,
+  A100: #ffe4e4,
+  A200: #ffb1b1,
+  A400: #ff7e7e,
+  A700: #ff6464,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+// Error and success colors taken from the material palettes
+$error: mat-color($mat-red, 500);
+$success: mat-color($mat-green, 500);

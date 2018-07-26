@@ -1,0 +1,9 @@
+@import './theme/partials/core';
+@import './theme/partials/layout';
+@import './theme/partials/table';
+
+@mixin uoh-theme() {
+  @include uoh-core();
+  @include uoh-layout();
+  @include uoh-table();
+}

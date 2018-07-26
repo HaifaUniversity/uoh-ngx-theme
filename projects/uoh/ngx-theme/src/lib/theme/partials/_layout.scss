@@ -1,0 +1,19 @@
+@mixin uoh-layout() {
+  .row {
+    display: block;
+  }
+
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
+  .medium-card {
+    max-width: 950px;
+    margin: 0 auto;
+  }
+
+  .small-card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
