@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build_lib": "ng build --prod @uoh/ngx-theme && node build-theme",
+    "build_lib": "ng build --prod @uoh/ngx-theme && node build-theme && node build-assets",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
