@@ -1,0 +1,11 @@
+@mixin uoh-footer($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .uoh-footer footer {
+    background-color: mat-color($primary, 50);
+  }
+}
