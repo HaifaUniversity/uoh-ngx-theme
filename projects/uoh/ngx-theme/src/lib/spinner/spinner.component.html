@@ -1,11 +1,11 @@
 <div *ngIf="visible" [style.width.px]="size.width" [style.height.px]="size.height" class="wrapper">
   <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="viewBox" id="logo" version="1.1">
     <svg:g id="loaderGroup" [attr.transform]="groupTransform">
+      <svg:path [style.stroke-width]="minStrokeWidth" style="fill:none;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4"
+        [attr.d]="path" transform="translate(0,0)" id="bgPath" />
       <svg:path [style.stroke-dasharray]="dashArray" [style.stroke-dashoffset]="dashOffset" [style.stroke-width]="strokeWidth"
         style="fill:none;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
         [attr.d]="path" transform="translate(0,0)" id="loaderPath" />
-      <svg:path [style.stroke-width]="minStrokeWidth" style="fill:none;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
-        [attr.d]="path" transform="translate(0,0)" id="bgPath" />
       </g>
   </svg>
 </div>

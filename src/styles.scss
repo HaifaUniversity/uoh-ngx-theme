@@ -4,7 +4,8 @@
 $config: (
   layout: true,
   accessibility: true,
-  header: true
+  header: true,
+  spinner: true
 );
 
 @include uoh-theme($config...);

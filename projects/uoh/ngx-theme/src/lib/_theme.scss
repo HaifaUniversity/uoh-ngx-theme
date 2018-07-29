@@ -9,9 +9,10 @@
 
 @import './theme/accessibility';
 @import './theme/header';
+@import './theme/spinner';
 
 // TODO: Add an `all` parameter to include all the features of the uoh-theme
-@mixin uoh-theme($layout: true, $table: false, $accessibility: false, $header: false) {
+@mixin uoh-theme($layout: true, $table: false, $accessibility: false, $header: false, $spinner: true) {
   @if $layout {
     @include uoh-layout();
   }
@@ -46,6 +47,10 @@
     @include uoh-header($default-theme);
   }
 
+  @if $spinner {
+    @include uoh-spinner($default-theme);
+  }
+
   .dark-theme {
     a {
       color: mat-color($dark-accent, A100);
@@ -58,6 +63,10 @@
 
     @if $header {
       @include uoh-header($dark-theme);
+    }
+
+    @if $spinner {
+      @include uoh-spinner($dark-theme);
     }
   }
 }

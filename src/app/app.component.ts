@@ -14,7 +14,7 @@ export class AppComponent {
 
   load(): void {
     this.spinner.show();
-    setTimeout(_ => this.spinner.hide(), 3000);
+    setTimeout(_ => this.spinner.hide(), 20000);
   }
 
   logIn(): void {

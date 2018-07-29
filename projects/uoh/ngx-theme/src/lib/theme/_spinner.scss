@@ -1,0 +1,16 @@
+@mixin uoh-spinner($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .uoh-spinner #loaderPath {
+    stroke: mat-color($accent);
+  }
+
+  .uoh-spinner #bgPath {
+    stroke: mat-color($accent, A100); // rgba(213, 17, 17, 0.1);
+    stroke-opacity: 0.5;
+  }
+}
