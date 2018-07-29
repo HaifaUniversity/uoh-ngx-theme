@@ -1,0 +1,17 @@
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  line-height: 150%;
+}
+
+footer span {
+  text-align: center;
+}
+
+footer span:not(:last-child)::after {
+  content: ' | ';
+  white-space: pre;
+}

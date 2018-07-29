@@ -5,14 +5,22 @@ import {
   UohSpinnerModule,
   UohHeaderModule,
   UohSpinner,
-  UohBackToTopModule
+  UohBackToTopModule,
+  UohFooterModule
 } from '@uoh/ngx-theme';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, UohAccessibilityModule, UohSpinnerModule, UohHeaderModule, UohBackToTopModule],
+  imports: [
+    BrowserModule,
+    UohAccessibilityModule,
+    UohSpinnerModule,
+    UohHeaderModule,
+    UohBackToTopModule,
+    UohFooterModule
+  ],
   providers: [UohSpinner],
   bootstrap: [AppComponent]
 })
