@@ -7,5 +7,10 @@
 
   .uoh-footer footer {
     background-color: mat-color($primary, 50);
+    color: mat-contrast($primary, 50);
+  }
+
+  .uoh-footer footer a {
+    color: mat-color($primary, 700);
   }
 }
