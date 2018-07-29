@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+declare const require: any;
 
 @Component({
   selector: 'uoh-footer',
@@ -6,8 +8,28 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   host: { class: 'uoh-footer' }
 })
-export class FooterComponent {
-  @Input() version = '0.0.0';
+export class FooterComponent implements OnInit {
+  @Input() version: string;
 
   constructor() {}
+
+  ngOnInit(): void {
+    if (this.version === undefined) {
+      this.version = this.getVersion();
+    }
+  }
+
+  private getVersion(): string {
+    // Try to automatically retrieve the version number
+    try {
+      const app = require('../../../../package.json');
+      if (app && app.version) {
+        return app.version;
+      }
+    } catch (e) {
+      console.warn('Cannot automatically retrieve the app version', e);
+    }
+
+    return undefined;
+  }
 }
