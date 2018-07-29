@@ -1,13 +1,7 @@
 .mat-mini-fab {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-  .mat-mini-fab {
-    display: block;
-    position: fixed;
-    z-index: 999;
-    bottom: 70px;
-    left: 5px;
-  }
+  display: block;
+  position: fixed;
+  z-index: 999;
+  bottom: 70px;
+  left: 5px;
 }

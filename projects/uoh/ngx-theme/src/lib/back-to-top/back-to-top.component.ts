@@ -1,13 +1,14 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: 'uoh-back-to-top',
   templateUrl: './back-to-top.component.html',
-  styleUrls: ['./back-to-top.component.scss']
+  styleUrls: ['./back-to-top.component.scss'],
+  host: { class: 'uoh-back-to-top' }
 })
 export class BackToTopComponent {
   display = false;
-  private BACK_TO_TOP_SCROLL = 100;
+  @Input() minScroll = 100;
 
   constructor() {}
 
@@ -23,6 +24,6 @@ export class BackToTopComponent {
     const element = document.documentElement.clientHeight ? document.documentElement : document.body;
     const scrollTop = window.pageYOffset ? window.pageYOffset : element.scrollTop;
 
-    this.display = scrollTop > this.BACK_TO_TOP_SCROLL;
+    this.display = scrollTop > this.minScroll;
   }
 }
