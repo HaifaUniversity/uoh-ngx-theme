@@ -8,7 +8,8 @@ import { Point, Size, Stops } from './models';
 @Component({
   selector: 'uoh-spinner',
   templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css']
+  styleUrls: ['./spinner.component.css'],
+  host: { class: 'uoh-spinner' }
 })
 export class SpinnerComponent implements OnInit, OnDestroy {
   @Input() size: Size;

@@ -3,7 +3,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'uoh-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  host: { class: 'uoh-header' }
 })
 export class HeaderComponent {
   @Input() title = 'אוניברסיטת חיפה';

@@ -4,7 +4,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 @Component({
   selector: 'uoh-accessibility',
   templateUrl: './accessibility.component.html',
-  styleUrls: ['./accessibility.component.scss']
+  styleUrls: ['./accessibility.component.scss'],
+  host: { class: 'uoh-accessibility' }
 })
 export class AccessibilityComponent {
   @Input() dir = 'rtl';
