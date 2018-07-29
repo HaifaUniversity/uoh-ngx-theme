@@ -1,5 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <uoh-accessibility dir="rtl">
+  <uoh-spinner></uoh-spinner>
+  <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
   <div style="text-align:center">
     <h1>
       Welcome to {{ title }}!
@@ -24,4 +26,10 @@
       </h2>
     </li>
   </ul>
+  <button (click)="load()">
+    Load
+  </button>
+  <button *ngIf="!user" (click)="logIn()">
+    Log in
+  </button>
 </uoh-accessibility>
