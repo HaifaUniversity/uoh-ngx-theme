@@ -366,3 +366,7 @@ export class AppComponent {
   }
 }
 ```
+
+## License
+
+MIT © [Pablo Saracusti](mailto:psaracu1@univ.haifa.ac.il)
