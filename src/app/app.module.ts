@@ -10,16 +10,20 @@ import {
 } from '@uoh/ngx-theme';
 
 import { AppComponent } from './app.component';
+import { OneComponent } from './one/one.component';
+import { TwoComponent } from './two/two.component';
+import { routing } from './app.routing';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, OneComponent, TwoComponent],
   imports: [
     BrowserModule,
     UohAccessibilityModule,
     UohSpinnerModule,
     UohHeaderModule,
     UohBackToTopModule,
-    UohFooterModule
+    UohFooterModule,
+    routing
   ],
   providers: [UohSpinner],
   bootstrap: [AppComponent]
