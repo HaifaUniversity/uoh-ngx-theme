@@ -21,12 +21,12 @@ This library includes the following modules:
 
 ### SCSS Theme
 
-This file contains a default and a dark color theme, a layout design and presets for responsive tables.
+This theme contains a default and a dark color theme, a layout design and presets for responsive tables.
 
 #### Install Material design and its icons font
 
 First, install [angular material](https://material.angular.io/guide/getting-started).
-Secondly, add the following tag to the `head` section of your `index.html` file:
+Secondly, add the following tag to the `head` section of your `index.html` file (required for the accessibility, header and back-to-top modules):
 
 ```xml
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -50,7 +50,7 @@ Add the following lines to the `styles.scss` file in your application:
 @include uoh-theme();
 ```
 
-The `uoh-theme` mixin contains all the designs and configurations for all the modules. If you want to avoid some of these presets (to minimize the size of the css output) you must pass a configuration map parameter to the mixin with the modules you want to exclude.
+The `uoh-theme` mixin contains the configurations for all the modules. If you want to avoid some of these presets (to minimize the size of the css output) you must pass a configuration map parameter to the mixin with the modules you want to exclude.
 
 For example:
 
@@ -74,7 +74,7 @@ This feature contains the `small-card` and the `medium-card` classes to set diff
 
 ##### Responsive table support
 
-In order to utilize the responsive support in your tables you need to add a title property to each column as follows:
+In order to utilize the responsive support for your tables you need to add a title property to each column as follows:
 
 ```xml
       <table mat-table [dataSource]="dataSource" matSort dir="rtl">
@@ -101,7 +101,7 @@ On mobile this will be transformed to something similar as the following:
 קורס: (lecturer)
 ```
 
-Please, note that the `row-title` class transforms the cell into a kind of a header in the mobile version.
+> Please, note that the `row-title` class transforms the cell into the title of the row (kind of a header) in the mobile version.
 
 ##### Include your custom component theme:
 
