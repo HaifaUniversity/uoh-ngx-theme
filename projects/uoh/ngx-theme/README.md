@@ -130,7 +130,7 @@ The theme file also includes two presets: the `$error` and the `$success` color 
 
 This module adds an accessibility menu to set the font size and the theme for the application.
 
-#### Usage
+#### Consuming the accessibility module
 
 Import the `UohAccessibilityModule` in your `app.module.ts`. For example:
 
@@ -167,6 +167,8 @@ Then, wrap \***\*all\*\*** the contents of your app (including header, footer, e
 
 > Note: You can set the direction of all the app contents by setting the dir input variable to `rtl` (default) or `ltr`.
 
+---
+
 ### The header module
 
 This module contains a header with the title for the application, the university logo and logic for log-in functionality.
@@ -179,7 +181,7 @@ Add the following line to the `options` --> `assets` array under both the `build
 { "glob": "**/*", "input": "./node_modules/@uoh/ngx-theme/assets", "output": "/assets/" }
 ```
 
-#### Import the header module
+#### Consuming the header module
 
 In order to import the module add the following lines to your `app.module.ts`:
 
@@ -187,7 +189,7 @@ In order to import the module add the following lines to your `app.module.ts`:
 import { UohHeaderModule } from '@uoh/ngx-theme';
 
 @NgModule({
-  imports: [ UohHeaderModule ]
+  imports: [ UohHeaderModule ],
   ...
 })
 ```
@@ -229,11 +231,13 @@ export class AppComponent {
 }
 ```
 
+---
+
 ### The footer module
 
 This module contains a footer with details about the university and the current version of the application (optional).
 
-#### Import the footer module
+#### Consuming the footer module
 
 In order to import the module add the following lines to your `app.module.ts`:
 
@@ -241,7 +245,7 @@ In order to import the module add the following lines to your `app.module.ts`:
 import { UohFooterModule } from '@uoh/ngx-theme';
 
 @NgModule({
-  imports: [ UohFooterModule ]
+  imports: [ UohFooterModule ],
   ...
 })
 ```
@@ -256,11 +260,13 @@ Then add the `uoh-footer` component to the bottom section of your `app.component
 
 The footer component accepts a `version` input variable. If it is omitted, the component will try to automatically retrieve the version number from your app's `package.json`. Alternatively, you can pass a string to it in order to set a custom version name or `false` (as in the above example) if you don't want it to be displayed.
 
+---
+
 ### The back-to-top module
 
 This module adds a button that returns the focus to the top of the page.
 
-#### Import the back-to-top module
+#### Consuming the back-to-top module
 
 In order to import this module add the following lines to your `app.module.ts`:
 
@@ -268,7 +274,7 @@ In order to import this module add the following lines to your `app.module.ts`:
 import { UohBackToTopModule } from '@uoh/ngx-theme';
 
 @NgModule({
-  imports: [ UohBackToTopModule ]
+  imports: [ UohBackToTopModule ],
   ...
 })
 ```
@@ -289,6 +295,74 @@ If you want to add this functionality only for mobile you will have to add the f
 @media only screen and (max-width: 600px) {
   .uoh-back-to-top {
     display: block;
+  }
+}
+```
+
+---
+
+### The spinner module
+
+This module includes a spinner loader with the logo of the university.
+
+#### Consuming the spinner module
+
+In order to import the spinner module add the following lines to your `app.module.ts`:
+
+```typescript
+import { UohSpinnerModule } from '@uoh/ngx-theme';
+
+@NgModule({
+  imports: [ UohSpinnerModule ],
+  ...
+})
+```
+
+Then add the `uoh-spinner` component to your `app.component.html`:
+
+```xml
+<uoh-spinner [size]="{width: 120}" [duration]="2000" [fps]="60" [minStrokeWidth]="5" [maxStrokeWidth]="30"
+  [circle]="{stop1: 0.5, stop2: 0.7}"></uoh-spinner>
+```
+
+### Input Options
+
+- `size` - An object containing the width and/or the height of the spinner. Note: only one of them is required, the other will be automatically calculated to constrain proportions
+- `duration` - A number representing the duration for the animation in milliseconds
+- `fps` - A number representing the frames per second for the animation
+- `minStrokeWidth` - A number representing the minimum width of the line
+- `maxStrokeWidth` - A number representing the maximum width of the line (the starting point)
+- `circle` - An object containing two stops representing the percentage of frames to reach the minimum (step1) and the maximum widths (step2)
+- `path` - A string containing svg coordinates for the figure (equivalent to the d attribute in a svg path)
+
+### Spinner Activation
+
+The spinner is activated/deactivated by calling the functions show/hide in the `UohSpinner` service.
+The `UohSpinner` exposes a BehaviorSubject of type Boolean named `loading`, which can be used to determine if a loading procedure is taking place.
+
+For example, in your component.ts:
+
+```typescript
+import { UohSpinner } from '@uoh/ngx-theme';
+
+@Component({
+  selector: 'app',
+  template: `
+    <h1>
+      {{title}}
+    </h1>
+    <button (click)="loadStuff()" [disabled]="spinner.loading | async" >Load Stuff</button>
+    <uoh-spinner></uoh-spinner>
+  `
+})
+export class AppComponent {
+  data: Stuff[];
+
+  constructor(public spinner: UohSpinner, private apiService: ApiService) {}
+
+  loadStuff(): void {
+    this.spinner.show();
+    this.apiService.loadStuff.subscribe(data => (this.data = data), _, this.spinner.hide());
   }
 }
 ```
