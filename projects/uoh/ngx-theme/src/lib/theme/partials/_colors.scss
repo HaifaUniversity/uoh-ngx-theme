@@ -66,5 +66,7 @@ $hu-red: (
 );
 
 // Error and success colors taken from the material palettes
-$error: mat-color($mat-red, 500);
 $success: mat-color($mat-green, 500);
+$success-contrast: mat-contrast($mat-green, 500);
+$error: mat-color($mat-red, 500);
+$error-contrast: mat-contrast($mat-red, 500);

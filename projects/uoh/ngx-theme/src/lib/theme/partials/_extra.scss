@@ -1,0 +1,19 @@
+@mixin uoh-extra() {
+  .success {
+    color: #{$success};
+  }
+
+  .success-fill {
+    background-color: #{$success};
+    color: #{success-contrast};
+  }
+
+  .error {
+    color: #{$error};
+  }
+
+  .error-fill {
+    background-color: #{$error};
+    color: #{$error-contrast};
+  }
+}

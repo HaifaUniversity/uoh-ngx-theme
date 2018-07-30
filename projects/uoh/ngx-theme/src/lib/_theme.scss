@@ -4,6 +4,7 @@
 @import './theme/partials/typography';
 @import './theme/partials/layout';
 @import './theme/partials/table';
+@import './theme/partials/extra';
 @import './theme/partials/themes/default';
 @import './theme/partials/themes/dark';
 
@@ -13,12 +14,23 @@
 @import './theme/spinner';
 
 // TODO: Add an `all` parameter to include all the features of the uoh-theme
-@mixin uoh-theme($layout: true, $table: true, $accessibility: true, $header: true, $footer: true, $spinner: true) {
+@mixin uoh-theme(
+  $layout: true,
+  $table: true,
+  $extra: true,
+  $accessibility: true,
+  $header: true,
+  $footer: true,
+  $spinner: true
+) {
   @if $layout {
     @include uoh-layout();
   }
   @if $table {
     @include uoh-table();
+  }
+  @if $extra {
+    @include uoh-extra();
   }
 
   body {

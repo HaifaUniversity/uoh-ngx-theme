@@ -22,10 +22,16 @@
       </td>
     </tr>
   </table>
-  <button (click)="load()">
+  <div class="error">
+    This is an error message.
+  </div>
+  <div class="success">
+    This is a success message.
+  </div>
+  <button class="error-fill" (click)="load()">
     Load
   </button>
-  <button *ngIf="!user" (click)="logIn()">
+  <button class="success-fill" *ngIf="!user" (click)="logIn()">
     Log in
   </button>
   <p>
