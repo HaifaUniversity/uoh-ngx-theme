@@ -6,7 +6,9 @@
     "url": "git@github.com:HaifaUniversity/uoh-ngx-theme.git"
   },
   "keywords": [
-    "SCSS"
+    "SCSS",
+    "Angular",
+    "Typescript"
   ],
   "author": "Pablo Saracusti",
   "license": "MIT",

@@ -13,7 +13,7 @@
 @import './theme/spinner';
 
 // TODO: Add an `all` parameter to include all the features of the uoh-theme
-@mixin uoh-theme($layout: true, $table: false, $accessibility: false, $header: false, $footer: false, $spinner: true) {
+@mixin uoh-theme($layout: true, $table: true, $accessibility: true, $header: true, $footer: true, $spinner: true) {
   @if $layout {
     @include uoh-layout();
   }
