@@ -146,7 +146,7 @@ import { UohAccessibilityModule } from '@uoh/ngx-theme/accessibility';
 export class AppModule {}
 ```
 
-Then, wrap ****all**** the contents of your app (including header, footer, etc.) inside the `uoh-accessibility` tag:
+Then, wrap \***\*all\*\*** the contents of your app (including header, footer, etc.) inside the `uoh-accessibility` tag:
 
 ```xml
 <uoh-accessibility [dir]="dir">
@@ -255,3 +255,40 @@ Then add the `uoh-footer` component to the bottom section of your `app.component
 > Note: If you use `uoh-accessibility` remember to include the `uoh-footer` inside it.
 
 The footer component accepts a `version` input variable. If it is omitted, the component will try to automatically retrieve the version number from your app's `package.json`. Alternatively, you can pass a string to it in order to set a custom version name or `false` (as in the above example) if you don't want it to be displayed.
+
+### The back-to-top module
+
+This module adds a button that returns the focus to the top of the page.
+
+#### Import the back-to-top module
+
+In order to import this module add the following lines to your `app.module.ts`:
+
+```typescript
+import { UohBackToTopModule } from '@uoh/ngx-theme';
+
+@NgModule({
+  imports: [ UohBackToTopModule ]
+  ...
+})
+```
+
+Then add the following line to your `app.component.html` or your components html templates, depending on whether you want the component in all your pages or custom sections of your application:
+
+```xml
+<uoh-back-to-top></uoh-back-to-top>
+```
+
+If you want to add this functionality only for mobile you will have to add the following configuration to your `styles.scss`:
+
+```scss
+.uoh-back-to-top {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .uoh-back-to-top {
+    display: block;
+  }
+}
+```
