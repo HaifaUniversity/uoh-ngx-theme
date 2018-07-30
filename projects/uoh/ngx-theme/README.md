@@ -59,6 +59,7 @@ For example:
 $config: (
   layout: false,
   table: false,
+  extra: false,
   accessibility: false,
   header: false,
   footer: false,
@@ -120,9 +121,9 @@ Once the core theming was installed, you can use the `$default-theme` and `$dark
 }
 ```
 
-###### Error and success colors:
+###### Extra colors:
 
-The theme file also includes two presets: the `$error` and the `$success` color variables. These can be used in your application to set the two corresponding classes.
+The theme file also includes two presets: the `success`, `success-fill`, `error` and the `error-fill` classes. These can be used in your application to set two extra types of messages.
 
 ---
 
