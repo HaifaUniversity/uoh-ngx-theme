@@ -9,6 +9,13 @@ import { UohSpinner } from '@uoh/ngx-theme';
 export class AppComponent {
   title = 'app';
   user: string;
+  data = [
+    { c1: 'משתמש 1', c2: 'תפקיד משתמש 1' },
+    { c1: 'משתמש 2', c2: 'תפקיד משתמש 2' },
+    { c1: 'משתמש 3', c2: 'תפקיד משתמש 3' },
+    { c1: 'משתמש 4', c2: 'תפקיד משתמש 4' },
+    { c1: 'משתמש 5', c2: 'תפקיד משתמש 5' }
+  ];
 
   constructor(private spinner: UohSpinner) {}
 
