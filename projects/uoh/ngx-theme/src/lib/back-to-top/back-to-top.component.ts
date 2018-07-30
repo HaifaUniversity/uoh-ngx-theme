@@ -1,5 +1,7 @@
 import { Component, HostListener, Input } from '@angular/core';
 
+import { UohBackToTop } from './back-to-top.service';
+
 @Component({
   selector: 'uoh-back-to-top',
   templateUrl: './back-to-top.component.html',
@@ -10,12 +12,10 @@ export class BackToTopComponent {
   display = false;
   @Input() minScroll = 100;
 
-  constructor() {}
+  constructor(private backToTopService: UohBackToTop) {}
 
   backToTop(): void {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    this.backToTopService.back();
     this.display = false;
   }
 
