@@ -1,6 +1,6 @@
 # University of Haifa Angular Theme
 
-A preset of the University of Haifa design based on Material for Angular.
+A collection of University of Haifa modules to be integrated in an Angular project using Material Design.
 
 ## Installation
 
