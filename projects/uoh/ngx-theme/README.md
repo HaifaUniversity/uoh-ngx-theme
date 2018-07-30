@@ -286,6 +286,8 @@ Then add the following line to your `app.component.html` or your components html
 <uoh-back-to-top></uoh-back-to-top>
 ```
 
+> Note: If needed you can inject the `UohBackToTop` service and use the same functionality in your components. The service includes a cross-browser `back` method which returns the focus to the top of the page.
+
 If you want to add this functionality only for mobile you will have to add the following configuration to your `styles.scss`:
 
 ```scss
