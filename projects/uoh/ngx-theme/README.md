@@ -146,7 +146,7 @@ import { UohAccessibilityModule } from '@uoh/ngx-theme/accessibility';
 export class AppModule {}
 ```
 
-Then, wrap \***\*all\*\*** the contents of your app (including header, footer, etc.) inside the `uoh-accessibility` tag:
+Then, wrap **all** the contents of your app (including header, footer, etc.) inside the `uoh-accessibility` tag:
 
 ```xml
 <uoh-accessibility [dir]="dir">
@@ -258,7 +258,7 @@ Then add the `uoh-footer` component to the bottom section of your `app.component
 
 > Note: If you use `uoh-accessibility` remember to include the `uoh-footer` inside it.
 
-The footer component accepts a `version` input variable. If it is omitted, the component will try to automatically retrieve the version number from your app's `package.json`. Alternatively, you can pass a string to it in order to set a custom version name or `false` (as in the above example) if you don't want it to be displayed.
+The footer component accepts a `version` input variable. If it is omitted, the component will try to automatically retrieve the version number from your app's `package.json` file. Alternatively, you can pass a string to it in order to set a custom version name or `false` (as in the above example) if you don't want it to be displayed.
 
 ---
 
