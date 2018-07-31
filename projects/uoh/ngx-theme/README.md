@@ -309,8 +309,10 @@ import { UohBackToTopModule } from '@uoh/ngx-theme';
 Then add the following line to your `app.component.html` or your components html templates, depending on whether you want the component in all your pages or custom sections of your application:
 
 ```xml
-<uoh-back-to-top></uoh-back-to-top>
+<uoh-back-to-top [minScroll]="75"></uoh-back-to-top>
 ```
+
+The component accepts a `minScroll` input variable to set the minimum amount of pixels scrolled required in order to display the back-to-top button. If left unset, the default value for this variable is `100` pixels.
 
 > Note: If needed you can inject the `UohBackToTop` service and use the same functionality in your components. The service includes a cross-browser `back` method which returns the focus to the top of the page.
 
