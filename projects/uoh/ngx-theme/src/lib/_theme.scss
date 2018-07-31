@@ -12,6 +12,7 @@
 @import './theme/header';
 @import './theme/footer';
 @import './theme/spinner';
+@import './theme/content';
 
 // TODO: Add an `all` parameter to include all the features of the uoh-theme
 @mixin uoh-theme(
@@ -21,7 +22,8 @@
   $accessibility: true,
   $header: true,
   $footer: true,
-  $spinner: true
+  $spinner: true,
+  $content: true
 ) {
   @if $layout {
     @include uoh-layout();
@@ -48,10 +50,6 @@
     text-decoration: underline;
   }
 
-  .uoh-content {
-    padding: 16px;
-  }
-
   @include mat-core();
   @include angular-material-typography($default-typography);
   @include angular-material-theme($default-theme);
@@ -70,6 +68,14 @@
 
   @if $spinner {
     @include uoh-spinner($default-theme);
+  }
+
+  @if $content {
+    .uoh-content {
+      padding: 16px;
+    }
+
+    @include uoh-content($default-theme);
   }
 
   .dark-theme {
@@ -92,6 +98,10 @@
 
     @if $spinner {
       @include uoh-spinner($dark-theme);
+    }
+
+    @if $content {
+      @include uoh-content($dark-theme);
     }
   }
 }
