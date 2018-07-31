@@ -48,6 +48,10 @@
     text-decoration: underline;
   }
 
+  .uoh-content {
+    padding: 16px;
+  }
+
   @include mat-core();
   @include angular-material-typography($default-typography);
   @include angular-material-theme($default-theme);
