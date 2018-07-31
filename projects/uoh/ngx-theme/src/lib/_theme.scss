@@ -2,6 +2,7 @@
 @import '~@angular/material/theming';
 @import './theme/partials/colors';
 @import './theme/partials/typography';
+@import './theme/partials/core';
 @import './theme/partials/layout';
 @import './theme/partials/table';
 @import './theme/partials/extra';
@@ -25,6 +26,8 @@
   $spinner: true,
   $content: true
 ) {
+  @include uoh-core($default-theme);
+
   @if $layout {
     @include uoh-layout();
   }
@@ -42,7 +45,6 @@
   }
 
   a {
-    color: mat-color($default-primary);
     text-decoration: none;
   }
 
@@ -92,9 +94,8 @@
   }
 
   .dark-theme {
-    a {
-      color: mat-color($dark-accent, A100);
-    }
+    @include uoh-core($dark-theme);
+
     @include angular-material-theme($dark-theme);
 
     @if $accessibility {
@@ -102,11 +103,11 @@
     }
 
     @if $header {
-      @include uoh-header($dark-theme);
+      @include uoh-header($dark-header-theme);
     }
 
     @if $footer {
-      @include uoh-footer($dark-theme);
+      @include uoh-footer($dark-header-theme);
     }
 
     @if $spinner {

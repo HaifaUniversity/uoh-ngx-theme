@@ -8,7 +8,7 @@ import { UohSpinner } from '@uoh/ngx-theme';
 })
 export class AppComponent {
   title = 'app';
-  show = false;
+  show = true;
   user: string;
   data = [
     { c1: 'משתמש 1', c2: 'תפקיד משתמש 1' },
