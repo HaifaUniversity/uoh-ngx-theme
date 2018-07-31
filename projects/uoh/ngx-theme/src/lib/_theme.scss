@@ -72,6 +72,7 @@
 
   @if $content {
     .uoh-content {
+      display: block;
       padding: 16px;
     }
 
