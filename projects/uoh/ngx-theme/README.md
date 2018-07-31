@@ -141,12 +141,21 @@ Note that you should wrap under it only the contents of your application. You sh
   <uoh-spinner></uoh-spinner>
   <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
   <uoh-back-to-top minScroll="100"></uoh-back-to-top>
-  <uoh-content>
-    <h1>כותרת</h1>
+  <uoh-content [fullMobile]="true">
     <router-outlet></router-outlet>
   </uoh-content>
   <uoh-footer [version]="false"></uoh-footer>
 </uoh-accessibility>
+```
+
+The `uoh-content` component accepts a `fullMobile` variable. If set to `true`, the contents will maximize to the full extent of the `uoh-content` on mobile. For example, on mobile the following `mat-card` will be extended to fill the area of contents (without borders, shadows and margins):
+
+```xml
+<uoh-content [fullMobile]="true">
+  <mat-card>
+  ...
+  </mat-card>
+</uoh-content>
 ```
 
 ---
