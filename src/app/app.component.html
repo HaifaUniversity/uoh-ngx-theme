@@ -3,7 +3,7 @@
   <uoh-spinner></uoh-spinner>
   <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
   <uoh-back-to-top minScroll="100"></uoh-back-to-top>
-  <uoh-content>
+  <uoh-content [fullMobile]="true">
     <router-outlet></router-outlet>
     <div *ngIf="show" style="text-align:center">
       <h1>

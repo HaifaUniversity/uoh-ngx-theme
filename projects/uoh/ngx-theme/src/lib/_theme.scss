@@ -74,6 +74,18 @@
     .uoh-content {
       display: block;
       padding: 16px;
+      &.uoh-full-mobile {
+        @media only screen and (max-width: 600px) {
+          padding: 0px;
+          .mat-card {
+            box-shadow: none;
+            border: none;
+          }
+          .small-card {
+            max-width: 600px;
+          }
+        }
+      }
     }
 
     @include uoh-content($default-theme);
