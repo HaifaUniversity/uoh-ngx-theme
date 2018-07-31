@@ -13,6 +13,7 @@ $ npm install @uoh/ngx-theme --save
 This library includes the following modules:
 
 - SCSS file including color themes and design configurations
+- A content module to wrap your application with the theme
 - An accessibility module containing accessibility features
 - A header module with the logo of the University of Haifa and log-in logic
 - A footer module with the details of the university and the version of the application (optional)
@@ -63,7 +64,8 @@ $config: (
   accessibility: false,
   header: false,
   footer: false,
-  spinner: false
+  spinner: false,
+  content: false
 );
 
 @include uoh-theme($config...);
@@ -71,7 +73,8 @@ $config: (
 
 ##### Layout support
 
-This feature contains the `small-card` and the `medium-card` classes to set different mat-card sizes and a `fill-remaining-space` class to fill the remaining space in a flexbox. It also includes a `row` class to set a new line.
+The layout feature presets the `max-width` of the `mat-card` to 1200px and aligns it to the center of the page.
+This feature also contains the `small-card` and the `medium-card` classes which set different `mat-card` sizes and a `fill-remaining-space` class to fill the remaining space in a flexbox. It also includes a `row` class to set a new line.
 
 ##### Responsive table support
 
@@ -127,6 +130,27 @@ The theme file also includes two presets: the `success`, `success-fill`, `error`
 
 ---
 
+### The content module
+
+This module contains the `uoh-content` component which is used to wrap your app components and apply to them the design rules of this theme. The `uoh-content` is included in the `UohAccessibilityModule`, the `UohHeaderModule` and the `UohFooterModule`. Alternatively, you can import it separately using its own `UohContentModule`.
+
+Note that you should wrap under it only the contents of your application. You should not include in it the components provided by this theme. For example:
+
+```xml
+<uoh-accessibility dir="rtl">
+  <uoh-spinner></uoh-spinner>
+  <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
+  <uoh-back-to-top minScroll="100"></uoh-back-to-top>
+  <uoh-content>
+    <h1>כותרת</h1>
+    <router-outlet></router-outlet>
+  </uoh-content>
+  <uoh-footer [version]="false"></uoh-footer>
+</uoh-accessibility>
+```
+
+---
+
 ### The accessibility module
 
 This module adds an accessibility menu to set the font size and the theme for the application.
@@ -151,7 +175,7 @@ Then, wrap **all** the contents of your app (including header, footer, etc.) ins
 
 ```xml
 <uoh-accessibility [dir]="dir">
-  <div class="wrapper">
+  <uoh-content>
     <mat-card class="small-card">
       <mat-card-content>
         <div style="text-align:center">
@@ -162,9 +186,11 @@ Then, wrap **all** the contents of your app (including header, footer, etc.) ins
         <h2>University of Haifa</h2>
       </mat-card-content>
     </mat-card>
-  </div>
+  </uoh-content>
 </uoh-accessibility>
 ```
+
+> Note: The content is wrapped under the `uoh-content` component in order to keep the design of the contents of your application aligned with the `@uoh` components. For more information, please refer to the `The content module` section above.
 
 > Note: You can set the direction of all the app contents by setting the dir input variable to `rtl` (default) or `ltr`.
 
