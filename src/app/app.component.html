@@ -3,6 +3,7 @@
   <uoh-spinner></uoh-spinner>
   <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
   <uoh-back-to-top minScroll="100"></uoh-back-to-top>
+  <router-outlet></router-outlet>
   <div style="text-align:center">
     <h1>
       Welcome to {{ title }}!
@@ -34,7 +35,6 @@
   <button class="success-fill" *ngIf="!user" (click)="logIn()">
     Log in
   </button>
-  <router-outlet></router-outlet>
   <p>
     <a [routerLink]="['one']">Go to one</a>
     <a [routerLink]="['two']">Go to two</a>

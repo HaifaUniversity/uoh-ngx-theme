@@ -1,5 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatSelectModule,
+  MatInputModule,
+  MatSnackBarModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from '@angular/material';
 import {
   UohAccessibilityModule,
   UohSpinnerModule,
@@ -18,6 +30,16 @@ import { routing } from './app.routing';
   declarations: [AppComponent, OneComponent, TwoComponent],
   imports: [
     BrowserModule,
+    FormsModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatSnackBarModule,
     UohAccessibilityModule,
     UohSpinnerModule,
     UohHeaderModule,

@@ -14,8 +14,8 @@ const routes: Routes = [
     component: TwoComponent
   },
   {
-    path: 'one',
-    redirectTo: 'instructions'
+    path: '**',
+    redirectTo: 'one'
   }
 ];
 
