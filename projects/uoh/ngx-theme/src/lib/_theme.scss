@@ -26,6 +26,10 @@
   $spinner: true,
   $content: true
 ) {
+  $header-height: 0px;
+  $header-height-mobile: 0px;
+  $footer-height: 0px;
+
   @include uoh-core($default-theme);
 
   @if $layout {
@@ -61,10 +65,13 @@
   }
 
   @if $header {
-    @include uoh-header($default-theme);
+    $header-height: 144px;
+    $header-height-mobile: 110px;
+    @include uoh-header($default-theme, $header-height, $header-height-mobile);
   }
 
   @if $footer {
+    $footer-height: 41px;
     @include uoh-footer($default-theme);
   }
 
@@ -73,12 +80,28 @@
   }
 
   @if $content {
+    $content-padding: 16px;
+
     .uoh-content {
       display: block;
-      padding: 16px;
+      padding: $content-padding;
+
+      @if $footer {
+        min-height: calc(100vh - #{($content-padding * 2 + $header-height + $footer-height)});
+
+        @media only screen and (max-width: 600px) {
+          min-height: calc(100vh - #{($content-padding * 2 + $header-height-mobile + $footer-height)});
+        }
+      }
+
       &.uoh-full-mobile {
         @media only screen and (max-width: 600px) {
           padding: 0px;
+
+          @if $footer {
+            min-height: calc(100vh - $header-height-mobile - $footer-height);
+          }
+
           .mat-card {
             box-shadow: none;
             border: none;
@@ -103,7 +126,7 @@
     }
 
     @if $header {
-      @include uoh-header($dark-header-theme);
+      @include uoh-header($dark-header-theme, $header-height, $header-height-mobile);
     }
 
     @if $footer {

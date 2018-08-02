@@ -1,9 +1,14 @@
-@mixin uoh-header($theme) {
+@mixin uoh-header($theme, $height, $height-mobile) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+
+  $first-line: 100px;
+  $first-line-mobile: 74px;
+  $second-line: $height - $first-line;
+  $second-line-mobile: $height-mobile - $first-line-mobile;
 
   .mat-toolbar .mat-toolbar-row {
     h1,
@@ -18,12 +23,15 @@
   }
 
   .mat-toolbar {
-    background-image: linear-gradient(mat-color($primary) 100px, mat-color($primary, darker) 44px);
+    background-image: linear-gradient(mat-color($primary) $first-line, mat-color($primary, darker) $second-line);
   }
 
   @media screen and (max-width: 600px) {
     .mat-toolbar {
-      background-image: linear-gradient(mat-color($primary) 74px, mat-color($primary, darker) 36px);
+      background-image: linear-gradient(
+        mat-color($primary) $first-line-mobile,
+        mat-color($primary, darker) $second-line-mobile
+      );
     }
 
     .log-out .mat-icon {
