@@ -169,7 +169,7 @@ This module adds an accessibility menu to set the font size and the theme for th
 Import the `UohAccessibilityModule` in your `app.module.ts`. For example:
 
 ```typescript
-import { UohAccessibilityModule } from '@uoh/ngx-theme/accessibility';
+import { UohAccessibilityModule } from '@uoh/ngx-theme';
 
 @NgModule({
   declarations: [AppComponent],
