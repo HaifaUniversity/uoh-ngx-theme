@@ -8,7 +8,18 @@ import { OverlayContainer } from '@angular/cdk/overlay';
   host: { class: 'uoh-accessibility' }
 })
 export class AccessibilityComponent {
-  @Input() dir = 'rtl';
+  @Input()
+  dir = 'rtl';
+  @Input()
+  header = 'תפריט נגישות';
+  @Input()
+  increaseFont = 'הגדלת פונט';
+  @Input()
+  decreaseFont = 'הקטנת פונט';
+  @Input()
+  contrast = 'ניגודיות';
+  @Input()
+  resetText = 'איפוס הגדרות';
   DARK_THEME = 'dark-theme';
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
