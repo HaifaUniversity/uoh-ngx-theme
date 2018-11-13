@@ -388,10 +388,8 @@ import { UohSpinner } from '@uoh/ngx-theme';
 @Component({
   selector: 'app',
   template: `
-    <h1>
-      {{title}}
-    </h1>
-    <button (click)="loadStuff()" [disabled]="spinner.loading | async" >Load Stuff</button>
+    <h1>{{ title }}</h1>
+    <button (click)="loadStuff()" [disabled]="spinner.loading | async">Load Stuff</button>
     <uoh-spinner></uoh-spinner>
   `
 })

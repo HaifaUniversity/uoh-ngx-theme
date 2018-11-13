@@ -10,12 +10,14 @@ export class HeaderComponent {
   @Input() title = 'אוניברסיטת חיפה';
   @Input() subtitle: string;
   @Input() user: string;
-  @Output() logOut = new EventEmitter<boolean>();
+  @Input() welcome = 'שלום';
+  @Input() logout = 'יציאה מהמערכת';
+  @Output() logOut$ = new EventEmitter<boolean>();
 
   constructor() {}
 
   onLogOut(): void {
-    this.logOut.emit(true);
+    this.logOut$.emit(true);
   }
 
   openHaifaWebsite(): void {

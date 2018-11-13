@@ -1,24 +1,16 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <img src="./assets/univ_flag.png" alt="אוניברסיטת חיפה" class="brand-logo" (click)="openHaifaWebsite()">
+    <img src="./assets/univ_flag.png" alt="אוניברסיטת חיפה" class="brand-logo" (click)="openHaifaWebsite()" />
     <div class="toolbar-details" role="row">
       <a routerLink="./" class="titles">
-        <h1>
-          {{title}}
-        </h1>
-        <h2>
-          {{subtitle}}
-        </h2>
+        <h1>{{ title }}</h1>
+        <h2>{{ subtitle }}</h2>
       </a>
       <div *ngIf="user" class="controls">
-        <span class="welcome" role="row">
-          שלום {{user}}
-        </span>
+        <span class="welcome" role="row"> {{ welcome }} {{ user }} </span>
         <span class="fill-remaining-space" aria-hidden="true"></span>
         <button mat-button class="log-out" (click)="onLogOut()">
-          <span class="log-out-text">
-            יציאה מהמערכת
-          </span>
+          <span class="log-out-text"> {{ logout }} </span>
           <mat-icon color="accent" aria-hidden="false" aria-label="יציאה מהמערכת">power_settings_new</mat-icon>
         </button>
       </div>
