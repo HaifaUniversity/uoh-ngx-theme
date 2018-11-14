@@ -12,12 +12,12 @@ export class HeaderComponent {
   @Input() user: string;
   @Input() welcome = 'שלום';
   @Input() logout = 'יציאה מהמערכת';
-  @Output() logOut$ = new EventEmitter<boolean>();
+  @Output() logOut = new EventEmitter<boolean>();
 
   constructor() {}
 
   onLogOut(): void {
-    this.logOut$.emit(true);
+    this.logOut.emit(true);
   }
 
   openHaifaWebsite(): void {
