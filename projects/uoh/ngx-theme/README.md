@@ -201,7 +201,9 @@ Then, wrap **all** the contents of your app (including header, footer, etc.) ins
 
 > Note: The content is wrapped under the `uoh-content` component in order to keep the design of the contents of your application aligned with the `@uoh` components. For more information, please refer to the `The content module` section above.
 
-> Note: You can set the direction of all the app contents by setting the dir input variable to `rtl` (default) or `ltr`.
+> Note: You can set the direction of all the app contents by setting the `dir` input variable to `rtl` (default) or `ltr`.
+
+> Note: If you want to set custom labels for the buttons and headers you can set the `labels` input. To learn about the fields that should be set in this input object you can import the `AccessibilityLabels` from the same module.
 
 ---
 
@@ -238,11 +240,13 @@ Then add the `uoh-header` component to the top section of your `app.component.ht
 
 > Note: If you use `uoh-accessibility` remember to include the `uoh-header` inside it.
 
-The header component accepts three input variables:
+The header component accepts five input variables:
 
 - `title`: A string to be used as the main header title. The default value is `אוניברסיטת חיפה`.
 - `subtitle`: A string to be used as the header subtitle. The default value is `undefined`.
 - `user`: A string containing the name of the user. If set, a log out button will be displayed on the header, next to the user name. When the user presses the log out button an event will be fired. This event can be catched by binding a function to the `logOut` output.
+- `labels`: An object containing the labels for buttons and headers. For more information about the fields integrating it use the `HeaderLabels` from the same module.
+- `logoLinkUrl`: A string containing the url to open when the logo is clicked.
 
 For example, in your component ts file:
 
