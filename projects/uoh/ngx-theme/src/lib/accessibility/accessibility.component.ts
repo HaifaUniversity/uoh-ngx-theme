@@ -1,5 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { Direction } from '@angular/cdk/bidi';
+
+export interface AccessibilityLabels {
+  header: string;
+  increaseFont: string;
+  decreaseFont: string;
+  lowContrast: string;
+  highContrast: string;
+  reset: string;
+}
 
 @Component({
   selector: 'uoh-accessibility',
@@ -9,20 +19,16 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 export class AccessibilityComponent {
   @Input()
-  dir = 'rtl';
-  @Input()
-  header = 'תפריט נגישות';
-  @Input()
-  increaseFont = 'הגדלת פונט';
-  @Input()
-  decreaseFont = 'הקטנת פונט';
-  @Input()
-  lowContrast = 'ניגודיות בהירה';
-  @Input()
-  highContrast = 'ניגודיות כהה';
-  @Input()
-  resetText = 'איפוס הגדרות';
-  DARK_THEME = 'dark-theme';
+  dir: Direction = 'rtl';
+  @Input() labels: AccessibilityLabels = {
+    header: 'תפריט נגישות',
+    increaseFont: 'הגדלת פונט',
+    decreaseFont: 'הקטנת פונט',
+    lowContrast: 'ניגודיות בהירה',
+    highContrast: 'ניגודיות כהה',
+    reset: 'איפוס הגדרות'
+  };
+  private DARK_THEME = 'dark-theme';
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
   private _theme: string;

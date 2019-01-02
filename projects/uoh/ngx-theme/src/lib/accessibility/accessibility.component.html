@@ -1,33 +1,33 @@
 <mat-sidenav-container [ngClass]="[theme, 'font-size-' + fontSize]" [dir]="dir" [hasBackdrop]="true">
   <mat-sidenav #sidenav mode="over" class="mat-body" position="end">
-    <h3><mat-icon>accessible</mat-icon>{{ header }}</h3>
+    <h3><mat-icon>accessible</mat-icon>{{ labels.header }}</h3>
     <mat-list>
       <mat-list-item>
-        <button mat-button (click)="increaseFontSize()"><mat-icon>zoom_in</mat-icon> {{ increaseFont }}</button>
+        <button mat-button (click)="increaseFontSize()"><mat-icon>zoom_in</mat-icon> {{ labels.increaseFont }}</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="decreaseFontSize()"><mat-icon>zoom_out</mat-icon> {{ decreaseFont }}</button>
+        <button mat-button (click)="decreaseFontSize()"><mat-icon>zoom_out</mat-icon> {{ labels.decreaseFont }}</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button (click)="toggleTheme()">
           <ng-template [ngIf]="isDarkTheme()" [ngIfElse]="darkThemeButton">
             <mat-icon>invert_colors_off</mat-icon>
-            {{ lowContrast }}
+            {{ labels.lowContrast }}
           </ng-template>
           <ng-template #darkThemeButton>
             <mat-icon>invert_colors</mat-icon>
-            {{ highContrast }}
+            {{ labels.highContrast }}
           </ng-template>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="reset()"><mat-icon>autorenew</mat-icon> {{ resetText }}</button>
+        <button mat-button (click)="reset()"><mat-icon>autorenew</mat-icon> {{ labels.reset }}</button>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <button mat-fab (click)="sidenav.toggle()" class="accessibility-btn">
-      <mat-icon aria-hidden="false" aria-label="נגישות">accessible</mat-icon>
+      <mat-icon aria-hidden="false" [attr.aria-label]="labels.header">accessible</mat-icon>
     </button>
     <div class="uoh-body" role="region"><ng-content></ng-content></div>
   </mat-sidenav-content>
