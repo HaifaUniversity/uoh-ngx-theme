@@ -1,26 +1,27 @@
 <mat-sidenav-container [ngClass]="[theme, 'font-size-' + fontSize]" [dir]="dir" [hasBackdrop]="true">
   <mat-sidenav #sidenav mode="over" class="mat-body" position="end">
-    <h3>{{header}}</h3>
+    <h3><mat-icon>accessible</mat-icon>{{ header }}</h3>
     <mat-list>
       <mat-list-item>
-        <button mat-button (click)="increaseFontSize()">
-          {{increaseFont}}
-        </button>
+        <button mat-button (click)="increaseFontSize()"><mat-icon>zoom_in</mat-icon> {{ increaseFont }}</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="decreaseFontSize()">
-          {{decreaseFont}}
-        </button>
+        <button mat-button (click)="decreaseFontSize()"><mat-icon>zoom_out</mat-icon> {{ decreaseFont }}</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button (click)="toggleTheme()">
-          {{contrast}}
+          <ng-template [ngIf]="isDarkTheme()" [ngIfElse]="darkThemeButton">
+            <mat-icon>invert_colors_off</mat-icon>
+            {{ lowContrast }}
+          </ng-template>
+          <ng-template #darkThemeButton>
+            <mat-icon>invert_colors</mat-icon>
+            {{ highContrast }}
+          </ng-template>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="reset()">
-          {{resetText}}
-        </button>
+        <button mat-button (click)="reset()"><mat-icon>autorenew</mat-icon> {{ resetText }}</button>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
@@ -28,8 +29,6 @@
     <button mat-fab (click)="sidenav.toggle()" class="accessibility-btn">
       <mat-icon aria-hidden="false" aria-label="נגישות">accessible</mat-icon>
     </button>
-    <div class="uoh-body" role="region">
-      <ng-content></ng-content>
-    </div>
+    <div class="uoh-body" role="region"><ng-content></ng-content></div>
   </mat-sidenav-content>
 </mat-sidenav-container>

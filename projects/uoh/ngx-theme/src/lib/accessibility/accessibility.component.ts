@@ -17,7 +17,9 @@ export class AccessibilityComponent {
   @Input()
   decreaseFont = 'הקטנת פונט';
   @Input()
-  contrast = 'ניגודיות';
+  lowContrast = 'ניגודיות בהירה';
+  @Input()
+  highContrast = 'ניגודיות כהה';
   @Input()
   resetText = 'איפוס הגדרות';
   DARK_THEME = 'dark-theme';
@@ -67,7 +69,7 @@ export class AccessibilityComponent {
   constructor(private overlayContainer: OverlayContainer) {}
 
   toggleTheme(): void {
-    this.theme = this.theme === this.DARK_THEME ? '' : this.DARK_THEME;
+    this.theme = this.isDarkTheme() ? '' : this.DARK_THEME;
   }
 
   increaseFontSize(): void {
@@ -85,5 +87,9 @@ export class AccessibilityComponent {
   reset(): void {
     this.theme = '';
     this.fontSize = 0;
+  }
+
+  isDarkTheme(): boolean {
+    return this.theme === this.DARK_THEME;
   }
 }
