@@ -7,10 +7,10 @@
         <h2>{{ subtitle }}</h2>
       </a>
       <div *ngIf="user" class="controls">
-        <span class="welcome" role="row"> {{ welcome }} {{ user }} </span>
+        <span class="welcome" role="row"> {{ labels.welcome }} {{ user }} </span>
         <span class="fill-remaining-space" aria-hidden="true"></span>
         <button mat-button class="log-out" (click)="onLogOut()">
-          <span class="log-out-text"> {{ logout }} </span>
+          <span class="log-out-text"> {{ labels.logOut }} </span>
           <mat-icon color="accent" aria-hidden="false" aria-label="יציאה מהמערכת">power_settings_new</mat-icon>
         </button>
       </div>
