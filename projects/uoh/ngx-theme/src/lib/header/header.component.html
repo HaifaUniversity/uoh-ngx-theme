@@ -2,17 +2,21 @@
   <mat-toolbar-row>
     <img src="./assets/univ_flag.png" [attr.alt]="title" class="brand-logo" (click)="openHaifaWebsite()" />
     <div class="toolbar-details" role="row">
-      <a routerLink="./" class="titles">
+      <a routerLink="./" class="uoh-header-titles">
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </a>
-      <div *ngIf="user" class="controls">
-        <span class="welcome" role="row"> {{ labels.welcome }} {{ user }} </span>
-        <span class="fill-remaining-space" aria-hidden="true"></span>
-        <button mat-button class="log-out" (click)="onLogOut()">
-          <mat-icon color="accent" aria-hidden="false" [attr.aria-label]="labels.logOut">power_settings_new</mat-icon>
-          <span class="log-out-text"> {{ labels.logOut }} </span>
-        </button>
+      <div class="uoh-header-status-bar">
+        <span class="uoh-header-welcome" role="row">
+          <ng-template [ngIf]="user"> {{ labels.welcome }} {{ user }} </ng-template>
+        </span>
+        <div class="uoh-header-controls">
+          <ng-content></ng-content>
+          <button *ngIf="user" mat-button class="uoh-header-log-out" (click)="onLogOut()">
+            <mat-icon color="accent" aria-hidden="false" [attr.aria-label]="labels.logOut">power_settings_new</mat-icon>
+            <span class="uoh-header-log-out-text"> {{ labels.logOut }} </span>
+          </button>
+        </div>
       </div>
     </div>
   </mat-toolbar-row>

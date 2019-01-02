@@ -16,8 +16,8 @@
     a {
       color: mat-color($primary, default-contrast);
     }
-    .controls,
-    .controls .mat-button {
+    .uoh-header-status-bar,
+    .uoh-header-status-bar .mat-button {
       color: mat-color($primary, darker-contrast);
     }
   }
@@ -34,7 +34,7 @@
       );
     }
 
-    .log-out .mat-icon {
+    .uoh-header-log-out .mat-icon {
       color: mat-color($primary, darker-contrast);
     }
   }

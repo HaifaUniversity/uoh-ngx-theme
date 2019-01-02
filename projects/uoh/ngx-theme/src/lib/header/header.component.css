@@ -28,8 +28,8 @@ h2 {
   font-size: 20px;
 }
 
-.mat-toolbar .mat-toolbar-row .controls,
-.mat-toolbar .mat-toolbar-row .controls .mat-button {
+.mat-toolbar .mat-toolbar-row .uoh-header-status-bar,
+.mat-toolbar .mat-toolbar-row .uoh-header-status-bar .mat-button {
   font-size: 14px;
 }
 
@@ -50,7 +50,7 @@ h2 {
   align-self: flex-start;
 }
 
-.titles {
+.uoh-header-titles {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -59,25 +59,30 @@ h2 {
   height: 100px;
 }
 
-.titles h1,
-.titles h2 {
+.uoh-header-titles h1,
+.uoh-header-titles h2 {
   display: block;
   width: 100%;
 }
 
-.controls {
+.uoh-header-status-bar {
   width: 100%;
   display: flex;
   height: 44px;
 }
 
-.welcome {
+.uoh-header-welcome {
   font-size: 14px;
   line-height: 44px;
   flex: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.uoh-header-controls {
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -89,23 +94,23 @@ h2 {
     height: 110px;
   }
 
-  .titles {
+  .uoh-header-titles {
     height: 74px;
   }
 
-  .controls {
+  .uoh-header-status-bar {
     height: 36px;
   }
 
-  .welcome {
+  .uoh-header-welcome {
     line-height: 36px;
   }
 
-  .log-out {
+  .uoh-header-log-out {
     min-width: 30px;
   }
 
-  .log-out-text {
+  .uoh-header-log-out-text {
     display: none;
   }
 }
