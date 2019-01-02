@@ -1,6 +1,6 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <img src="./assets/univ_flag.png" alt="אוניברסיטת חיפה" class="brand-logo" (click)="openHaifaWebsite()" />
+    <img src="./assets/univ_flag.png" [attr.alt]="title" class="brand-logo" (click)="openHaifaWebsite()" />
     <div class="toolbar-details" role="row">
       <a routerLink="./" class="titles">
         <h1>{{ title }}</h1>
@@ -10,8 +10,8 @@
         <span class="welcome" role="row"> {{ labels.welcome }} {{ user }} </span>
         <span class="fill-remaining-space" aria-hidden="true"></span>
         <button mat-button class="log-out" (click)="onLogOut()">
+          <mat-icon color="accent" aria-hidden="false" [attr.aria-label]="labels.logOut">power_settings_new</mat-icon>
           <span class="log-out-text"> {{ labels.logOut }} </span>
-          <mat-icon color="accent" aria-hidden="false" aria-label="יציאה מהמערכת">power_settings_new</mat-icon>
         </button>
       </div>
     </div>
