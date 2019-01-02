@@ -11,10 +11,20 @@
 }
 
 .uoh-body {
-  // Mock a body element - Use inline-block to avoid collapsing margin with its children
-  display: inline-block;
-  min-width: 100vw;
-  min-height: 100vh;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.uoh-accessibility-header {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: center;
+}
+
+.uoh-accessibility-menu {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 @media only screen and (max-width: 992px) {

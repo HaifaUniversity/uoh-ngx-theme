@@ -44,6 +44,7 @@ h2 {
 
 .toolbar-details {
   width: 100%;
+  min-width: 100px;
   display: flex;
   flex-wrap: wrap;
   align-self: flex-start;
@@ -73,6 +74,10 @@ h2 {
 .welcome {
   font-size: 14px;
   line-height: 44px;
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 600px) {

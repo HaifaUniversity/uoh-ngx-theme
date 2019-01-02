@@ -1,7 +1,7 @@
 <mat-sidenav-container [ngClass]="[theme, 'font-size-' + fontSize]" [dir]="dir" [hasBackdrop]="true">
   <mat-sidenav #sidenav mode="over" class="mat-body" position="end">
-    <h3><mat-icon>accessible</mat-icon>{{ labels.header }}</h3>
-    <mat-list>
+    <h3 class="uoh-accessibility-header"><mat-icon>accessible</mat-icon>{{ labels.header }}</h3>
+    <mat-list class="uoh-accessibility-menu">
       <mat-list-item>
         <button mat-button (click)="increaseFontSize()"><mat-icon>zoom_in</mat-icon> {{ labels.increaseFont }}</button>
       </mat-list-item>
