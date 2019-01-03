@@ -1,9 +1,5 @@
 import { Component, Input, Output, EventEmitter, HostListener, OnInit } from '@angular/core';
-
-export interface HeaderLabels {
-  logo: string;
-  logOut: string;
-}
+import { UohHeaderUser, UohHeaderLabels } from './header.models';
 
 @Component({
   selector: 'uoh-header',
@@ -14,9 +10,9 @@ export interface HeaderLabels {
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() subtitle: string;
-  @Input() user: string;
+  @Input() user: UohHeaderUser;
   @Input() logoLinkUrl = 'https://www.haifa.ac.il/';
-  @Input() labels: HeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת' };
+  @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת' };
   @Output() logOut = new EventEmitter<boolean>();
   isDesktop: boolean;
 

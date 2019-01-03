@@ -1,15 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Direction } from '@angular/cdk/bidi';
-
-export interface AccessibilityLabels {
-  header: string;
-  increaseFont: string;
-  decreaseFont: string;
-  lowContrast: string;
-  highContrast: string;
-  reset: string;
-}
+import { UohAccessibilityLabels } from './accessibility.models';
 
 @Component({
   selector: 'uoh-accessibility',
@@ -20,7 +12,7 @@ export interface AccessibilityLabels {
 export class AccessibilityComponent {
   @Input()
   dir: Direction = 'rtl';
-  @Input() labels: AccessibilityLabels = {
+  @Input() labels: UohAccessibilityLabels = {
     header: 'תפריט נגישות',
     increaseFont: 'הגדלת פונט',
     decreaseFont: 'הקטנת פונט',

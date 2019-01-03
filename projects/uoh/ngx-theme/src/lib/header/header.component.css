@@ -97,6 +97,14 @@ h2 {
   align-items: center;
 }
 
+.uoh-header-user-text span {
+  display: block;
+}
+
+.uoh-header-user-text span:last-child {
+  font-size: 0.65em;
+}
+
 .uoh-header-user-menu-header {
   display: flex;
   justify-content: flex-start;
@@ -109,8 +117,24 @@ h2 {
   padding: 2px;
 }
 
-.uoh-header-user-menu-header .uoh-header-user-menu-title {
+.uoh-header-user-menu-header .mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  align-self: flex-start;
+}
+
+.uoh-header-user-menu-header .uoh-header-user-menu-title span {
+  display: block;
+}
+
+.uoh-header-user-menu-header .uoh-header-user-menu-title span:first-child {
   font-weight: bold;
+  font-size: 1.2em;
+}
+
+.uoh-header-user-menu-header .uoh-header-user-menu-title .uoh-header-last-login {
+  font-size: 0.75em;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UohSpinner } from '@uoh/ngx-theme';
+import { UohSpinner, UohHeaderUser } from '@uoh/ngx-theme';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { UohSpinner } from '@uoh/ngx-theme';
 export class AppComponent {
   title = 'app';
   show = true;
-  user: string;
+  user: UohHeaderUser;
   data = [
     { c1: 'משתמש 1', c2: 'תפקיד משתמש 1' },
     { c1: 'משתמש 2', c2: 'תפקיד משתמש 2' },
@@ -26,7 +26,11 @@ export class AppComponent {
   }
 
   logIn(): void {
-    this.user = 'משתמש לדוגמה';
+    this.user = {
+      name: 'משתמש לדוגמה',
+      details: 'juanito@manito.com<br>תאריך לידה: 01/01/01',
+      lastLogin: 'כניסה\nאחרונה למערכת ב-20/12/2018 12:00:00'
+    };
   }
 
   logOut(): void {
