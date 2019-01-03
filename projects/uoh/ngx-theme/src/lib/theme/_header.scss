@@ -26,16 +26,21 @@
     background-image: linear-gradient(mat-color($primary) $first-line, mat-color($primary, darker) $second-line);
   }
 
+  .uoh-header-content {
+    color: mat-color($primary, darker-contrast);
+  }
+
+  .uoh-header-user-menu-header .mat-icon,
+  .uoh-header-user-menu-header .uoh-header-user-menu-title {
+    color: mat-color($foreground, text);
+  }
+
   @media screen and (max-width: 600px) {
     .mat-toolbar {
       background-image: linear-gradient(
         mat-color($primary) $first-line-mobile,
         mat-color($primary, darker) $second-line-mobile
       );
-    }
-
-    .uoh-header-log-out .mat-icon {
-      color: mat-color($primary, darker-contrast);
     }
   }
 }
