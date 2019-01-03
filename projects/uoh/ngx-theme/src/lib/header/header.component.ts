@@ -1,5 +1,17 @@
-import { Component, Input, Output, EventEmitter, HostListener, OnInit } from '@angular/core';
-import { UohHeaderUser, UohHeaderLabels } from './header.models';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  ContentChildren,
+  QueryList
+} from '@angular/core';
+import { UohHeaderUser, UohHeaderLabels, UohHeaderLinkInterface } from './header.models';
+import { UohHeaderLink } from './header-link.directive';
+import { UohHeaderRouterLink } from './header-router-link.directive';
+import { UohHeaderMenuLink } from './header-menu-link.directive';
 
 @Component({
   selector: 'uoh-header',
@@ -8,7 +20,14 @@ import { UohHeaderUser, UohHeaderLabels } from './header.models';
   host: { class: 'uoh-header' }
 })
 export class HeaderComponent implements OnInit {
-  @Input() title: string;
+  @ContentChildren(UohHeaderLink, { descendants: true })
+  links: QueryList<UohHeaderLink>;
+  @ContentChildren(UohHeaderRouterLink, { descendants: true })
+  routerLinks: QueryList<UohHeaderRouterLink>;
+  @ContentChildren(UohHeaderMenuLink, { descendants: true })
+  menuLinks: QueryList<UohHeaderMenuLink>;
+  @Input()
+  title: string;
   @Input() subtitle: string;
   @Input() user: UohHeaderUser;
   @Input() logoLinkUrl = 'https://www.haifa.ac.il/';
@@ -33,5 +52,13 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event?: Event): void {
     this.isDesktop = window.innerWidth >= 600;
+  }
+
+  getLinkValue(link: UohHeaderLinkInterface): string {
+    return link && link.elementRef && link.elementRef.nativeElement ? link.elementRef.nativeElement.innerHTML : '';
+  }
+
+  trackByFn(index: number, item: UohHeaderLinkInterface): UohHeaderLinkInterface {
+    return item;
   }
 }

@@ -12,6 +12,9 @@ import {
 
 import { HeaderComponent } from './header.component';
 import { UohContentModule } from '../content/content.module';
+import { UohHeaderLink } from './header-link.directive';
+import { UohHeaderRouterLink } from './header-router-link.directive';
+import { UohHeaderMenuLink } from './header-menu-link.directive';
 
 @NgModule({
   imports: [
@@ -25,7 +28,7 @@ import { UohContentModule } from '../content/content.module';
     MatRippleModule,
     UohContentModule
   ],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent, UohContentModule]
+  declarations: [HeaderComponent, UohHeaderLink, UohHeaderRouterLink, UohHeaderMenuLink],
+  exports: [HeaderComponent, UohContentModule, UohHeaderLink, UohHeaderRouterLink, UohHeaderMenuLink]
 })
 export class UohHeaderModule {}

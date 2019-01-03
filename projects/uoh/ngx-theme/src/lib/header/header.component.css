@@ -28,9 +28,18 @@ h2 {
   font-size: 20px;
 }
 
-.mat-toolbar .mat-toolbar-row .uoh-header-status-bar,
-.mat-toolbar .mat-toolbar-row .uoh-header-status-bar .mat-button {
+.mat-toolbar .mat-toolbar-row .uoh-header-links,
+.mat-toolbar .mat-toolbar-row .uoh-header-links .mat-button {
   font-size: 14px;
+}
+
+.mat-toolbar .mat-toolbar-row .uoh-header-links {
+  display: flex;
+  align-items: center;
+}
+
+.mat-toolbar .mat-toolbar-row .uoh-header-links a:hover {
+  text-decoration: underline;
 }
 
 .brand-logo {
@@ -85,16 +94,11 @@ h2 {
   width: 100%;
 }
 
-.uoh-header-status-bar {
+.uoh-header-links {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
   height: 44px;
-}
-
-.uoh-header-controls {
-  display: flex;
-  align-items: center;
 }
 
 .uoh-header-user-text span {
@@ -150,7 +154,7 @@ h2 {
     height: 74px;
   }
 
-  .uoh-header-status-bar {
+  .uoh-header-links {
     height: 36px;
   }
 

@@ -37,8 +37,28 @@
           </mat-menu>
         </div>
       </div>
-      <div class="uoh-header-status-bar">
-        <div class="uoh-header-controls"><ng-content></ng-content></div>
+      <div class="uoh-header-links">
+        <a
+          *ngFor="let link of links; trackBy: trackByFn"
+          mat-button
+          [href]="link.uohHeaderLink"
+          target="_blank"
+          [innerHTML]="getLinkValue(link)"
+        ></a>
+        <a
+          *ngFor="let link of routerLinks; trackBy: trackByFn"
+          mat-button
+          [href]="link.uohHeaderRouterLink"
+          target="_blank"
+          [innerHTML]="getLinkValue(link)"
+        ></a>
+        <a
+          *ngFor="let link of menuLinks; trackBy: trackByFn"
+          mat-button
+          [href]="link.uohHeaderMenuLink"
+          target="_blank"
+          [innerHTML]="getLinkValue(link)"
+        ></a>
       </div>
     </div>
   </mat-toolbar-row>
