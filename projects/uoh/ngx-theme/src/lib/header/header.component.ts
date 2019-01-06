@@ -27,8 +27,8 @@ export class HeaderComponent implements OnInit {
   @ContentChildren(UohHeaderMenuLink, { descendants: true })
   menuLinks: QueryList<UohHeaderMenuLink>;
   @Input()
-  title: string;
-  @Input() subtitle: string;
+  header: string;
+  @Input() subheader: string;
   @Input() user: UohHeaderUser;
   @Input() logoLinkUrl = 'https://www.haifa.ac.il/';
   @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת' };
