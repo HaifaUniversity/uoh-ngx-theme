@@ -246,7 +246,13 @@ import { UohHeaderModule } from '@uoh/ngx-theme';
 Then add the `uoh-header` component to the top section of your `app.component.html`. For example:
 
 ```xml
-  <uoh-header header="מינה" subheader="מערכת לניהול השגים" [user]="user" (logOut)="onLogOut($event)"></uoh-header>
+  <uoh-header header="מינה" subheader="מערכת לניהול השגים" [user]="user" (logOut)="onLogOut($event)">
+    <a uohHeaderLink="https://www.haifa.ac.il" uohHeaderLinkIcon="face"> אוני׳ חיפה </a>
+    <a uohHeaderLink="https://www.google.com"> גוגל </a>
+    <a [uohHeaderRouterLink]="['two']" uohHeaderLinkIcon="thumb_up_alt"> דף 2 </a>
+    <a [uohHeaderMenuLink]="menu" uohHeaderLinkIcon="help"> עזרה </a>
+  </uoh-header>
+  <mat-menu #menu="matMenu"> <button mat-menu-item>מוקד תמיכה</button> <button mat-menu-item>הדרכות וידיאו</button> </mat-menu>
 ```
 
 > Note: If you use `uoh-accessibility` remember to include the `uoh-header` inside it.
@@ -258,6 +264,13 @@ The header component accepts five input variables:
 - `user`: An object containing the name, the details and last login of the user. If set, a log out button will be displayed on the header, next to the user name. When the user presses the log out button an event will be fired. This event can be catched by binding a function to the `logOut` output.
 - `labels`: An object containing the labels for buttons and headers: the alt attribute for the logo, the label for the logout button and the aria-label for the more links button (mobile view). For more information about the fields integrating it use the `UohHeaderLabels` from the same module.
 - `logoLinkUrl`: A string containing the url to open when the logo is clicked. The default url is `https://www.haifa.ac.il/`.
+
+Furthermore, the `uohHeaderLink`, `uohHeaderRouterLink` and `uohHeaderMenuLink` directives can be used to display links in the header (these should be contained inside the `uoh-header` tags):
+
+- The `uohHeaderLink` is used to add external links.
+- The `uohHeaderRouterLink` is used to set internal links (`routerLinks`).
+- The `uohHeaderMenuLink` is used to display menus (a `mat-menu` instance should be passed).
+  The `uohHeaderLinkIcon` option can be used to display a `mat-icon` next to the link label (see above example).
 
 For example, in your component ts file:
 
