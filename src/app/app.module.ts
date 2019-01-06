@@ -10,7 +10,8 @@ import {
   MatCheckboxModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatMenuModule
 } from '@angular/material';
 import {
   UohAccessibilityModule,
@@ -40,6 +41,7 @@ import { routing } from './app.routing';
     MatNativeDateModule,
     MatCardModule,
     MatSnackBarModule,
+    MatMenuModule,
     UohAccessibilityModule,
     UohSpinnerModule,
     UohHeaderModule,

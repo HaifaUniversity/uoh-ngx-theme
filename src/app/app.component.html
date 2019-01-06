@@ -3,7 +3,9 @@
   <uoh-spinner></uoh-spinner>
   <uoh-header title="בדיקה" subtitle="שם מאוד ארוך לבדיקה" [user]="user" (logOut)="logOut()">
     <a uohHeaderLink="https://www.haifa.ac.il">Test 0!</a> <a uohHeaderLink="https://www.google.com">Test 1!</a>
+    <a [uohHeaderRouterLink]="['two']">Test 2!</a> <a [uohHeaderMenuLink]="menu">Test 3!</a>
   </uoh-header>
+  <mat-menu #menu="matMenu"> <button mat-menu-item>Item 1</button> <button mat-menu-item>Item 2</button> </mat-menu>
   <uoh-back-to-top minScroll="100"></uoh-back-to-top>
   <uoh-content [fullMobile]="true">
     <router-outlet></router-outlet>

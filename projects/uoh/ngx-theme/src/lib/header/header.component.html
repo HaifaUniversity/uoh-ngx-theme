@@ -48,15 +48,13 @@
         <a
           *ngFor="let link of routerLinks; trackBy: trackByFn"
           mat-button
-          [href]="link.uohHeaderRouterLink"
-          target="_blank"
+          [routerLink]="link.uohHeaderRouterLink"
           [innerHTML]="getLinkValue(link)"
         ></a>
         <a
           *ngFor="let link of menuLinks; trackBy: trackByFn"
           mat-button
-          [href]="link.uohHeaderMenuLink"
-          target="_blank"
+          [matMenuTriggerFor]="link.uohHeaderMenuLink"
           [innerHTML]="getLinkValue(link)"
         ></a>
       </div>
