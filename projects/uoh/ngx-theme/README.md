@@ -203,7 +203,18 @@ Then, wrap **all** the contents of your app (including header, footer, etc.) ins
 
 > Note: You can set the direction of all the app contents by setting the `dir` input variable to `rtl` (default) or `ltr`.
 
-> Note: If you want to set custom labels for the buttons and headers you can set the `labels` input. To learn about the fields that should be set in this input object you can import the `AccessibilityLabels` from the same module.
+> Note: If you want to set custom labels for the buttons and headers you can set the `labels` input. To learn about the fields that should be set in this input object you can import the `UohAccessibilityLabels` from the same module. For example:
+
+```javascript
+labels: UohAccessibilityLabels = {
+  header: 'Accessibility',
+  increaseFont: 'Increase font size',
+  decreaseFont: 'Decrease font size',
+  lowContrast: 'High contrast',
+  highContrast: 'Low contrast',
+  reset: 'Reset'
+};
+```
 
 ---
 
@@ -235,32 +246,41 @@ import { UohHeaderModule } from '@uoh/ngx-theme';
 Then add the `uoh-header` component to the top section of your `app.component.html`. For example:
 
 ```xml
-  <uoh-header subtitle="תת כותרת" [user]="user" (logOut)="onLogOut($event)"></uoh-header>
+  <uoh-header header="מינה" subheader="מערכת לניהול השגים" [user]="user" (logOut)="onLogOut($event)"></uoh-header>
 ```
 
 > Note: If you use `uoh-accessibility` remember to include the `uoh-header` inside it.
 
 The header component accepts five input variables:
 
-- `title`: A string to be used as the main header title. The default value is `אוניברסיטת חיפה`.
-- `subtitle`: A string to be used as the header subtitle. The default value is `undefined`.
-- `user`: A string containing the name of the user. If set, a log out button will be displayed on the header, next to the user name. When the user presses the log out button an event will be fired. This event can be catched by binding a function to the `logOut` output.
-- `labels`: An object containing the labels for buttons and headers. For more information about the fields integrating it use the `HeaderLabels` from the same module.
-- `logoLinkUrl`: A string containing the url to open when the logo is clicked.
+- `header`: A string to be used as the main header title.
+- `subheader`: A string to be used as the header subtitle. If left undefined it will not be displayed.
+- `user`: An object containing the name, the details and last login of the user. If set, a log out button will be displayed on the header, next to the user name. When the user presses the log out button an event will be fired. This event can be catched by binding a function to the `logOut` output.
+- `labels`: An object containing the labels for buttons and headers: the alt attribute for the logo, the label for the logout button and the aria-label for the more links button (mobile view). For more information about the fields integrating it use the `UohHeaderLabels` from the same module.
+- `logoLinkUrl`: A string containing the url to open when the logo is clicked. The default url is `https://www.haifa.ac.il/`.
 
 For example, in your component ts file:
 
 ```typescript
 export class AppComponent {
-  title = 'app';
+  header = 'Registration';
   user: string;
+  labels: UohHeaderLabels = {
+    logo: 'University of Haifa',
+    logOut: 'Logout',
+    links: 'Some links'
+  };
   private authorize$: Subscription;
 
   constructor(private authService: AuthService) {}
 
   onLogIn(username: string, password: string): void {
     this.authorize$ = this.authService.authorize(username, password).subscribe(user => {
-      this.user = `${user.firstName} ${user.lastName}`;
+      this.user = {
+        name: `${user.firstName} ${user.lastName}`,
+        details: `${user.email}<br>Birthdate: ${user.birthdate}`,
+        lastLogin: `Last login on ${user.lastLogin}`
+      };
     });
   }
 
