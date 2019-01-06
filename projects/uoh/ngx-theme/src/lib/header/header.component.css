@@ -52,7 +52,7 @@ h2 {
   cursor: pointer;
 }
 
-[dir='rtl'] .brand-logo {
+:host-context([dir='rtl']) .brand-logo {
   margin-right: 0;
   margin-left: 16px;
 }
