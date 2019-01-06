@@ -62,11 +62,22 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  areLinksInline(): boolean {
+    return (
+      this.isDesktop ||
+      this.countLinks(this.links) + this.countLinks(this.routerLinks) + this.countLinks(this.menuLinks) === 1
+    );
+  }
+
   getLinkValue(link: UohHeaderLinkInterface): string {
     return link && link.elementRef && link.elementRef.nativeElement ? link.elementRef.nativeElement.innerText : '';
   }
 
   trackByFn(index: number, item: UohHeaderLinkInterface): UohHeaderLinkInterface {
     return item;
+  }
+
+  private countLinks(links: QueryList<UohHeaderLinkInterface>): number {
+    return links ? links.length : 0;
   }
 }

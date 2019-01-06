@@ -39,7 +39,7 @@
       </div>
       <div *ngIf="hasLinks()" class="uoh-header-links">
         <span class="fill-remaining-space"></span>
-        <ng-template [ngIf]="isDesktop" [ngIfElse]="linksMore">
+        <ng-template [ngIf]="areLinksInline()" [ngIfElse]="linksMore">
           <span class="uoh-header-link" *ngFor="let link of links; trackBy: trackByFn">
             <a mat-button [href]="link.uohHeaderLink" target="_blank">
               <mat-icon *ngIf="link.uohHeaderLinkIcon"> {{ link.uohHeaderLinkIcon }} </mat-icon>
