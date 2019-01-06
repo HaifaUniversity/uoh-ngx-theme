@@ -7,6 +7,7 @@ import { UohHeaderLinkInterface } from './header.models';
 })
 export class UohHeaderRouterLink implements UohHeaderLinkInterface {
   @Input() uohHeaderRouterLink: RouterLink;
+  @Input() uohHeaderLinkIcon: string;
 
   constructor(public elementRef: ElementRef) {}
 }

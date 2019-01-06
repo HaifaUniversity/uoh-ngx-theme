@@ -38,8 +38,8 @@ h2 {
   align-items: center;
 }
 
-.mat-toolbar .mat-toolbar-row .uoh-header-links a:hover {
-  text-decoration: underline;
+.mat-toolbar .mat-toolbar-row .uoh-header-links .uoh-header-link + .uoh-header-link::before {
+  content: '|';
 }
 
 .brand-logo {

@@ -12,5 +12,6 @@ export interface UohHeaderUser {
 }
 
 export interface UohHeaderLinkInterface {
+  uohHeaderLinkIcon: string;
   elementRef: ElementRef;
 }

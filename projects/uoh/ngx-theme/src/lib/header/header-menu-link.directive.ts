@@ -7,6 +7,7 @@ import { UohHeaderLinkInterface } from './header.models';
 })
 export class UohHeaderMenuLink implements UohHeaderLinkInterface {
   @Input() uohHeaderMenuLink: MatMenu;
+  @Input() uohHeaderLinkIcon: string;
 
   constructor(public elementRef: ElementRef) {}
 }

@@ -38,25 +38,25 @@
         </div>
       </div>
       <div class="uoh-header-links">
-        <a
-          *ngFor="let link of links; trackBy: trackByFn"
-          mat-button
-          [href]="link.uohHeaderLink"
-          target="_blank"
-          [innerHTML]="getLinkValue(link)"
-        ></a>
-        <a
-          *ngFor="let link of routerLinks; trackBy: trackByFn"
-          mat-button
-          [routerLink]="link.uohHeaderRouterLink"
-          [innerHTML]="getLinkValue(link)"
-        ></a>
-        <a
-          *ngFor="let link of menuLinks; trackBy: trackByFn"
-          mat-button
-          [matMenuTriggerFor]="link.uohHeaderMenuLink"
-          [innerHTML]="getLinkValue(link)"
-        ></a>
+        <span class="fill-remaining-space"></span>
+        <span class="uoh-header-link" *ngFor="let link of links; trackBy: trackByFn">
+          <a mat-button [href]="link.uohHeaderLink" target="_blank">
+            <mat-icon *ngIf="link.uohHeaderLinkIcon"> {{ link.uohHeaderLinkIcon }} </mat-icon>
+            <span [innerHTML]="getLinkValue(link)"></span>
+          </a>
+        </span>
+        <span class="uoh-header-link" *ngFor="let link of routerLinks; trackBy: trackByFn">
+          <a mat-button [routerLink]="link.uohHeaderRouterLink">
+            <mat-icon *ngIf="link.uohHeaderLinkIcon"> {{ link.uohHeaderLinkIcon }} </mat-icon>
+            <span [innerHTML]="getLinkValue(link)"></span>
+          </a>
+        </span>
+        <span class="uoh-header-link" *ngFor="let link of menuLinks; trackBy: trackByFn">
+          <a mat-button [matMenuTriggerFor]="link.uohHeaderMenuLink">
+            <mat-icon *ngIf="link.uohHeaderLinkIcon"> {{ link.uohHeaderLinkIcon }} </mat-icon>
+            <span [innerHTML]="getLinkValue(link)"></span>
+          </a>
+        </span>
       </div>
     </div>
   </mat-toolbar-row>
