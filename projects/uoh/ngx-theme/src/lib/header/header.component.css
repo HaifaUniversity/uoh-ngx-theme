@@ -47,8 +47,14 @@ h2 {
   align-self: flex-start;
   max-width: 100%;
   height: auto;
-  margin-left: 16px;
+  margin-right: 16px;
+  margin-left: 0;
   cursor: pointer;
+}
+
+[dir='rtl'] .brand-logo {
+  margin-right: 0;
+  margin-left: 16px;
 }
 
 .uoh-header-content {
