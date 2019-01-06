@@ -3,6 +3,7 @@ import { ElementRef } from '@angular/core';
 export interface UohHeaderLabels {
   logo: string;
   logOut: string;
+  links: string;
 }
 
 export interface UohHeaderUser {

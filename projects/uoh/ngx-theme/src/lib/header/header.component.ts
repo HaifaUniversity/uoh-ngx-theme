@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   @Input() subheader: string;
   @Input() user: UohHeaderUser;
   @Input() logoLinkUrl = 'https://www.haifa.ac.il/';
-  @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת' };
+  @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת', links: 'קישורים' };
   @Output() logOut = new EventEmitter<boolean>();
   isDesktop: boolean;
 
@@ -54,8 +54,16 @@ export class HeaderComponent implements OnInit {
     this.isDesktop = window.innerWidth >= 600;
   }
 
+  hasLinks(): boolean {
+    return (
+      (this.links && this.links.length > 0) ||
+      (this.routerLinks && this.routerLinks.length > 0) ||
+      (this.menuLinks && this.menuLinks.length > 0)
+    );
+  }
+
   getLinkValue(link: UohHeaderLinkInterface): string {
-    return link && link.elementRef && link.elementRef.nativeElement ? link.elementRef.nativeElement.innerHTML : '';
+    return link && link.elementRef && link.elementRef.nativeElement ? link.elementRef.nativeElement.innerText : '';
   }
 
   trackByFn(index: number, item: UohHeaderLinkInterface): UohHeaderLinkInterface {
