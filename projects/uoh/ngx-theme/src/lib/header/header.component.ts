@@ -8,7 +8,7 @@ import {
   ContentChildren,
   QueryList
 } from '@angular/core';
-import { UohHeaderUser, UohHeaderLabels, UohHeaderLinkInterface } from './header.models';
+import { UohHeaderUser, UohHeaderLabels, UohHeaderLinkInterface, UohHeaderLinksView } from './header.models';
 import { UohHeaderLink } from './header-link.directive';
 import { UohHeaderRouterLink } from './header-router-link.directive';
 import { UohHeaderMenuLink } from './header-menu-link.directive';
@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
   @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת', links: 'קישורים' };
   @Output() logOut = new EventEmitter<boolean>();
   isDesktop: boolean;
+  linksView = UohHeaderLinksView;
+  private MAX_ICONS_LINKS = 4;
 
   constructor() {}
 
@@ -62,11 +64,22 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  areLinksInline(): boolean {
-    return (
-      this.isDesktop ||
-      this.countLinks(this.links) + this.countLinks(this.routerLinks) + this.countLinks(this.menuLinks) === 1
-    );
+  getLinksView(): UohHeaderLinksView {
+    const linksLength =
+      this.countLinks(this.links) + this.countLinks(this.routerLinks) + this.countLinks(this.menuLinks);
+
+    if (this.isDesktop || linksLength === 1) {
+      return UohHeaderLinksView.Full;
+    } else if (
+      linksLength <= this.MAX_ICONS_LINKS &&
+      this.allLinksHaveIcons(this.links) &&
+      this.allLinksHaveIcons(this.routerLinks) &&
+      this.allLinksHaveIcons(this.menuLinks)
+    ) {
+      return UohHeaderLinksView.Icons;
+    } else {
+      return UohHeaderLinksView.Menu;
+    }
   }
 
   getLinkValue(link: UohHeaderLinkInterface): string {
@@ -79,5 +92,9 @@ export class HeaderComponent implements OnInit {
 
   private countLinks(links: QueryList<UohHeaderLinkInterface>): number {
     return links ? links.length : 0;
+  }
+
+  private allLinksHaveIcons(links: QueryList<UohHeaderLinkInterface>): boolean {
+    return links ? links.reduce((prev, curr) => prev && !!curr.uohHeaderLinkIcon, true) : true;
   }
 }

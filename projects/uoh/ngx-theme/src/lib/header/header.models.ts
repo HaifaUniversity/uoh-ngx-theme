@@ -16,3 +16,9 @@ export interface UohHeaderLinkInterface {
   uohHeaderLinkIcon: string;
   elementRef: ElementRef;
 }
+
+export enum UohHeaderLinksView {
+  Full,
+  Icons,
+  Menu
+}
