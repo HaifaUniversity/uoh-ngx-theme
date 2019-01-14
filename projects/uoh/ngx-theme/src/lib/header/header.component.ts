@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  // TODO: Improve performance by setting a variable on resize
   getLinksView(): UohHeaderLinksView {
     const linksLength =
       this.countLinks(this.links) + this.countLinks(this.routerLinks) + this.countLinks(this.menuLinks);
