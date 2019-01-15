@@ -23,12 +23,14 @@ export class AccessibilityComponent {
   private DARK_THEME = 'dark-theme';
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
-  private _theme: string = '';
+  private _theme: string;
   private _fontSize: number = 0;
 
   get theme(): string {
     if (!this._theme) {
-      return localStorage.getItem(this.THEME_KEY);
+      const theme = localStorage.getItem(this.THEME_KEY);
+
+      return theme ? theme : '';
     }
     return this._theme;
   }
@@ -47,11 +49,8 @@ export class AccessibilityComponent {
   get fontSize(): number {
     if (!this._fontSize) {
       const fontSize = localStorage.getItem(this.FONT_SIZE_KEY);
-      if (fontSize) {
-        return +fontSize;
-      } else {
-        return 0;
-      }
+
+      return fontSize ? +fontSize : 0;
     }
     return this._fontSize;
   }
