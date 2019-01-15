@@ -23,8 +23,8 @@ export class AccessibilityComponent {
   private DARK_THEME = 'dark-theme';
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
-  private _theme: string;
-  private _fontSize: number;
+  private _theme: string = '';
+  private _fontSize: number = 0;
 
   get theme(): string {
     if (!this._theme) {
