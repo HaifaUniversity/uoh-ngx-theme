@@ -5,8 +5,8 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  $first-line: 100px;
-  $first-line-mobile: 74px;
+  $first-line: 48px;
+  $first-line-mobile: 48px;
   $second-line: $height - $first-line;
   $second-line-mobile: $height-mobile - $first-line-mobile;
 

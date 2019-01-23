@@ -65,8 +65,8 @@
   }
 
   @if $header {
-    $header-height: 144px;
-    $header-height-mobile: 110px;
+    $header-height: 82px;
+    $header-height-mobile: 82px;
     @include uoh-header($default-theme, $header-height, $header-height-mobile);
   }
 

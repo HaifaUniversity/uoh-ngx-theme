@@ -8,7 +8,7 @@ a:hover {
 }
 
 .mat-toolbar {
-  height: 144px;
+  height: 82px;
 }
 
 .mat-toolbar .mat-toolbar-row {
@@ -17,15 +17,17 @@ a:hover {
 }
 
 .mat-toolbar .mat-toolbar-row h1,
-h2 {
-  line-height: 32px;
+.mat-toolbar .mat-toolbar-row h2 {
+  line-height: 22px;
   font-weight: 500;
 }
+
 .mat-toolbar .mat-toolbar-row h1 {
-  font-size: 24px;
-}
-.mat-toolbar .mat-toolbar-row h2 {
   font-size: 20px;
+}
+
+.mat-toolbar .mat-toolbar-row h2 {
+  font-size: 16px;
 }
 
 .mat-toolbar .mat-toolbar-row .uoh-header-links,
@@ -36,6 +38,23 @@ h2 {
 .mat-toolbar .mat-toolbar-row .uoh-header-links {
   display: flex;
   align-items: center;
+}
+
+.mat-toolbar .mat-toolbar-row .uoh-header-links .mat-button {
+  height: 34px;
+}
+
+.mat-toolbar .mat-toolbar-row .uoh-header-links .mat-icon-button {
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+}
+
+.mat-toolbar .mat-toolbar-row .uoh-header-links .mat-button .mat-icon {
+  font-size: 20px;
+  width: 20x;
+  height: 20px;
+  line-height: 20px;
 }
 
 .mat-toolbar .mat-toolbar-row .uoh-header-links .uoh-header-link + .uoh-header-link::before {
@@ -91,7 +110,7 @@ h2 {
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-  height: 100px;
+  height: 48px;
 }
 
 .uoh-header-title > a h1,
@@ -104,7 +123,7 @@ h2 {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
-  height: 44px;
+  height: 34px;
 }
 
 .uoh-header-user-text span {
@@ -148,27 +167,16 @@ h2 {
 }
 
 @media screen and (max-width: 600px) {
-  .mat-toolbar {
-    height: 110px;
-  }
-
-  .brand-logo {
-    height: 110px;
-  }
-
-  .uoh-header-title > a {
-    height: 74px;
-  }
-
-  .uoh-header-links {
-    height: 36px;
-  }
-
   .mat-toolbar .mat-toolbar-row h1 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .mat-toolbar .mat-toolbar-row h2 {
     font-size: 14px;
+  }
+
+  .mat-toolbar .mat-toolbar-row h1,
+  .mat-toolbar .mat-toolbar-row h2 {
+    line-height: 20px;
   }
 }
