@@ -5,7 +5,7 @@
       <div class="uoh-header-content-top">
         <div class="uoh-header-title">
           <a routerLink="./">
-            <h1>{{ header }}</h1>
+            <h1 [class.uoh-header-no-subheader]="!subheader">{{ header }}</h1>
             <h2 *ngIf="subheader">{{ subheader }}</h2>
           </a>
         </div>

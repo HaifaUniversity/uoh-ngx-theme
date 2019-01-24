@@ -30,6 +30,11 @@ a:hover {
   font-size: 16px;
 }
 
+.mat-toolbar .mat-toolbar-row h1.uoh-header-no-subheader {
+  font-size: 24px;
+  line-height: 26px;
+}
+
 .mat-toolbar .mat-toolbar-row .uoh-header-links,
 .mat-toolbar .mat-toolbar-row .uoh-header-links .mat-button {
   font-size: 14px;
@@ -178,5 +183,17 @@ a:hover {
   .mat-toolbar .mat-toolbar-row h1,
   .mat-toolbar .mat-toolbar-row h2 {
     line-height: 20px;
+  }
+
+  .mat-toolbar .mat-toolbar-row h1.uoh-header-no-subheader {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .mat-toolbar .mat-toolbar-row .uoh-header-links .mat-icon-button .mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
   }
 }
