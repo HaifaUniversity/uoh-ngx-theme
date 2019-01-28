@@ -93,7 +93,7 @@ a:hover {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  flex: 1;
+  flex: 1 1 48px;
 }
 
 .uoh-header-user {
