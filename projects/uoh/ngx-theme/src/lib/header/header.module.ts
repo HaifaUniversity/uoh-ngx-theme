@@ -12,7 +12,7 @@ import { UohHeaderMenuLink } from './header-menu-link.directive';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule.forRoot([]),
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
