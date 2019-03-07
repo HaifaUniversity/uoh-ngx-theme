@@ -1,130 +1,130 @@
 @mixin uoh-table() {
   // Responsive mat-table
-  .mat-table {
+  .uoh-table.mat-table {
     width: 100%;
   }
 
-  .mat-table th {
+  .uoh-table.mat-table th {
     text-align: justify;
   }
 
-  [dir='rtl'] .mat-table td.mat-cell:first-child,
-  [dir='rtl'] .mat-table td.mat-footer-cell:first-child,
-  [dir='rtl'] .mat-table th:first-child {
+  [dir='rtl'] .uoh-table.mat-table td.mat-cell:first-child,
+  [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:first-child,
+  [dir='rtl'] .uoh-table.mat-table th:first-child {
     padding-left: 0;
     padding-right: 24px;
   }
 
-  [dir='rtl'] .mat-table td.mat-cell:last-child,
-  [dir='rtl'] .mat-table td.mat-footer-cell:last-child,
-  [dir='rtl'] .mat-table th:last-child {
+  [dir='rtl'] .uoh-table.mat-table td.mat-cell:last-child,
+  [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:last-child,
+  [dir='rtl'] .uoh-table.mat-table th:last-child {
     padding-right: 0;
     padding-left: 24px;
   }
 
   @media only screen and (max-width: 600px) {
-    table,
-    table thead,
-    table tbody,
-    table tr,
-    table th,
-    table td,
-    .mat-table table,
-    .mat-table thead,
-    .mat-table tbody,
-    .mat-table tr,
-    .mat-table th,
-    .mat-table td {
+    table.uoh-table,
+    table.uoh-table thead,
+    table.uoh-table tbody,
+    table.uoh-table tr,
+    table.uoh-table th,
+    table.uoh-table td,
+    .uoh-table.mat-table table,
+    .uoh-table.mat-table thead,
+    .uoh-table.mat-table tbody,
+    .uoh-table.mat-table tr,
+    .uoh-table.mat-table th,
+    .uoh-table.mat-table td {
       display: block;
     }
 
-    table th,
-    .mat-table th {
+    table.uoh-table th,
+    .uoh-table.mat-table th {
       display: none;
     }
 
-    table tr,
-    .mat-table tr.mat-header-row,
-    .mat-table tr.mat-footer-row,
-    .mat-table tr.mat-row {
+    table.uoh-table tr,
+    .uoh-table.mat-table tr.mat-header-row,
+    .uoh-table.mat-table tr.mat-footer-row,
+    .uoh-table.mat-table tr.mat-row {
       height: auto;
     }
 
-    table tr td,
-    .mat-table tr td.mat-cell {
+    table.uoh-table tr td,
+    .uoh-table.mat-table tr td.mat-cell {
       width: 100%;
       padding: 0;
     }
 
-    .mat-table tr:last-child td.mat-cell,
-    .mat-table tr td.mat-cell:not(:last-child) {
+    .uoh-table.mat-table tr:last-child td.mat-cell,
+    .uoh-table.mat-table tr td.mat-cell:not(:last-child) {
       border: none;
     }
 
-    table tr td::before,
-    .mat-table tr td.mat-cell::before {
+    table.uoh-table tr td::before,
+    .uoh-table.mat-table tr td.mat-cell::before {
       content: attr(title) ': ';
       font-weight: bold;
     }
 
-    table tr td,
-    .mat-table tr td.mat-cell {
+    table.uoh-table tr td,
+    .uoh-table.mat-table tr td.mat-cell {
       padding-top: 5px;
       padding-bottom: 5px;
     }
 
-    table tr td:first-child,
-    .mat-table tr td.mat-cell:first-child {
+    table.uoh-table tr td:first-child,
+    .uoh-table.mat-table tr td.mat-cell:first-child {
       padding-top: 10px;
     }
 
-    table tr td:last-child,
-    .mat-table tr td.mat-cell:last-child {
+    table.uoh-table tr td:last-child,
+    .uoh-table.mat-table tr td.mat-cell:last-child {
       padding-bottom: 10px;
     }
 
-    .mat-table tr td.mat-checkbox-cell::before,
-    .mat-table tr td.mat-checkbox-cell-rtl::before {
+    .uoh-table.mat-table tr td.mat-checkbox-cell::before,
+    .uoh-table.mat-table tr td.mat-checkbox-cell-rtl::before {
       display: none;
     }
 
-    table tr td .mat-checkbox,
-    .mat-table tr td.mat-checkbox-cell .mat-checkbox,
-    .mat-table tr td.mat-checkbox-cell-rtl .mat-checkbox {
+    table.uoh-table tr td .mat-checkbox,
+    .uoh-table.mat-table tr td.mat-checkbox-cell .mat-checkbox,
+    .uoh-table.mat-table tr td.mat-checkbox-cell-rtl .mat-checkbox {
       margin-top: 0.6em;
     }
 
-    table tr td input[type='checkbox'],
-    table tr td .mat-checkbox,
-    .mat-table tr td.mat-checkbox-cell .mat-checkbox {
+    table.uoh-table tr td input[type='checkbox'],
+    table.uoh-table tr td .mat-checkbox,
+    .uoh-table.mat-table tr td.mat-checkbox-cell .mat-checkbox {
       float: left;
     }
 
-    [dir='rtl'] table tr td input[type='checkbox'],
-    [dir='rtl'] table tr td .mat-checkbox,
-    [dir='rtl'] .mat-table tr td.mat-checkbox-cell .mat-checkbox {
+    [dir='rtl'] table.uoh-table tr td input[type='checkbox'],
+    [dir='rtl'] table.uoh-table tr td .mat-checkbox,
+    [dir='rtl'] .uoh-table.mat-table tr td.mat-checkbox-cell .mat-checkbox {
       float: right;
     }
 
-    table td.row-title,
-    .mat-table td.row-title {
+    table.uoh-table td.row-title,
+    .uoh-table.mat-table td.row-title {
       font-size: 1.07em;
       font-weight: bold;
       line-height: 1.3em;
     }
 
-    table td.row-title::before,
-    .mat-table td.row-title::before {
+    table.uoh-table td.row-title::before,
+    .uoh-table.mat-table td.row-title::before {
       content: '';
       display: none;
     }
 
-    [dir='rtl'] .mat-table td.mat-cell:first-child,
-    [dir='rtl'] .mat-table td.mat-footer-cell:first-child,
-    [dir='rtl'] .mat-table th:first-child,
-    [dir='rtl'] .mat-table td.mat-cell:last-child,
-    [dir='rtl'] .mat-table td.mat-footer-cell:last-child,
-    [dir='rtl'] .mat-table th:last-child {
+    [dir='rtl'] .uoh-table.mat-table td.mat-cell:first-child,
+    [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:first-child,
+    [dir='rtl'] .uoh-table.mat-table th:first-child,
+    [dir='rtl'] .uoh-table.mat-table td.mat-cell:last-child,
+    [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:last-child,
+    [dir='rtl'] .uoh-table.mat-table th:last-child {
       padding-right: 0;
       padding-left: 0;
     }
