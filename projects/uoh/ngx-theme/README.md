@@ -78,10 +78,10 @@ This feature also contains the `small-card` and the `medium-card` classes which 
 
 ##### Responsive table support
 
-In order to utilize the responsive support for your tables you need to add a title property to each column as follows:
+In order to utilize the responsive support for your tables you need to add the `uoh-table` class to your table and set a title property for each column as follows:
 
 ```xml
-      <table mat-table [dataSource]="dataSource" matSort dir="rtl">
+      <table mat-table [dataSource]="dataSource" matSort class="uoh-table" dir="rtl">
         <ng-container matColumnDef="courseName">
           <th mat-cell-header *matHeaderCellDef mat-sort-header>קורס</th>
           <td mat-cell *matCellDef="let course" class="row-title">
