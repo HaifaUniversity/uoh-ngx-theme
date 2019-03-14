@@ -277,7 +277,7 @@ For example, in your component ts file:
 ```typescript
 export class AppComponent {
   header = 'Registration';
-  user: string;
+  user: UohHeaderUser;
   labels: UohHeaderLabels = {
     logo: 'University of Haifa',
     logOut: 'Logout',
