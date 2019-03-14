@@ -99,7 +99,7 @@
           padding: 0px;
 
           @if $footer {
-            min-height: calc(100vh - $header-height-mobile - $footer-height);
+            min-height: calc(100vh - #{($header-height-mobile - $footer-height)});
           }
 
           .mat-card {
