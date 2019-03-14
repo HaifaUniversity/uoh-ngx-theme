@@ -29,6 +29,7 @@
   $header-height: 0px;
   $header-height-mobile: 0px;
   $footer-height: 0px;
+  $footer-height-mobile: 0px;
 
   @include uoh-core($default-theme);
 
@@ -72,6 +73,7 @@
 
   @if $footer {
     $footer-height: 41px;
+    $footer-height-mobile: 62px;
     @include uoh-footer($default-theme);
   }
 
@@ -90,7 +92,7 @@
         min-height: calc(100vh - #{($content-padding * 2 + $header-height + $footer-height)});
 
         @media only screen and (max-width: 600px) {
-          min-height: calc(100vh - #{($content-padding * 2 + $header-height-mobile + $footer-height)});
+          min-height: calc(100vh - #{($content-padding * 2 + $header-height-mobile + $footer-height-mobile)});
         }
       }
 
@@ -99,7 +101,7 @@
           padding: 0px;
 
           @if $footer {
-            min-height: calc(100vh - #{($header-height-mobile - $footer-height)});
+            min-height: calc(100vh - #{($header-height-mobile + $footer-height-mobile)});
           }
 
           .mat-card {

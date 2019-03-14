@@ -107,6 +107,7 @@ a:hover {
 
 .uoh-header-title {
   flex: 1;
+  white-space: normal;
 }
 
 .uoh-header-title > a {
