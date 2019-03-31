@@ -139,12 +139,12 @@
       display: none;
     }
 
-    [dir='rtl'] .uoh-table.mat-table td.mat-cell:first-child,
-    [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:first-child,
-    [dir='rtl'] .uoh-table.mat-table th:first-child,
-    [dir='rtl'] .uoh-table.mat-table td.mat-cell:last-child,
-    [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:last-child,
-    [dir='rtl'] .uoh-table.mat-table th:last-child {
+    [dir='rtl'] .uoh-table.mat-table tr.mat-row td.mat-cell:first-child,
+    [dir='rtl'] .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:first-child,
+    [dir='rtl'] .uoh-table.mat-table tr.mat-header-row th:first-child,
+    [dir='rtl'] .uoh-table.mat-table tr.mat-row td.mat-cell:last-child,
+    [dir='rtl'] .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:last-child,
+    [dir='rtl'] .uoh-table.mat-table tr.mat-header-row th:last-child {
       padding-right: 0;
       padding-left: 0;
     }
