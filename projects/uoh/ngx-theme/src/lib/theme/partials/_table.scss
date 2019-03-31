@@ -8,16 +8,20 @@
     text-align: justify;
   }
 
-  [dir='rtl'] .uoh-table.mat-table td.mat-cell:first-child,
-  [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:first-child,
-  [dir='rtl'] .uoh-table.mat-table th:first-child {
+  .uoh-table tr.mat-footer-row td.mat-footer-cell {
+    font-weight: bold;
+  }
+
+  [dir='rtl'] .uoh-table.mat-table tr.mat-row td.mat-cell:first-child,
+  [dir='rtl'] .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:first-child,
+  [dir='rtl'] .uoh-table.mat-table tr.mat-header-row th.mat-header-cell:first-child {
     padding-left: 0;
     padding-right: 24px;
   }
 
-  [dir='rtl'] .uoh-table.mat-table td.mat-cell:last-child,
-  [dir='rtl'] .uoh-table.mat-table td.mat-footer-cell:last-child,
-  [dir='rtl'] .uoh-table.mat-table th:last-child {
+  [dir='rtl'] .uoh-table.mat-table tr.mat-row td.mat-cell:last-child,
+  [dir='rtl'] .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:last-child,
+  [dir='rtl'] .uoh-table.mat-table tr.mat-header-row th.mat-header-cell:last-child {
     padding-right: 0;
     padding-left: 24px;
   }
@@ -26,12 +30,14 @@
     table.uoh-table,
     table.uoh-table thead,
     table.uoh-table tbody,
+    table.uoh-table tfoot,
     table.uoh-table tr,
     table.uoh-table th,
     table.uoh-table td,
     .uoh-table.mat-table table,
     .uoh-table.mat-table thead,
     .uoh-table.mat-table tbody,
+    .uoh-table.mat-table tfoot,
     .uoh-table.mat-table tr,
     .uoh-table.mat-table th,
     .uoh-table.mat-table td {
@@ -48,6 +54,20 @@
     .uoh-table.mat-table tr.mat-footer-row,
     .uoh-table.mat-table tr.mat-row {
       height: auto;
+    }
+
+    .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell {
+      font-size: 1.1em;
+    }
+
+    .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:first-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      padding-top: 20px;
+      font-size: 1.15em;
+    }
+
+    .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:last-child {
+      padding-bottom: 20px;
     }
 
     table.uoh-table tr td,
