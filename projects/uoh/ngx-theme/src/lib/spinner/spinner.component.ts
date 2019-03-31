@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostBinding } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -8,10 +8,10 @@ import { Point, Size, Stops } from './models';
 @Component({
   selector: 'uoh-spinner',
   templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css'],
-  host: { class: 'uoh-spinner' }
+  styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent implements OnInit, OnDestroy {
+  @HostBinding('class') class = 'uoh-spinner';
   @Input() size: Size;
   @Input() duration = 2000;
   @Input() fps = 60;

@@ -1,16 +1,16 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, HostBinding } from '@angular/core';
 
 import { UohBackToTop } from './back-to-top.service';
 
 @Component({
   selector: 'uoh-back-to-top',
   templateUrl: './back-to-top.component.html',
-  styleUrls: ['./back-to-top.component.scss'],
-  host: { class: 'uoh-back-to-top' }
+  styleUrls: ['./back-to-top.component.scss']
 })
 export class BackToTopComponent {
   display = false;
   @Input() minScroll = 100;
+  @HostBinding('class') class = 'uoh-back-to-top';
 
   constructor(private backToTopService: UohBackToTop) {}
 
@@ -21,9 +21,6 @@ export class BackToTopComponent {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any): void {
-    const element = document.documentElement.clientHeight ? document.documentElement : document.body;
-    const scrollTop = window.pageYOffset ? window.pageYOffset : element.scrollTop;
-
-    this.display = scrollTop > this.minScroll;
+    this.display = this.backToTopService.scrollExceeds(this.minScroll);
   }
 }

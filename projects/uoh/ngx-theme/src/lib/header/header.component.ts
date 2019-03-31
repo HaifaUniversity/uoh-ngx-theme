@@ -6,7 +6,8 @@ import {
   HostListener,
   OnInit,
   ContentChildren,
-  QueryList
+  QueryList,
+  HostBinding
 } from '@angular/core';
 import { UohHeaderUser, UohHeaderLabels, UohHeaderLinkInterface, UohHeaderLinksView } from './header.models';
 import { UohHeaderLink } from './header-link.directive';
@@ -16,10 +17,10 @@ import { UohHeaderMenuLink } from './header-menu-link.directive';
 @Component({
   selector: 'uoh-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  host: { class: 'uoh-header' }
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @HostBinding('class') class = 'uoh-header';
   @ContentChildren(UohHeaderLink, { descendants: true })
   links: QueryList<UohHeaderLink>;
   @ContentChildren(UohHeaderRouterLink, { descendants: true })

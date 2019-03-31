@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Direction } from '@angular/cdk/bidi';
 import { UohAccessibilityLabels } from './accessibility.models';
@@ -6,10 +6,10 @@ import { UohAccessibilityLabels } from './accessibility.models';
 @Component({
   selector: 'uoh-accessibility',
   templateUrl: './accessibility.component.html',
-  styleUrls: ['./accessibility.component.scss'],
-  host: { class: 'uoh-accessibility' }
+  styleUrls: ['./accessibility.component.scss']
 })
 export class AccessibilityComponent {
+  @HostBinding('class') class = 'uoh-accessibility';
   @Input()
   dir: Direction = 'rtl';
   @Input() labels: UohAccessibilityLabels = {
@@ -24,7 +24,7 @@ export class AccessibilityComponent {
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
   private _theme: string;
-  private _fontSize: number = 0;
+  private _fontSize = 0;
 
   get theme(): string {
     if (!this._theme) {

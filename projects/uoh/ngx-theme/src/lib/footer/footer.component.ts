@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostBinding } from '@angular/core';
 
 declare const require: any;
 
 @Component({
   selector: 'uoh-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
-  host: { class: 'uoh-footer' }
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  @HostBinding('class') class = 'uoh-footer';
   @Input() version: string;
 
   constructor() {}

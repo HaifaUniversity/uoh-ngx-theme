@@ -5,10 +5,10 @@ import { Component, Input, HostBinding } from '@angular/core';
   template: `
     <ng-content></ng-content>
   `,
-  styleUrls: ['./content.component.scss'],
-  host: { class: 'uoh-content' }
+  styleUrls: ['./content.component.scss']
 })
 export class UohContentComponent {
+  @HostBinding('class') class = 'uoh-content';
   @HostBinding('class.uoh-full-mobile')
   @Input()
   fullMobile = false;
