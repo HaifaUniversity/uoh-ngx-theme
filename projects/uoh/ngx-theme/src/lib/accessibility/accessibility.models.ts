@@ -5,4 +5,5 @@ export interface UohAccessibilityLabels {
   lowContrast: string;
   highContrast: string;
   reset: string;
+  manifest: string;
 }

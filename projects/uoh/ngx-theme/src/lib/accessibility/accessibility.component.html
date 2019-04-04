@@ -23,6 +23,12 @@
       <mat-list-item>
         <button mat-button (click)="reset()"><mat-icon>autorenew</mat-icon> {{ labels.reset }}</button>
       </mat-list-item>
+      <mat-list-item>
+        <a mat-button [href]="manifestUrl" target="_blank">
+          <mat-icon>accessibility_new</mat-icon>
+          {{ labels.manifest }}
+        </a>
+      </mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>

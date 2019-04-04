@@ -10,16 +10,17 @@ import { UohAccessibilityLabels } from './accessibility.models';
 })
 export class AccessibilityComponent {
   @HostBinding('class') class = 'uoh-accessibility';
-  @Input()
-  dir: Direction = 'rtl';
+  @Input() dir: Direction = 'rtl';
   @Input() labels: UohAccessibilityLabels = {
     header: 'תפריט נגישות',
     increaseFont: 'הגדלת פונט',
     decreaseFont: 'הקטנת פונט',
     lowContrast: 'ניגודיות בהירה',
     highContrast: 'ניגודיות כהה',
-    reset: 'איפוס הגדרות'
+    reset: 'איפוס הגדרות',
+    manifest: 'הצהרת נגישות'
   };
+  @Input() manifestUrl = 'http://www.haifa.ac.il/index.php/he/accessibility-decleration';
   private DARK_THEME = 'dark-theme';
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
