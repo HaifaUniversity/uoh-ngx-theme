@@ -183,7 +183,7 @@ export class AppModule {}
 Then, wrap **all** the contents of your app (including header, footer, etc.) inside the `uoh-accessibility` tag:
 
 ```xml
-<uoh-accessibility [dir]="dir">
+<uoh-accessibility [dir]="dir" manifestUrl="https://www.example.com/accessibility-manifest">
   <uoh-content>
     <mat-card class="small-card">
       <mat-card-content>
@@ -203,6 +203,8 @@ Then, wrap **all** the contents of your app (including header, footer, etc.) ins
 
 > Note: You can set the direction of all the app contents by setting the `dir` input variable to `rtl` (default) or `ltr`.
 
+> Note: You can provide your own link to the accessibility manifest instead of using the default one, linked to the University of Haifa accessibility manifest.
+
 > Note: If you want to set custom labels for the buttons and headers you can set the `labels` input. To learn about the fields that should be set in this input object you can import the `UohAccessibilityLabels` from the same module. For example:
 
 ```javascript
@@ -212,7 +214,8 @@ labels: UohAccessibilityLabels = {
   decreaseFont: 'Decrease font size',
   lowContrast: 'High contrast',
   highContrast: 'Low contrast',
-  reset: 'Reset'
+  reset: 'Reset',
+  manifest: 'Accessibility manifest'
 };
 ```
 
