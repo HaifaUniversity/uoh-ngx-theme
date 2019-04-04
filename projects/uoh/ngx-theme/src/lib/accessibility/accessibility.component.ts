@@ -20,7 +20,7 @@ export class AccessibilityComponent {
     reset: 'איפוס הגדרות',
     manifest: 'הצהרת נגישות'
   };
-  @Input() manifestUrl = 'http://www.haifa.ac.il/index.php/he/accessibility-decleration';
+  @Input() manifestUrl = 'https://www.haifa.ac.il/index.php/he/accessibility-decleration';
   private DARK_THEME = 'dark-theme';
   private THEME_KEY = 'theme';
   private FONT_SIZE_KEY = 'font-size';
