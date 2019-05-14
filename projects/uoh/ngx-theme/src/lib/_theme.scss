@@ -57,6 +57,11 @@
     text-decoration: underline;
   }
 
+  /* Support for IE. */
+  .material-icons {
+    font-feature-settings: 'liga';
+  }
+
   @include mat-core();
   @include angular-material-typography($default-typography);
   @include angular-material-theme($default-theme);
