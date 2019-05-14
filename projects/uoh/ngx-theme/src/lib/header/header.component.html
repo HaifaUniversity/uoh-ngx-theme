@@ -9,9 +9,14 @@
             <h2 *ngIf="subheader">{{ subheader }}</h2>
           </ng-template>
 
-          <a *ngIf="clickableTitle; else titleTemplate" routerLink="./">
+          <a *ngIf="clickableTitle; else nonClickableTitleTemplate" routerLink="./" class="uoh-header-title-wrapper">
             <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
           </a>
+          <ng-template #nonClickableTitleTemplate>
+            <span class="uoh-header-title-wrapper">
+              <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+            </span>
+          </ng-template>
         </div>
         <div *ngIf="user" class="uoh-header-user" role="row">
           <button mat-button *ngIf="isDesktop; else mobileUser" [matMenuTriggerFor]="userMenu">
