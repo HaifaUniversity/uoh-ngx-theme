@@ -267,6 +267,7 @@ The header component accepts five input variables:
 - `user`: An object containing the name, the details and last login of the user. If set, a log out button will be displayed on the header, next to the user name. When the user presses the log out button an event will be fired. This event can be catched by binding a function to the `logOut` output.
 - `labels`: An object containing the labels for buttons and headers: the alt attribute for the logo, the label for the logout button and the aria-label for the more links button (mobile view). For more information about the fields integrating it use the `UohHeaderLabels` from the same module.
 - `logoLinkUrl`: A string containing the url to open when the logo is clicked. The default url is `https://www.haifa.ac.il/`.
+- `clickableTitle`: Whether clicking on the header and subheader the user should be redirected to the starting page in the app. The default is `true`.
 
 Furthermore, the `uohHeaderLink`, `uohHeaderRouterLink` and `uohHeaderMenuLink` directives can be used to display links in the header (these should be contained inside the `uoh-header` tags):
 
