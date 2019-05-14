@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   @Input() user: UohHeaderUser;
   @Input() logoLinkUrl = 'https://www.haifa.ac.il/';
   @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת', links: 'קישורים' };
+  @Input() clickableTitle = true;
   @Output() logOut = new EventEmitter<boolean>();
   isDesktop: boolean;
   linksView = UohHeaderLinksView;

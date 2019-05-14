@@ -4,9 +4,13 @@
     <div class="uoh-header-content" role="row">
       <div class="uoh-header-content-top">
         <div class="uoh-header-title">
-          <a routerLink="./">
+          <ng-template #titleTemplate>
             <h1 [class.uoh-header-no-subheader]="!subheader">{{ header }}</h1>
             <h2 *ngIf="subheader">{{ subheader }}</h2>
+          </ng-template>
+
+          <a *ngIf="clickableTitle; else titleTemplate" routerLink="./">
+            <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
           </a>
         </div>
         <div *ngIf="user" class="uoh-header-user" role="row">
