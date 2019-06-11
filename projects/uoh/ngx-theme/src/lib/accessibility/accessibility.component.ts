@@ -37,7 +37,7 @@ export class AccessibilityComponent {
   }
 
   set theme(theme: string) {
-    if (this.overlayContainer.getContainerElement().classList.contains(this._theme)) {
+    if (this._theme && this.overlayContainer.getContainerElement().classList.contains(this._theme)) {
       this.overlayContainer.getContainerElement().classList.remove(this._theme);
     }
     if (theme) {
