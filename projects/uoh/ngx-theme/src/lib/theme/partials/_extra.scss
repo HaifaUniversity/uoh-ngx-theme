@@ -16,4 +16,11 @@
     background-color: #{$error};
     color: #{$error-contrast};
   }
+
+  @media print {
+    .uoh-no-print,
+    .uoh-no-print * {
+      display: none !important;
+    }
+  }
 }
