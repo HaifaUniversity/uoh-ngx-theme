@@ -127,6 +127,7 @@ Once the core theming was installed, you can use the `$default-theme` and `$dark
 ###### Extra colors:
 
 The theme file also includes two presets: the `uoh-success`, `uoh-success-fill`, `uoh-error` and the `uoh-error-fill` classes. These can be used in your application to set two extra types of messages.
+Moreover, there are two additional classes for print: `uoh-no-print` and `uoh-print-only`. The first one eliminates the html tag and its children from print. The second one, sets a tag and its children to be visible only on print.
 
 ---
 
