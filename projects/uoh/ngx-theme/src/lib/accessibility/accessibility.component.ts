@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Direction } from '@angular/cdk/bidi';
 import { UohAccessibilityLabels } from './accessibility.models';
@@ -8,7 +8,7 @@ import { UohAccessibilityLabels } from './accessibility.models';
   templateUrl: './accessibility.component.html',
   styleUrls: ['./accessibility.component.scss']
 })
-export class AccessibilityComponent {
+export class AccessibilityComponent implements OnInit {
   @HostBinding('class') class = 'uoh-accessibility';
   @Input() dir: Direction = 'rtl';
   @Input() labels: UohAccessibilityLabels = {
@@ -37,12 +37,8 @@ export class AccessibilityComponent {
   }
 
   set theme(theme: string) {
-    if (this._theme && this.overlayContainer.getContainerElement().classList.contains(this._theme)) {
-      this.overlayContainer.getContainerElement().classList.remove(this._theme);
-    }
-    if (theme) {
-      this.overlayContainer.getContainerElement().classList.add(theme);
-    }
+    this.removeOverlayClass(this._theme);
+    this.setOverlayClass(theme);
     localStorage.setItem(this.THEME_KEY, theme);
     this._theme = theme;
   }
@@ -65,6 +61,10 @@ export class AccessibilityComponent {
   }
 
   constructor(private overlayContainer: OverlayContainer) {}
+
+  ngOnInit(): void {
+    this.setOverlayClass(this.theme);
+  }
 
   toggleTheme(): void {
     this.theme = this.isDarkTheme() ? '' : this.DARK_THEME;
@@ -89,5 +89,17 @@ export class AccessibilityComponent {
 
   isDarkTheme(): boolean {
     return this.theme === this.DARK_THEME;
+  }
+
+  private setOverlayClass(theme: string): void {
+    if (theme) {
+      this.overlayContainer.getContainerElement().classList.add(theme);
+    }
+  }
+
+  private removeOverlayClass(theme: string): void {
+    if (theme && this.overlayContainer.getContainerElement().classList.contains(theme)) {
+      this.overlayContainer.getContainerElement().classList.remove(theme);
+    }
   }
 }
