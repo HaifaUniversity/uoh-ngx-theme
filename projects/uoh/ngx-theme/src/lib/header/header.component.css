@@ -198,3 +198,15 @@
     line-height: 22px;
   }
 }
+
+@media print {
+  .uoh-header-user,
+  .uoh-header-user *,
+  .uoh-header-links,
+  .uoh-header-links * {
+    display: none;
+  }
+  .uoh-header-title .uoh-header-title-wrapper {
+    height: 82px;
+  }
+}

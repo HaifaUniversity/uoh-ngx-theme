@@ -2,7 +2,7 @@
   display: block;
 }
 
-.accessibility-btn {
+.uoh-accessibility-btn {
   position: fixed;
   z-index: 999;
   top: 14px;
@@ -30,7 +30,13 @@
 }
 
 @media only screen and (max-width: 992px) {
-  .accessibility-btn {
+  .uoh-accessibility-btn {
+    display: none;
+  }
+}
+
+@media print {
+  .uoh-accessibility-btn {
     display: none;
   }
 }
