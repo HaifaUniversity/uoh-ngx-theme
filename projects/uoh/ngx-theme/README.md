@@ -126,7 +126,7 @@ Once the core theming was installed, you can use the `$default-theme` and `$dark
 
 ###### Extra colors:
 
-The theme file also includes two presets: the `success`, `success-fill`, `error` and the `error-fill` classes. These can be used in your application to set two extra types of messages.
+The theme file also includes two presets: the `uoh-success`, `uoh-success-fill`, `uoh-error` and the `uoh-error-fill` classes. These can be used in your application to set two extra types of messages.
 
 ---
 
