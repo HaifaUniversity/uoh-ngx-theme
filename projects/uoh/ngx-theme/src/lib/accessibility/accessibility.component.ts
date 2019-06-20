@@ -9,7 +9,7 @@ class UohAccessibilityClass {
   constructor(private overlayContainer: OverlayContainer, public key: string, public defaultValue: string) {
     const value = localStorage.getItem(this.key);
 
-    this._value = value ? value : this.defaultValue;
+    this.value = value ? value : this.defaultValue;
   }
 
   get value(): string {
