@@ -1,4 +1,4 @@
-<mat-sidenav-container [ngClass]="[theme, 'font-size-' + fontSize]" [dir]="dir" [hasBackdrop]="true">
+<mat-sidenav-container [ngClass]="[theme.value, fontSize.value]" [dir]="dir" [hasBackdrop]="true">
   <mat-sidenav #sidenav mode="over" class="mat-body" position="end">
     <h3 class="uoh-accessibility-header"><mat-icon>accessible</mat-icon>{{ labels.header }}</h3>
     <mat-list class="uoh-accessibility-menu">

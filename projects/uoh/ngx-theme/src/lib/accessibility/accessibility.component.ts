@@ -3,6 +3,43 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { Direction } from '@angular/cdk/bidi';
 import { UohAccessibilityLabels } from './accessibility.models';
 
+class UohAccessibilityClass {
+  private _value: string;
+
+  constructor(private overlayContainer: OverlayContainer, public key: string, public defaultValue: string) {
+    const value = localStorage.getItem(this.key);
+
+    this._value = value ? value : this.defaultValue;
+  }
+
+  get value(): string {
+    return this._value;
+  }
+
+  set value(value: string) {
+    this.removeOverlayClass(this._value);
+    this.setOverlayClass(value);
+    localStorage.setItem(this.key, value);
+    this._value = value;
+  }
+
+  reset(): void {
+    this.value = this.defaultValue;
+  }
+
+  private setOverlayClass(value: string): void {
+    if (value) {
+      this.overlayContainer.getContainerElement().classList.add(value);
+    }
+  }
+
+  private removeOverlayClass(value: string): void {
+    if (value && this.overlayContainer.getContainerElement().classList.contains(value)) {
+      this.overlayContainer.getContainerElement().classList.remove(value);
+    }
+  }
+}
+
 @Component({
   selector: 'uoh-accessibility',
   templateUrl: './accessibility.component.html',
@@ -21,85 +58,53 @@ export class AccessibilityComponent implements OnInit {
     manifest: 'הצהרת נגישות'
   };
   @Input() manifestUrl = 'https://www.haifa.ac.il/index.php/he/accessibility-decleration';
-  private DARK_THEME = 'dark-theme';
-  private THEME_KEY = 'theme';
-  private FONT_SIZE_KEY = 'font-size';
-  private _theme: string;
-  private _fontSize = 0;
+  theme: UohAccessibilityClass;
+  fontSize: UohAccessibilityClass;
+  private readonly DARK_THEME = 'dark-theme';
 
-  get theme(): string {
-    if (!this._theme) {
-      const theme = localStorage.getItem(this.THEME_KEY);
-
-      return theme ? theme : '';
-    }
-    return this._theme;
+  constructor(private overlayContainer: OverlayContainer) {
+    this.theme = new UohAccessibilityClass(overlayContainer, 'theme', '');
+    this.fontSize = new UohAccessibilityClass(overlayContainer, 'font-size', 'font-size-0');
   }
 
-  set theme(theme: string) {
-    this.removeOverlayClass(this._theme);
-    this.setOverlayClass(theme);
-    localStorage.setItem(this.THEME_KEY, theme);
-    this._theme = theme;
-  }
-
-  get fontSize(): number {
-    if (!this._fontSize) {
-      const fontSize = localStorage.getItem(this.FONT_SIZE_KEY);
-
-      return fontSize ? +fontSize : 0;
-    }
-    return this._fontSize;
-  }
-
-  set fontSize(fontSize: number) {
-    if (!fontSize) {
-      fontSize = 0;
-    }
-    localStorage.setItem(this.FONT_SIZE_KEY, fontSize.toString());
-    this._fontSize = fontSize;
-  }
-
-  constructor(private overlayContainer: OverlayContainer) {}
-
-  ngOnInit(): void {
-    this.setOverlayClass(this.theme);
-  }
+  ngOnInit(): void {}
 
   toggleTheme(): void {
-    this.theme = this.isDarkTheme() ? '' : this.DARK_THEME;
+    this.theme.value = this.isDarkTheme() ? '' : this.DARK_THEME;
   }
 
   increaseFontSize(): void {
-    if (this.fontSize < 5) {
-      this.fontSize++;
+    let num = this.getFontSizeNum(this.fontSize.value);
+    if (num < 5) {
+      num++;
+      this.setFontSize(num);
     }
   }
 
   decreaseFontSize(): void {
-    if (this.fontSize > -2) {
-      this.fontSize--;
+    let num = this.getFontSizeNum(this.fontSize.value);
+    if (num > -2) {
+      num--;
+      this.setFontSize(num);
     }
   }
 
   reset(): void {
-    this.theme = '';
-    this.fontSize = 0;
+    this.theme.reset();
+    this.fontSize.reset();
   }
 
   isDarkTheme(): boolean {
-    return this.theme === this.DARK_THEME;
+    return this.theme.value === this.DARK_THEME;
   }
 
-  private setOverlayClass(theme: string): void {
-    if (theme) {
-      this.overlayContainer.getContainerElement().classList.add(theme);
-    }
+  private setFontSize(num: number): void {
+    this.fontSize.value = `${this.fontSize.key}-${num}`;
   }
 
-  private removeOverlayClass(theme: string): void {
-    if (theme && this.overlayContainer.getContainerElement().classList.contains(theme)) {
-      this.overlayContainer.getContainerElement().classList.remove(theme);
-    }
+  private getFontSizeNum(value: string): number {
+    const num = value.replace(`${this.fontSize.key}-`, '');
+
+    return num && !isNaN(+num) ? +num : 0;
   }
 }
