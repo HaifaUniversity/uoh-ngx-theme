@@ -61,10 +61,11 @@ export class AccessibilityComponent implements OnInit {
   theme: UohAccessibilityClass;
   fontSize: UohAccessibilityClass;
   private readonly DARK_THEME = 'dark-theme';
+  private readonly FONT_SIZE_PREFIX = 'font-size-';
 
   constructor(private overlayContainer: OverlayContainer) {
     this.theme = new UohAccessibilityClass(overlayContainer, 'theme', '');
-    this.fontSize = new UohAccessibilityClass(overlayContainer, 'font-size', 'font-size-0');
+    this.fontSize = new UohAccessibilityClass(overlayContainer, 'font-size', `${this.FONT_SIZE_PREFIX}0`);
   }
 
   ngOnInit(): void {}
@@ -99,11 +100,11 @@ export class AccessibilityComponent implements OnInit {
   }
 
   private setFontSize(num: number): void {
-    this.fontSize.value = `${this.fontSize.key}-${num}`;
+    this.fontSize.value = `${this.FONT_SIZE_PREFIX}${num}`;
   }
 
   private getFontSizeNum(value: string): number {
-    const num = value.replace(`${this.fontSize.key}-`, '');
+    const num = value.replace(this.FONT_SIZE_PREFIX, '');
 
     return num && !isNaN(+num) ? +num : 0;
   }
