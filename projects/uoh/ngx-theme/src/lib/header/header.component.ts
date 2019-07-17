@@ -98,6 +98,6 @@ export class HeaderComponent implements OnInit {
   }
 
   private allLinksHaveIcons(links: QueryList<UohHeaderLinkInterface>): boolean {
-    return links ? links.reduce((prev, curr) => prev && !!curr.uohHeaderLinkIcon, true) : true;
+    return links ? links.reduce((prev: boolean, curr) => prev && !!curr.uohHeaderLinkIcon, true) : true;
   }
 }
