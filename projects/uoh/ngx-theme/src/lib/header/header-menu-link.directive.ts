@@ -1,5 +1,5 @@
 import { Directive, Input, ElementRef } from '@angular/core';
-import { MatMenu } from '@angular/material';
+import { MatMenu } from '@angular/material/menu';
 import { UohHeaderLinkInterface } from './header.models';
 
 @Directive({
