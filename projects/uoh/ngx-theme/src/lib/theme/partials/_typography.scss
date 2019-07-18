@@ -1,90 +1,49 @@
-$hu-font: "'Varela Round', sans-serif";
+$uoh-font: "'Varela Round', sans-serif";
 
 $default-typography: mat-typography-config(
-  $font-family: #{$hu-font}
+  $font-family: #{$uoh-font}
 );
 
-$font-size--2: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(10px, 24px, 400),
-  $button: mat-typography-level(10px, 24px, 400),
-  $caption: mat-typography-level(8px, 20px, 400)
-);
+@function uoh-typography-level($default, $level, $delta) {
+  $font-size: mat-font-size($default, $level) + $delta;
+  $line-height: mat-line-height($default, $level) + $delta;
+  $font-weight: mat-font-weight($default, $level) + $delta;
+  $font-family: mat-font-family($default, $level) + $delta;
+  $letter-spacing: mat-letter-spacing($default, $level) + $delta;
 
-$font-size--1: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(12px, 24px, 400),
-  $button: mat-typography-level(12px, 24px, 400),
-  $caption: mat-typography-level(10px, 20px, 400)
-);
+  @return mat-typography-level($font-size, $line-height, $font-weight, $font-family, $letter-spacing);
+}
 
-$font-size-1: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(16px, 24px, 400),
-  $button: mat-typography-level(16px, 24px, 400),
-  $caption: mat-typography-level(14px, 20px, 400)
-);
+@mixin uoh-typography($default, $delta) {
+  $config: mat-typography-config(
+    $font-family: #{$uoh-font},
+    $display-4: uoh-typography-level($default, display-4, $delta),
+    $display-3: uoh-typography-level($default, display-3, $delta),
+    $display-2: uoh-typography-level($default, display-2, $delta),
+    $display-1: uoh-typography-level($default, display-1, $delta),
+    $headline: uoh-typography-level($default, headline, $delta),
+    $title: uoh-typography-level($default, title, $delta),
+    $subheading-2: uoh-typography-level($default, subheading-2, $delta),
+    $subheading-1: uoh-typography-level($default, subheading-1, $delta),
+    $body-2: uoh-typography-level($default, body-2, $delta),
+    $body-1: uoh-typography-level($default, body-1, $delta),
+    $caption: uoh-typography-level($default, caption, $delta),
+    $button: uoh-typography-level($default, button, $delta)
+  );
 
-$font-size-2: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(18px, 24px, 400),
-  $button: mat-typography-level(18px, 24px, 400),
-  $caption: mat-typography-level(16px, 20px, 400)
-);
-
-$font-size-3: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(20px, 24px, 400),
-  $button: mat-typography-level(20px, 24px, 400),
-  $caption: mat-typography-level(18px, 20px, 400)
-);
-
-$font-size-4: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(22px, 24px, 400),
-  $button: mat-typography-level(22px, 24px, 400),
-  $caption: mat-typography-level(20px, 20px, 400)
-);
-
-$font-size-5: mat-typography-config(
-  $font-family: #{$hu-font},
-  $body-1: mat-typography-level(24px, 24px, 400),
-  $button: mat-typography-level(24px, 24px, 400),
-  $caption: mat-typography-level(22px, 20px, 400)
-);
+  @include angular-material-typography($config);
+  font-size: mat-font-size($config, body-1);
+}
 
 // Font sizes (default: .font-size-0)
-.font-size--2 {
-  @include angular-material-typography($font-size--2);
-  font-size: mat-font-size($font-size--2, body-1);
+@for $i from -1 through -2 {
+  .font-size-#{$i} {
+    @include uoh-typography($default-typography, 2 * $i);
+  }
 }
 
-.font-size--1 {
-  @include angular-material-typography($font-size--1);
-  font-size: mat-font-size($font-size--1, body-1);
-}
-
-.font-size-1 {
-  @include angular-material-typography($font-size-1);
-  font-size: mat-font-size($font-size-1, body-1);
-}
-
-.font-size-2 {
-  @include angular-material-typography($font-size-2);
-  font-size: mat-font-size($font-size-2, body-1);
-}
-
-.font-size-3 {
-  @include angular-material-typography($font-size-3);
-  font-size: mat-font-size($font-size-3, body-1);
-}
-
-.font-size-4 {
-  @include angular-material-typography($font-size-4);
-  font-size: mat-font-size($font-size-4, body-1);
-}
-
-.font-size-5 {
-  @include angular-material-typography($font-size-5);
-  font-size: mat-font-size($font-size-5, body-1);
+@for $i from 1 through 5 {
+  .font-size-#{$i} {
+    @include uoh-typography($default-typography, 2 * $i);
+  }
 }
