@@ -5,7 +5,7 @@
 
   .uoh-success-fill {
     background-color: #{$success};
-    color: #{success-contrast};
+    color: #{$success-contrast};
   }
 
   .uoh-error {
