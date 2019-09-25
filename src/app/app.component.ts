@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UohSpinner, UohHeaderUser } from '@uoh/ngx-theme';
 
+import { of, Observable } from 'rxjs';
+import { delay, concatMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,6 +20,7 @@ export class AppComponent implements OnInit {
     { c1: 'משתמש 4', c2: 'תפקיד משתמש 4' },
     { c1: 'משתמש 5', c2: 'תפקיד משתמש 5' }
   ];
+  test$: Observable<string>;
 
   constructor(private spinner: UohSpinner) {}
 
@@ -25,9 +29,17 @@ export class AppComponent implements OnInit {
   }
 
   load(): void {
-    this.spinner.show();
-    setTimeout(_ => this.spinner.show(), 1000);
-    setTimeout(_ => this.spinner.hide(), 20000);
+    // this.spinner.add();
+    this.test$ = of(1000, 2000, 2340).pipe(
+      concatMap(val =>
+        of(`Delayed by ${val}`).pipe(
+          this.spinner.eventAdd(),
+          delay(val),
+          this.spinner.removeOnFinalize()
+        )
+      )
+      // this.spinner.clearOnFinalize()
+    );
   }
 
   logIn(): void {

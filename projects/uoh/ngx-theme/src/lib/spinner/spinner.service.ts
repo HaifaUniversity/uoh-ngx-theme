@@ -1,22 +1,56 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { distinctUntilChanged, tap, finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UohSpinner {
   private loading$ = new BehaviorSubject<boolean>(false);
+  private counter = 0;
   loading = this.loading$.asObservable().pipe(distinctUntilChanged());
 
   constructor() {}
 
-  show(): void {
+  /**
+   * Adds one spinner to the screen.
+   */
+  add(): void {
+    this.counter++;
     this.loading$.next(true);
   }
 
-  hide(): void {
+  /**
+   * Removes one spinner from screen.
+   */
+  remove(): void {
+    this.counter--;
+    if (this.counter < 1) {
+      this.loading$.next(false);
+    }
+  }
+
+  /**
+   * Clears all the spinners from screen.
+   */
+  clear(): void {
+    this.counter = 0;
     this.loading$.next(false);
   }
+
+  /**
+   * Adds one spinner when the observable fires.
+   */
+  addOnEvent = () => (source: Observable<any>) => source.pipe(tap(_ => this.add()));
+
+  /**
+   * Removes one spinner when the observable finalizes.
+   */
+  removeOnFinalize = () => (source: Observable<any>) => source.pipe(finalize(() => this.remove()));
+
+  /**
+   * Clears all spinners when the observable finalizes.
+   */
+  clearOnFinalize = () => (source: Observable<any>) => source.pipe(finalize(() => this.clear()));
 }
