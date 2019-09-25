@@ -33,12 +33,12 @@ export class AppComponent implements OnInit {
     this.test$ = of(1000, 2000, 2340).pipe(
       concatMap(val =>
         of(`Delayed by ${val}`).pipe(
-          this.spinner.eventAdd(),
-          delay(val),
-          this.spinner.removeOnFinalize()
+          this.spinner.addOnEvent(),
+          delay(val)
+          // this.spinner.removeOnFinalize()
         )
-      )
-      // this.spinner.clearOnFinalize()
+      ),
+      this.spinner.clearOnFinalize()
     );
   }
 

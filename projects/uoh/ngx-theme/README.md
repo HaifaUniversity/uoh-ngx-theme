@@ -419,8 +419,15 @@ Then add the `uoh-spinner` component to your `app.component.html`:
 
 ### Spinner Activation
 
-The spinner is activated/deactivated by calling the functions show/hide in the `UohSpinner` service.
-The `UohSpinner` exposes a BehaviorSubject of type Boolean named `loading`, which can be used to determine if a loading procedure is taking place.
+The spinner is activated and deactivated by calling the `UohSpinner` methods `add` and `remove`, respectively.
+Note that the `remove` method will cancel only the last `add` method called. Thus, if you called the `add` method consecutively more than once and call the `remove` method once, the spinner will still be on screen. If you want to remove all the spinners from screen at once use the `clear` method. For further information refer to issue number [#7](https://github.com/HaifaUniversity/uoh-ngx-theme/issues/7).
+Furthermore, you can use the observable pipeable versions of the above methods:
+
+- `addOnEvent` - Adds a spinner when the observable fires
+- `removeOnFinalize` - Removes a spinner when the observable finalizes
+- `clearOnFinalize` - Removes all the spinners when the observable finalizes
+
+The `UohSpinner` exposes an Observable of type Boolean named `loading`, which can be used to determine if a loading procedure is taking place.
 
 For example, in your component.ts:
 
@@ -441,8 +448,23 @@ export class AppComponent {
   constructor(public spinner: UohSpinner, private apiService: ApiService) {}
 
   loadStuff(): void {
-    this.spinner.show();
-    this.apiService.loadStuff.subscribe(data => (this.data = data), _, this.spinner.hide());
+    this.spinner.add();
+    this.apiService
+      .loadStuff()
+      .pipe(this.spinner.clearOnFinalize())
+      .subscribe(data => (this.data = data));
+  }
+
+  loadMoreStudd(): void {
+    this.test$ = of(1000, 2000, 2340).pipe(
+      concatMap(val =>
+        of(`Delayed by ${val}`).pipe(
+          this.spinner.addOnEvent(),
+          delay(val)
+          this.spinner.removeOnFinalize()
+        )
+      )
+    );
   }
 }
 ```
