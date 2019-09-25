@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UohSpinner, UohHeaderUser } from '@uoh/ngx-theme';
 
 @Component({
@@ -6,7 +6,7 @@ import { UohSpinner, UohHeaderUser } from '@uoh/ngx-theme';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
   show = true;
   user: UohHeaderUser;
@@ -20,8 +20,13 @@ export class AppComponent {
 
   constructor(private spinner: UohSpinner) {}
 
+  ngOnInit(): void {
+    this.load();
+  }
+
   load(): void {
     this.spinner.show();
+    setTimeout(_ => this.spinner.show(), 1000);
     setTimeout(_ => this.spinner.hide(), 20000);
   }
 

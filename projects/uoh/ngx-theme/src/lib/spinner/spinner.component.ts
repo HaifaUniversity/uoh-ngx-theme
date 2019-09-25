@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy, HostBinding } from '@angular/core';
 
 import { Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { UohSpinner } from './spinner.service';
 import { Point, Size, Stops } from './models';
@@ -48,13 +49,9 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     this._points = this.parsePoints(this.path);
     this._perimeter = this.calcPerimeter(this._points);
     this._strokeInc = this.getStrokeIncrement(this.duration, this.circle, this.minStrokeWidth, this.maxStrokeWidth);
-    this._loading$ = this._loader.loading.subscribe(loading => {
-      if (loading) {
-        this.startAnimation();
-      } else {
-        this.stopAnimation();
-      }
-    });
+    this._loading$ = this._loader.loading
+      .pipe(distinctUntilChanged())
+      .subscribe(loading => (loading ? this.startAnimation() : this.stopAnimation()));
   }
 
   ngOnDestroy(): void {
