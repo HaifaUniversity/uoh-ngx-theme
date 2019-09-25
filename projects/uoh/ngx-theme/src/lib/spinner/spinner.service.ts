@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UohSpinner {
-  loading = new BehaviorSubject<boolean>(false);
+  private loading$ = new BehaviorSubject<boolean>(false);
+  loading = this.loading$.asObservable().pipe(distinctUntilChanged());
 
   constructor() {}
 
   show(): void {
-    this.loading.next(true);
+    this.loading$.next(true);
   }
 
   hide(): void {
-    this.loading.next(false);
+    this.loading$.next(false);
   }
 }
