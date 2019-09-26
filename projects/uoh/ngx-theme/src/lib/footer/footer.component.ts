@@ -19,6 +19,9 @@ export class FooterComponent implements OnInit {
     }
   }
 
+  /**
+   * Retrieves the version automatically from the package.json file of the project.
+   */
   private getVersion(): string {
     // Try to automatically retrieve the version number
     try {

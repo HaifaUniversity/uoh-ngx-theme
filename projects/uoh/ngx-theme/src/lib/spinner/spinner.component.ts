@@ -59,6 +59,9 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Starts a new spinner animation.
+   */
   private startAnimation(): void {
     this.resetParams();
     this._requestID = window.requestAnimationFrame(time => {
@@ -68,21 +71,35 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     this.visible = true;
   }
 
+  /**
+   * Stops the spinner animation.
+   */
   private stopAnimation(): void {
     this.visible = false;
     this.cancelRequestID();
   }
 
+  /**
+   * Resets the spinner stroke width.
+   */
   private resetParams(): void {
     this.strokeWidth = this.maxStrokeWidth;
   }
 
+  /**
+   * Cancels the current window's request animation frame.
+   */
   private cancelRequestID(): void {
     if (this._requestID !== undefined) {
       window.cancelAnimationFrame(this._requestID);
     }
   }
 
+  /**
+   * Draws a new position for the spinner for the current frame.
+   * @param time The current time according to the window's animation frame.
+   * @param startTime The time when the spinner was started.
+   */
   private draw(time: number, startTime: number): void {
     const timeElapsed = time - startTime;
     let percent = timeElapsed / this.duration;
@@ -108,10 +125,19 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Corrects the current time according to the frame interval (frames per second).
+   * @param time The current time according to the window's animation frame.
+   */
   private correctTime(time: number): number {
     return time - (time % this._frameInterval);
   }
 
+  /**
+   * Calculates the size of the spinner.
+   * @param currSize The requested size for the spinner.
+   * @param origSize The original size of the spinner svg.
+   */
   private calcSize(currSize: Size, origSize: Size): Size {
     if (currSize.width) {
       currSize.height = (origSize.width / currSize.width) * origSize.height;
@@ -122,6 +148,10 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     return currSize;
   }
 
+  /**
+   * Calculates the perimeter of the spinner drawing.
+   * @param points An array of points for the svg drawing of the spinner.
+   */
   private calcPerimeter(points: Point[]): number {
     return points.reduce((accum, currPoint, currIndex) => {
       const nextIndex = currIndex + 1 >= points.length ? 0 : currIndex + 1;
@@ -132,6 +162,10 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
+  /**
+   * Returns an array of points according to a certaing svg path.
+   * @param path The svg drawing path.
+   */
   private parsePoints(path: string): Point[] {
     return path
       .replace(/M\s|\sZ/g, '')
@@ -142,6 +176,13 @@ export class SpinnerComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Caculates the stroke width increment.
+   * @param duration The total duration of the animation.
+   * @param stops The stops for the progress point.
+   * @param min The minimum stroke width.
+   * @param max The maximum stroke width.
+   */
   private getStrokeIncrement(duration: number, stops: Stops, min: number, max: number): Stops {
     const steps1 = duration * stops.stop1;
     const steps2 = duration * (1 - stops.stop2);
@@ -154,6 +195,10 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     };
   }
 
+  /**
+   * Recalculates the frame time according to the ease in out function.
+   * @param time The current time according to the window animation frame.
+   */
   private easeInOut(time: number): number {
     const timeSqr = time * time;
     return timeSqr / (2 * (timeSqr - time) + 1);

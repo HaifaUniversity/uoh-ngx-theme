@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, tap, finalize } from 'rxjs/operators';
 
+/**
+ * A service to manipulate the spinner.
+ */
 @Injectable({
   providedIn: 'root'
 })
