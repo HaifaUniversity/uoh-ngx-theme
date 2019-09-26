@@ -334,7 +334,29 @@ Then add the `uoh-footer` component to the bottom section of your `app.component
 <uoh-footer [version]="false"></uoh-footer>
 ```
 
-> Note: If you use `uoh-accessibility` remember to include the `uoh-footer` inside it.
+> Note: If you use `uoh-accessibility` remember to include the `uoh-footer` inside it. However, if you choose not to use the `uoh-accessibility` component, you will need to include the `UohBodyModule` in your `app.module.ts` file and put the `uoh-footer` (and all the other components) inside the `uoh-body` component (as you would do with the `uoh-accessibility`). For example:
+
+```xml
+<uoh-body [dir]="dir">
+  <uoh-spinner></uoh-spinner>
+  <uoh-header></uoh-header>
+  <uoh-content>
+    <mat-card class="small-card">
+      <mat-card-content>
+        <div style="text-align:center">
+          <h1>
+            Welcome to {{ title }}!
+          </h1>
+        </div>
+        <h2>University of Haifa</h2>
+      </mat-card-content>
+    </mat-card>
+  </uoh-content>
+  <uoh-footer></uoh-footer>
+</uoh-body>
+```
+
+> Note that the `uoh-body` accepts a `dir` input exactly as the `uoh-accessibility` component.
 
 The footer component accepts a `version` input variable. If it is omitted, the component will try to automatically retrieve the version number from your app's `package.json` file. Alternatively, you can pass a string to it in order to set a custom version name or `false` (as in the above example) if you don't want it to be displayed.
 
