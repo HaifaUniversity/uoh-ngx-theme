@@ -12,12 +12,12 @@ $config: (
 
 @include uoh-theme($config...);
 
-.uoh-back-to-top {
-  display: none;
-}
+// .uoh-back-to-top {
+//   display: none;
+// }
 
-@media only screen and (max-width: 600px) {
-  .uoh-back-to-top {
-    display: block;
-  }
-}
+// @media only screen and (max-width: 600px) {
+//   .uoh-back-to-top {
+//     display: block;
+//   }
+// }

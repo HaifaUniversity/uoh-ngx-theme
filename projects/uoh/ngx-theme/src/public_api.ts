@@ -10,5 +10,6 @@ export * from './lib/back-to-top/back-to-top.module';
 export * from './lib/back-to-top/back-to-top.service';
 export * from './lib/footer/footer.module';
 export * from './lib/content/content.module';
+export * from './lib/body/body.module';
 export * from './lib/accessibility/accessibility.models';
 export * from './lib/header/header.models';

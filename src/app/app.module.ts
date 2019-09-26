@@ -18,7 +18,8 @@ import {
   UohHeaderModule,
   UohSpinner,
   UohBackToTopModule,
-  UohFooterModule
+  UohFooterModule,
+  UohBodyModule
 } from '@uoh/ngx-theme';
 
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { routing } from './app.routing';
     UohHeaderModule,
     UohBackToTopModule,
     UohFooterModule,
+    UohBodyModule,
     routing
   ],
   providers: [UohSpinner],

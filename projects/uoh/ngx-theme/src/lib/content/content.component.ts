@@ -1,5 +1,8 @@
 import { Component, Input, HostBinding } from '@angular/core';
 
+/**
+ * A container component for the app content.
+ */
 @Component({
   selector: 'uoh-content',
   template: `

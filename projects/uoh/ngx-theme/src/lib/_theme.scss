@@ -43,6 +43,11 @@
     @include uoh-extra();
   }
 
+  html,
+  body {
+    height: 100%;
+  }
+
   body {
     margin: 0px;
     font-family: mat-font-family($default-typography);
@@ -94,26 +99,15 @@
       display: block;
       padding: $content-padding;
 
-      @if $footer {
-        min-height: calc(100vh - #{($content-padding * 2 + $header-height + $footer-height)});
-
-        @media only screen and (max-width: 600px) {
-          min-height: calc(100vh - #{($content-padding * 2 + $header-height-mobile + $footer-height-mobile)});
-        }
-      }
-
       &.uoh-full-mobile {
         @media only screen and (max-width: 600px) {
           padding: 0px;
-
-          @if $footer {
-            min-height: calc(100vh - #{($header-height-mobile + $footer-height-mobile)});
-          }
 
           .mat-card {
             box-shadow: none;
             border: none;
           }
+
           .small-card {
             max-width: 600px;
           }
