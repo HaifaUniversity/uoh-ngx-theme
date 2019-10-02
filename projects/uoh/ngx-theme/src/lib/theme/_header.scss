@@ -1,3 +1,5 @@
+@import './partials/layout';
+
 @mixin uoh-header($theme, $height, $height-mobile) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
@@ -35,7 +37,7 @@
     color: mat-color($foreground, text);
   }
 
-  @media screen and (max-width: 600px) {
+  @include uoh-screen-max(small) {
     .mat-toolbar {
       background-image: linear-gradient(
         mat-color($primary) $first-line-mobile,

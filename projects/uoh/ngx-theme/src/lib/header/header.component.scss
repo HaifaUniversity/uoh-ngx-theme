@@ -1,10 +1,12 @@
+@import '../theme/partials/layout';
+
 .mat-toolbar {
   height: 82px;
 }
 
 .mat-toolbar .mat-toolbar-row {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: uoh-breakpoint-max(large);
 }
 
 .mat-toolbar .mat-toolbar-row .uoh-header-title a {
@@ -172,7 +174,7 @@
   font-size: 0.75em;
 }
 
-@media screen and (max-width: 600px) {
+@include uoh-screen-max(small) {
   .mat-toolbar .mat-toolbar-row h1 {
     font-size: 18px;
   }

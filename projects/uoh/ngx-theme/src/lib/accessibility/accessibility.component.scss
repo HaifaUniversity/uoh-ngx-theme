@@ -1,3 +1,5 @@
+@import '../theme/partials/layout';
+
 :host {
   display: flex;
   flex-flow: column nowrap;
@@ -35,7 +37,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (max-width: 992px) {
+@include uoh-screen-max(medium) {
   .uoh-accessibility-btn {
     display: none;
   }

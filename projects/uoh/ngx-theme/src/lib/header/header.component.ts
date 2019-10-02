@@ -22,7 +22,7 @@ export const MIN_DESKTOP_WIDTH = 600;
 @Component({
   selector: 'uoh-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   @HostBinding('class') class = 'uoh-header';
