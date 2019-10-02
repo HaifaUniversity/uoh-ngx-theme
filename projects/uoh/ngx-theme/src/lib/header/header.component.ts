@@ -9,15 +9,15 @@ import {
   QueryList,
   HostBinding
 } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { UohHeaderUser, UohHeaderLabels, UohHeaderLinkInterface, UohHeaderLinksView } from './header.models';
 import { UohHeaderLink } from './header-link.directive';
 import { UohHeaderRouterLink } from './header-router-link.directive';
 import { UohHeaderMenuLink } from './header-menu-link.directive';
-
-/**
- * The minimal desktop width.
- */
-export const MIN_DESKTOP_WIDTH = 600;
 
 @Component({
   selector: 'uoh-header',
@@ -49,14 +49,14 @@ export class HeaderComponent implements OnInit {
   @Input() labels: UohHeaderLabels = { logo: 'אוניברסיטת חיפה', logOut: 'יציאה מהמערכת', links: 'קישורים' };
   @Input() clickableTitle = false;
   @Output() logOut = new EventEmitter<boolean>();
-  isDesktop: boolean;
+  isXSmall$: Observable<boolean>;
   linksView = UohHeaderLinksView;
   private MAX_ICONS_LINKS = 4;
 
-  constructor() {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
-    this.onResize();
+    this.isXSmall$ = this.breakpointObserver.observe([Breakpoints.XSmall]).pipe(map(result => result.matches));
   }
 
   /**
@@ -74,15 +74,6 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * Checks if the window matches the desktop screen size (the width is at least MIN_DESKTOP_WIDTH) in order to compress the header links.
-   * @param event The resize event.
-   */
-  @HostListener('window:resize', ['$event'])
-  onResize(event?: Event): void {
-    this.isDesktop = window.innerWidth >= MIN_DESKTOP_WIDTH;
-  }
-
-  /**
    * Checks if any link has been set for the header.
    */
   hasLinks(): boolean {
@@ -95,13 +86,14 @@ export class HeaderComponent implements OnInit {
 
   /**
    * Retrieves the type of view used to render the links, according to the screen size, the number of links and icons.
+   * @param isXSmall Whether is extra small screen.
    */
-  getLinksView(): UohHeaderLinksView {
+  getLinksView(isXSmall: boolean): UohHeaderLinksView {
     // TODO: Improve performance by setting a variable on resize
     const linksLength =
       this.countLinks(this.links) + this.countLinks(this.routerLinks) + this.countLinks(this.menuLinks);
 
-    if (this.isDesktop || linksLength === 1) {
+    if (!isXSmall || linksLength === 1) {
       return UohHeaderLinksView.Full;
     } else if (
       linksLength <= this.MAX_ICONS_LINKS &&
