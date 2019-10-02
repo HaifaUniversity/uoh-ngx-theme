@@ -37,7 +37,7 @@
     color: mat-color($foreground, text);
   }
 
-  @include uoh-screen-max(small) {
+  @include uoh-screen-max(xsmall) {
     .mat-toolbar {
       background-image: linear-gradient(
         mat-color($primary) $first-line-mobile,

@@ -100,7 +100,7 @@
       padding: $content-padding;
 
       &.uoh-full-mobile {
-        @include uoh-screen-max(small) {
+        @include uoh-screen-max(xsmall) {
           padding: 0px;
 
           .mat-card {
@@ -109,7 +109,7 @@
           }
 
           .small-card {
-            max-width: uoh-breakpoint-max(small);
+            max-width: uoh-breakpoint-max(xsmall);
           }
         }
       }

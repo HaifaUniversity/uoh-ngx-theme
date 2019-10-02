@@ -1,13 +1,14 @@
-// Breakpoints for responsive screen sizes: The maximum value for each breakpoint.
+// Breakpoints for responsive screen sizes: The minimum value for each breakpoint according to the material specifications (see: https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 $uoh-breakpoints: (
+  xsmall: 0,
   small: 600px,
-  medium: 992px,
-  large: 1200px,
-  extra-large: 1600px
+  medium: 1024px,
+  large: 1440px,
+  xlarge: 1920px
 );
 
-// Returns the maximum value for a breakpoint. For example: 'medium' will return 992px.
-@function uoh-breakpoint-max($name, $breakpoints: $uoh-breakpoints) {
+// Returns the minimum value for a breakpoint. For example: 'medium' will return 1024px.
+@function uoh-breakpoint-min($name, $breakpoints: $uoh-breakpoints) {
   @if not map-has-key($breakpoints, $name) {
     @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
   }
@@ -17,8 +18,8 @@ $uoh-breakpoints: (
   @return if($breakpoint != 0, $breakpoint, null);
 }
 
-// Returns the name of the previous breakpoint. For example: 'medium' will return 'small'.
-@function uoh-breakpoint-prev($name, $breakpoints: $uoh-breakpoints) {
+// Returns the name of the next breakpoint. For example: 'medium' will return 'large'.
+@function uoh-breakpoint-next($name, $breakpoints: $uoh-breakpoints) {
   $breakpoint-names: map-keys($breakpoints);
   $i: index($breakpoint-names, $name);
 
@@ -26,17 +27,17 @@ $uoh-breakpoints: (
     @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
   }
 
-  @return if($i > 1, nth($breakpoint-names, $i - 1), null);
+  @return if($i < length($breakpoint-names), nth($breakpoint-names, $i + 1), null);
 }
 
-// Returns the minimum value for a breakpoint. For example: 'medium' will return 600.02px.
-@function uoh-breakpoint-min($name, $breakpoints: $uoh-breakpoints) {
-  $prev-name: uoh-breakpoint-prev($name, $breakpoints);
+// Returns the max value for a breakpoint. For example: 'medium' will return 1439px.
+@function uoh-breakpoint-max($name, $breakpoints: $uoh-breakpoints) {
+  $next-name: uoh-breakpoint-next($name, $breakpoints);
 
-  @return if($prev-name, map-get($breakpoints, $prev-name) + 0.02, null);
+  @return if($next-name, map-get($breakpoints, $next-name) - 1, null);
 }
 
-// Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 600.02px.
+// Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 1024px.
 @mixin uoh-screen-min($name, $breakpoints: $uoh-breakpoints) {
   $min: uoh-breakpoint-min($name, $breakpoints);
 
@@ -49,7 +50,7 @@ $uoh-breakpoints: (
   }
 }
 
-// Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to min-width: 992px.
+// Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to max-width: 1439px.
 @mixin uoh-screen-max($name, $breakpoints: $uoh-breakpoints) {
   $max: uoh-breakpoint-max($name, $breakpoints);
 
@@ -62,8 +63,8 @@ $uoh-breakpoints: (
   }
 }
 
-// Sets the content to the screen breakpoints min and max widths. For example: $lower = 'small' and $upper = 'large' will result in min-width: 0.02px and max-width: 1200px.
-// Note that if only the $lower parameter is passed, the contents will be set only for that breakpoint. For example: $lower = 'medium' will result in min-width: 600.02px and max-width: 992px.
+// Sets the content to the screen breakpoints min and max widths.
+// Note that if only the $lower parameter is passed, the contents will be set only for that breakpoint. For example: $lower = 'medium' will result in min-width: 1024px and max-width: 1439px.
 @mixin uoh-screen($lower, $upper: $lower, $breakpoints: $uoh-breakpoints) {
   $min: uoh-breakpoint-min($lower, $breakpoints);
   $max: uoh-breakpoint-max($upper, $breakpoints);

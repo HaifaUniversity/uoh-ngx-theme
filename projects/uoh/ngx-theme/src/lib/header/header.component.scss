@@ -174,7 +174,7 @@
   font-size: 0.75em;
 }
 
-@include uoh-screen-max(small) {
+@include uoh-screen-max(xsmall) {
   .mat-toolbar .mat-toolbar-row h1 {
     font-size: 18px;
   }
