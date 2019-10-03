@@ -86,12 +86,12 @@ $uoh-breakpoints: (
   }
 }
 
-@mixin uoh-layout() {
+@mixin uoh-layout($breakpoints: $uoh-breakpoints) {
   .fill-remaining-space {
     flex: 1 1 auto;
   }
 
-  @each $key, $value in $uoh-breakpoints {
+  @each $key, $value in $breakpoints {
     .uoh-#{$key}-card {
       max-width: #{$value};
       margin: 0 auto;
