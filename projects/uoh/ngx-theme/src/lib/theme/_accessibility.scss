@@ -1,4 +1,4 @@
-@mixin uoh-accessibility($theme) {
+@mixin uoh-accessibility-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);

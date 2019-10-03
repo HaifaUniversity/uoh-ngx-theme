@@ -1,4 +1,4 @@
-@mixin uoh-core($theme) {
+@mixin uoh-core-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
@@ -7,5 +7,10 @@
 
   a {
     color: mat-color($primary);
+  }
+
+  .uoh-content {
+    background-color: mat-color($background, background);
+    color: mat-color($foreground, text);
   }
 }

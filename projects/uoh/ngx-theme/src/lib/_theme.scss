@@ -6,6 +6,8 @@
 @import './theme/partials/layout';
 @import './theme/partials/table';
 @import './theme/partials/extra';
+@import './theme/partials/print';
+@import './theme/partials/card';
 @import './theme/partials/themes/default';
 @import './theme/partials/themes/dark';
 
@@ -13,25 +15,26 @@
 @import './theme/header';
 @import './theme/footer';
 @import './theme/spinner';
-@import './theme/content';
 
 // TODO: Add an `all` parameter to include all the features of the uoh-theme
 @mixin uoh-theme(
   $layout: true,
   $table: true,
   $extra: true,
+  $print: true,
   $accessibility: true,
   $header: true,
   $footer: true,
   $spinner: true,
-  $content: true
+  $card: true,
+  $content-padding: false
 ) {
   $header-height: 0px;
   $header-height-mobile: 0px;
   $footer-height: 0px;
   $footer-height-mobile: 0px;
 
-  @include uoh-core($default-theme);
+  @include uoh-core-theme($default-theme);
 
   @if $layout {
     @include uoh-layout();
@@ -41,6 +44,12 @@
   }
   @if $extra {
     @include uoh-extra();
+  }
+  @if $card {
+    @include uoh-card($content-padding);
+  }
+  @if $print {
+    @include uoh-print();
   }
 
   html,
@@ -68,80 +77,63 @@
     font-feature-settings: 'liga';
   }
 
+  .uoh-content {
+    display: block;
+    padding: if($content-padding, 16px, 0);
+    flex: 1 1 auto;
+  }
+
   @include mat-core();
   @include angular-material-typography($default-typography);
   @include angular-material-theme($default-theme);
 
   @if $accessibility {
-    @include uoh-accessibility($default-theme);
+    @include uoh-accessibility-theme($default-theme);
   }
 
   @if $header {
     $header-height: 82px;
     $header-height-mobile: 82px;
-    @include uoh-header($default-theme, $header-height, $header-height-mobile);
+    @include uoh-header-theme($default-theme, $header-height, $header-height-mobile);
   }
 
   @if $footer {
     $footer-height: 41px;
     $footer-height-mobile: 62px;
-    @include uoh-footer($default-theme);
+    @include uoh-footer-theme($default-theme);
   }
 
   @if $spinner {
-    @include uoh-spinner($default-theme);
+    @include uoh-spinner-theme($default-theme);
   }
 
-  @if $content {
-    $content-padding: 16px;
-
-    .uoh-content {
-      display: block;
-      padding: $content-padding;
-      flex: 1 1 auto;
-
-      &.uoh-full-mobile {
-        @include uoh-screen-max(xsmall) {
-          padding: 0px;
-
-          .mat-card {
-            box-shadow: none;
-            border: none;
-          }
-
-          .small-card {
-            max-width: uoh-breakpoint-max(xsmall);
-          }
-        }
-      }
-    }
-
-    @include uoh-content($default-theme);
+  @if $card {
+    @include uoh-card-theme($default-theme);
   }
 
   .dark-theme {
-    @include uoh-core($dark-theme);
+    @include uoh-core-theme($dark-theme);
 
     @include angular-material-theme($dark-theme);
 
     @if $accessibility {
-      @include uoh-accessibility($dark-theme);
+      @include uoh-accessibility-theme($dark-theme);
     }
 
     @if $header {
-      @include uoh-header($dark-header-theme, $header-height, $header-height-mobile);
+      @include uoh-header-theme($dark-header-theme, $header-height, $header-height-mobile);
     }
 
     @if $footer {
-      @include uoh-footer($dark-header-theme);
+      @include uoh-footer-theme($dark-header-theme);
     }
 
     @if $spinner {
-      @include uoh-spinner($dark-theme);
+      @include uoh-spinner-theme($dark-theme);
     }
 
-    @if $content {
-      @include uoh-content($dark-theme);
+    @if $card {
+      @include uoh-card-theme($dark-theme);
     }
   }
 }

@@ -1,0 +1,47 @@
+@mixin uoh-card($content-padding, $breakpoints: $uoh-breakpoints) {
+  @each $key, $value in $breakpoints {
+    $breakpoint: uoh-breakpoint-max($key);
+
+    .uoh-#{$key}-card {
+      @if $breakpoint != null {
+        max-width: $breakpoint;
+      }
+      margin: if($content-padding, 0 auto, 16px auto);
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .uoh-#{$key}-card:not(.mat-card) {
+      @include mat-elevation-transition;
+      @include mat-elevation(2);
+      padding: 16px;
+      border-radius: 4px;
+    }
+
+    @if $content-padding != true {
+      @include uoh-screen-max($key) {
+        .uoh-#{$key}-card {
+          box-shadow: none !important;
+          border: none !important;
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin uoh-card-theme($theme, $breakpoints: $uoh-breakpoints) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  @each $key, $value in $breakpoints {
+    .uoh-#{$key}-card:not(.mat-card) {
+      background-color: mat-color($background, card);
+    }
+  }
+}

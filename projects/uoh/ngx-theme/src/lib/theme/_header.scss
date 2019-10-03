@@ -1,6 +1,4 @@
-@import './partials/layout';
-
-@mixin uoh-header($theme, $height, $height-mobile) {
+@mixin uoh-header-theme($theme, $height, $height-mobile) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);

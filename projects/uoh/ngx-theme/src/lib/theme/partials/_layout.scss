@@ -1,5 +1,3 @@
-@import '~@angular/material/theming';
-
 // Breakpoints for responsive screen sizes: The minimum value for each breakpoint according to the material specifications (see: https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 $uoh-breakpoints: (
   xsmall: 0,
@@ -92,21 +90,6 @@ $uoh-breakpoints: (
   }
 
   @each $key, $value in $breakpoints {
-    $breakpoint: uoh-breakpoint-max($key);
-
-    .uoh-#{$key}-card {
-      @if $breakpoint != null {
-        max-width: $breakpoint;
-      }
-      margin: 0 auto;
-    }
-
-    .uoh-#{$key}-card:not(.mat-card) {
-      @include mat-elevation-transition;
-      @include mat-elevation(2);
-      border-radius: 4px;
-    }
-
     .uoh-hide-on-#{$key} {
       @include uoh-screen($key) {
         display: none;

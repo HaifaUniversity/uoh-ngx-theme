@@ -16,21 +16,4 @@
     background-color: #{$error};
     color: #{$error-contrast};
   }
-
-  .uoh-print-only,
-  .uoh-print-only * {
-    display: none;
-  }
-
-  @media print {
-    .uoh-no-print,
-    .uoh-no-print * {
-      display: none !important;
-    }
-
-    .uoh-print-only,
-    .uoh-print-only * {
-      display: block;
-    }
-  }
 }

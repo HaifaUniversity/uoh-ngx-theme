@@ -8,7 +8,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { HeaderComponent } from './header.component';
-import { UohContentModule } from '../content/content.module';
 import { UohHeaderLink } from './header-link.directive';
 import { UohHeaderRouterLink } from './header-router-link.directive';
 import { UohHeaderMenuLink } from './header-menu-link.directive';
@@ -21,10 +20,9 @@ import { UohHeaderMenuLink } from './header-menu-link.directive';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule,
-    UohContentModule
+    MatDividerModule
   ],
   declarations: [HeaderComponent, UohHeaderLink, UohHeaderRouterLink, UohHeaderMenuLink],
-  exports: [HeaderComponent, UohContentModule, UohHeaderLink, UohHeaderRouterLink, UohHeaderMenuLink]
+  exports: [HeaderComponent, UohHeaderLink, UohHeaderRouterLink, UohHeaderMenuLink]
 })
 export class UohHeaderModule {}
