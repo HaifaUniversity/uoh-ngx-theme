@@ -92,12 +92,16 @@ $uoh-breakpoints: (
   }
 
   @each $key, $value in $breakpoints {
+    $breakpoint: uoh-breakpoint-max($key);
+
     .uoh-#{$key}-card {
-      max-width: #{$value};
+      @if $breakpoint != null {
+        max-width: $breakpoint;
+      }
       margin: 0 auto;
     }
 
-    .uoh-#{$key}-card::not(.mat-card) {
+    .uoh-#{$key}-card:not(.mat-card) {
       @include mat-elevation-transition;
       @include mat-elevation(2);
       border-radius: 4px;

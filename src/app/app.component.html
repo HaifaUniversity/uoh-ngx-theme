@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<!-- <uoh-accessibility dir="rtl"> -->
-<uoh-body>
+<uoh-accessibility dir="rtl">
+  <!-- <uoh-body> -->
   <uoh-spinner></uoh-spinner>
   <uoh-header header="מצב מועמדות" [user]="user" [clickableTitle]="false" (logOut)="logOut()">
     <a uohHeaderLink="https://www.haifa.ac.il" uohHeaderLinkIcon="face"> בדיקה 0! </a>
@@ -10,30 +10,30 @@
   </uoh-header>
   <mat-menu #menu="matMenu"> <button mat-menu-item>Item 1</button> <button mat-menu-item>Item 2</button> </mat-menu>
   <uoh-back-to-top minScroll="100"></uoh-back-to-top>
-  <uoh-content [fullMobile]="true">
-    <p class="uoh-print-only">Think before you print!</p>
-    <router-outlet></router-outlet>
-    <div *ngIf="show" style="text-align:center">
-      <h1>Welcome to {{ title }}!</h1>
-      <table class="uoh-table">
-        <tr>
-          <th>שם</th>
-          <th>תפקיד</th>
-        </tr>
-        <tr *ngFor="let row of data">
-          <td class="row-title"><input type="checkbox" /> {{ row.c1 }}</td>
-          <td title="תפקיד">{{ row.c2 }}</td>
-        </tr>
-      </table>
+  <!-- <uoh-content [fullMobile]="true"> -->
+  <p class="uoh-print-only">Think before you print!</p>
+  <router-outlet></router-outlet>
+  <div *ngIf="show" style="text-align:center" class="uoh-xsmall-card">
+    <h1>Welcome to {{ title }}!</h1>
+    <table class="uoh-table">
+      <tr>
+        <th>שם</th>
+        <th>תפקיד</th>
+      </tr>
+      <tr *ngFor="let row of data">
+        <td class="row-title"><input type="checkbox" /> {{ row.c1 }}</td>
+        <td title="תפקיד">{{ row.c2 }}</td>
+      </tr>
+    </table>
 
-      <p>{{ test$ | async }}</p>
-      <div class="error">This is an error message.</div>
-      <div class="success">This is a success message.</div>
-      <button class="error-fill" (click)="load()">Load</button>
-      <button class="success-fill" *ngIf="!user" (click)="logIn()">Log in</button>
-      <p><a [routerLink]="['one']">Go to one</a> <a [routerLink]="['two']">Go to two</a></p>
-    </div>
-  </uoh-content>
+    <p>{{ test$ | async }}</p>
+    <div class="uoh-error">This is an error message.</div>
+    <div class="uoh-success">This is a success message.</div>
+    <button class="uoh-error-fill uoh-hide-on-xlarge" (click)="load()">Load</button>
+    <button class="uoh-success-fill" *ngIf="!user" (click)="logIn()">Log in</button>
+    <p><a [routerLink]="['one']">Go to one</a> <a [routerLink]="['two']">Go to two</a></p>
+  </div>
+  <!-- </uoh-content> -->
   <uoh-footer [version]="false"></uoh-footer>
-</uoh-body>
-<!-- </uoh-accessibility> -->
+  <!-- </uoh-body> -->
+</uoh-accessibility>

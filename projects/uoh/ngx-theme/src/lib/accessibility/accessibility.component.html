@@ -35,6 +35,12 @@
     <button mat-fab (click)="sidenav.toggle()" class="uoh-accessibility-btn">
       <mat-icon aria-hidden="false" [attr.aria-label]="labels.header">accessible</mat-icon>
     </button>
-    <div class="uoh-body" role="region"><ng-content></ng-content></div>
+    <ng-content select="uoh-spinner"></ng-content>
+    <ng-content select="uoh-header"></ng-content>
+    <ng-content select="uoh-back-to-top"></ng-content>
+    <div class="uoh-content">
+      <ng-content></ng-content>
+    </div>
+    <ng-content select="uoh-footer"></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

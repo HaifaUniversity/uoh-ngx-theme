@@ -7,19 +7,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AccessibilityComponent } from './accessibility.component';
-import { UohContentModule } from '../content/content.module';
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    UohContentModule
-  ],
+  imports: [BrowserAnimationsModule, CommonModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule],
   declarations: [AccessibilityComponent],
-  exports: [AccessibilityComponent, UohContentModule]
+  exports: [AccessibilityComponent]
 })
 export class UohAccessibilityModule {}

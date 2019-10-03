@@ -98,6 +98,7 @@
     .uoh-content {
       display: block;
       padding: $content-padding;
+      flex: 1 1 auto;
 
       &.uoh-full-mobile {
         @include uoh-screen-max(xsmall) {
