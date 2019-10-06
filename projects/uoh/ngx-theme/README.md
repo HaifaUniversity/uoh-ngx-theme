@@ -13,8 +13,8 @@ $ npm install @uoh/ngx-theme --save
 This library includes the following modules:
 
 - SCSS file including color themes and design configurations
-- A content module to wrap your application with the theme
 - An accessibility module containing accessibility features
+- A body module to wrap your application with the theme, in case you do not use the accessibility module
 - A header module with the logo of the University of Haifa and log-in logic
 - A footer module with the details of the university and the version of the application (optional)
 - A back-to-top module with a button to jump to the top of the page after scrolling
@@ -22,7 +22,7 @@ This library includes the following modules:
 
 ### SCSS Theme
 
-This theme contains a default and a dark color theme, a layout design and presets for responsive tables.
+This theme contains a default and a dark color theme, a layout design and presets for responsive tables. It also contains scss functions and mixins to make the application styling easier.
 
 #### Install Material design and its icons font
 
@@ -60,12 +60,14 @@ For example:
 $config: (
   layout: false,
   table: false,
+  card: false,
   extra: false,
+  print: false,
   accessibility: false,
   header: false,
   footer: false,
   spinner: false,
-  content: false
+  content-padding: false
 );
 
 @include uoh-theme($config...);
@@ -73,8 +75,81 @@ $config: (
 
 ##### Layout support
 
-The layout feature presets the `max-width` of the `mat-card` to 1200px and aligns it to the center of the page.
-This feature also contains the `small-card` and the `medium-card` classes which set different `mat-card` sizes and a `fill-remaining-space` class to fill the remaining space in a flexbox. It also includes a `row` class to set a new line.
+The layout is based on the window sizes defined in the material specifications: `xsmall`, `small`, `medium`, `large`, `xlarge` (for further information see: [material breakpoints](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)). The layout presets includes the classes `uoh-hide-on-#{window-size}` which hide the contents when the window size is between the minimum and the maximum breakpoints defined in the material specifications. The presets includes also a `fill-remaining-space` class to fill the remaining space in a flexbox.
+Furthermore, you can use one of the following mixins or functions to implement a custom behavior.
+
+###### Mixins:
+
+- `uoh-screen`: Sets the content to the screen breakpoints min and max widths.
+- `uoh-screen-min`: Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 1024px.
+- `uoh-screen-max`: Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to max-width: 1439px.
+
+Usage:
+
+```scss
+// For a certain window size
+@include uoh-screen(medium) {
+  .my-component {
+    display: none;
+  }
+}
+
+// Will result in:
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  .my-component {
+    display: none;
+  }
+}
+
+// Or include a range of window sizes
+@include uoh-screen(small, large) {
+  .my-component {
+    display: block;
+  }
+}
+
+// Will result in:
+@media only screen and (min-width: 600px) and (max-width: 1919px) {
+  .my-component {
+    display: none;
+  }
+}
+
+// Or use the min / max mixins
+@include uoh-screen-min(small) {
+  // or uoh-screen-max(small)
+  .my-component {
+    display: none;
+  }
+}
+
+// Will result in:
+@media only screen and (min-width: 600px) {
+  // and (max-width: 600px) for uoh-screen-max
+  .my-component {
+    display: none;
+  }
+}
+```
+
+###### Functions:
+
+- `uoh-breakpoint-min`: Returns the minimum value for a breakpoint. For example: 'medium' will return 1024px.
+- `uoh-breakpoint-max`: Returns the maximum value for a breakpoint. For example: 'medium' will return 1439px.
+- `uoh-breakpoint-next`: Returns the name of the next breakpoint. For example: 'medium' will return 'large'.
+
+Usage:
+
+```scss
+.my-component {
+  min-width: uoh-breakpoint-min(small); // Compiles to min-width: 600px
+  max-width: uoh-breakpoint-max(small); // Compiles to max-width: 1023px
+}
+.my-other-component {
+  $next-breakpoint: uoh-breakpoint-next(small); // Returns medium
+  max-width: uoh-breakpoint-max($next-breakpoint); // Compiles to max-width: 1439px
+}
+```
 
 ##### Responsive table support
 
