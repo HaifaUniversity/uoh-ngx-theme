@@ -2,11 +2,15 @@
 
 A collection of University of Haifa modules to be integrated in an Angular project using Material Design.
 
+---
+
 ## Installation
 
 ```bash
 $ npm install @uoh/ngx-theme --save
 ```
+
+---
 
 ## Contents
 
@@ -20,11 +24,13 @@ This library includes the following modules:
 - A back-to-top module with a button to jump to the top of the page after scrolling
 - A spinner module with a loader animation with the logo of the university
 
-### SCSS Theme
+---
+
+## The SCSS Theme
 
 This theme contains a default and a dark color theme, a layout design and presets for responsive tables. It also contains scss functions and mixins to make the application styling easier.
 
-#### Install Material design and its icons font
+### Install Material design and its icons font
 
 First, install [angular material](https://material.angular.io/guide/getting-started).
 Secondly, add the following tag to the `head` section of your `index.html` file (required for the accessibility, header and back-to-top modules):
@@ -33,7 +39,7 @@ Secondly, add the following tag to the `head` section of your `index.html` file 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
-#### Include the favicon
+### Include the favicon
 
 Add the following line to the `options` --> `assets` array under both the `build` and the `test` sections in the `angular.json` file:
 
@@ -41,7 +47,7 @@ Add the following line to the `options` --> `assets` array under both the `build
 { "glob": "favicon.ico", "input": "./node_modules/@uoh/ngx-theme/assets", "output": "/" }
 ```
 
-#### Include the theme
+### Include the theme
 
 Add the following lines to the `styles.scss` file in your application:
 
@@ -73,12 +79,12 @@ $config: (
 @include uoh-theme($config...);
 ```
 
-##### Layout support
+### The Layout
 
 The layout is based on the window sizes defined in the material specifications: `xsmall`, `small`, `medium`, `large`, `xlarge` (for further information see: [material breakpoints](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)). The layout presets includes the classes `uoh-hide-on-#{window-size}` which hide the contents when the window size is between the minimum and the maximum breakpoints defined in the material specifications. The presets includes also a `fill-remaining-space` class to fill the remaining space in a flexbox.
 Furthermore, you can use one of the following mixins or functions to implement a custom behavior.
 
-###### Mixins:
+#### Mixins:
 
 - `uoh-screen`: Sets the content to the screen breakpoints min and max widths.
 - `uoh-screen-min`: Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 1024px.
@@ -132,7 +138,7 @@ Usage:
 }
 ```
 
-###### Functions:
+#### Functions:
 
 - `uoh-breakpoint-min`: Returns the minimum value for a breakpoint. For example: 'medium' will return 1024px.
 - `uoh-breakpoint-max`: Returns the maximum value for a breakpoint. For example: 'medium' will return 1439px.
@@ -151,7 +157,7 @@ Usage:
 }
 ```
 
-##### Responsive table support
+### Responsive table support
 
 In order to utilize the responsive support for your tables you need to add the `uoh-table` class to your table and set a title property for each column as follows:
 
@@ -182,7 +188,15 @@ On mobile this will be transformed to something similar as the following:
 
 > Please, note that the `row-title` class transforms the cell into the title of the row (kind of a header) in the mobile version.
 
-##### Include your custom component theme:
+### Cards
+
+The theme includes a set of card classes with max-width according to the layout breakpoints: `uoh-card-xsmall` with `max-width: 599px`, `uoh-card-small` with `max-width: 1023px` and so on. These classes can be applied to any html tag. If the class is applied to a non `mat-card` component, it will add elevation (box-shadow) and rounded borders to it.
+
+> Please, note that if there is no `content-padding` (see the `Include the theme` section above), the borders of the uoh-cards will collapse when the breakpoint is reached. For example: if the `uoh-card-xsmall` is used, the box-shadow will disappear when the screen less or equal to 599px.
+
+> Please, note also that there is no max-width set for the `uoh-card-xlarge`.
+
+### Include your custom component theme:
 
 Once the core theming was installed, you can use the `$default-theme` and `$dark-theme` variables in order to your components themes:
 
@@ -199,48 +213,21 @@ Once the core theming was installed, you can use the `$default-theme` and `$dark
 }
 ```
 
-###### Extra colors:
+### Extra colors:
 
 The theme file also includes two presets: the `uoh-success`, `uoh-success-fill`, `uoh-error` and the `uoh-error-fill` classes. These can be used in your application to set two extra types of messages.
-Moreover, there are two additional classes for print: `uoh-no-print` and `uoh-print-only`. The first one eliminates the html tag and its children from print. The second one, sets a tag and its children to be visible only on print.
+
+### Print layout:
+
+It includes the following classes: `uoh-no-print` and `uoh-print-only`. The first one eliminates the html tag and its children from print. The second one, sets a tag and its children to be visible only on print.
 
 ---
 
-### The content module
-
-This module contains the `uoh-content` component which is used to wrap your app components and apply to them the design rules of this theme. The `uoh-content` is included in the `UohAccessibilityModule`, the `UohHeaderModule` and the `UohFooterModule`. Alternatively, you can import it separately using its own `UohContentModule`.
-
-Note that you should wrap under it only the contents of your application. You should not include in it the components provided by this theme. For example:
-
-```xml
-<uoh-accessibility dir="rtl">
-  <uoh-spinner></uoh-spinner>
-  <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
-  <uoh-back-to-top minScroll="100"></uoh-back-to-top>
-  <uoh-content [fullMobile]="true">
-    <router-outlet></router-outlet>
-  </uoh-content>
-  <uoh-footer [version]="false"></uoh-footer>
-</uoh-accessibility>
-```
-
-The `uoh-content` component accepts a `fullMobile` variable. If set to `true`, the contents will maximize to the full extent of the `uoh-content` on mobile. For example, on mobile the following `mat-card` will be extended to fill the area of contents (without borders, shadows and margins):
-
-```xml
-<uoh-content [fullMobile]="true">
-  <mat-card>
-  ...
-  </mat-card>
-</uoh-content>
-```
-
----
-
-### The accessibility module
+## The accessibility module
 
 This module adds an accessibility menu to set the font size and the theme for the application.
 
-#### Consuming the accessibility module
+### Consuming the accessibility module
 
 Import the `UohAccessibilityModule` in your `app.module.ts`. For example:
 
@@ -260,22 +247,18 @@ Then, wrap **all** the contents of your app (including header, footer, etc.) ins
 
 ```xml
 <uoh-accessibility [dir]="dir" manifestUrl="https://www.example.com/accessibility-manifest">
-  <uoh-content>
-    <mat-card class="small-card">
-      <mat-card-content>
-        <div style="text-align:center">
-          <h1>
-            Welcome to {{ title }}!
-          </h1>
-        </div>
-        <h2>University of Haifa</h2>
-      </mat-card-content>
-    </mat-card>
-  </uoh-content>
+  <mat-card class="small-card">
+    <mat-card-content>
+      <div style="text-align:center">
+        <h1>
+          Welcome to {{ title }}!
+        </h1>
+      </div>
+      <h2>University of Haifa</h2>
+    </mat-card-content>
+  </mat-card>
 </uoh-accessibility>
 ```
-
-> Note: The content is wrapped under the `uoh-content` component in order to keep the design of the contents of your application aligned with the `@uoh` components. For more information, please refer to the `The content module` section above.
 
 > Note: You can set the direction of all the app contents by setting the `dir` input variable to `rtl` (default) or `ltr`.
 
@@ -297,11 +280,29 @@ labels: UohAccessibilityLabels = {
 
 ---
 
-### The header module
+## The body module
+
+This module contains the `uoh-body` component which is used to wrap your app components and apply to them the design rules of this theme. The `uoh-body` is required if you **do not** use the accessibility module. For example:
+
+```xml
+<uoh-body dir="rtl">
+  <uoh-spinner></uoh-spinner>
+  <uoh-header subtitle="בדיקה" [user]="user" (logOut)="logOut()"></uoh-header>
+  <uoh-back-to-top minScroll="100"></uoh-back-to-top>
+  <router-outlet></router-outlet>
+  <uoh-footer [version]="false"></uoh-footer>
+</uoh-body>
+```
+
+> Note: You can set the `dir` of the `uoh-body` as in the accessibility module.
+
+---
+
+## The header module
 
 This module contains a header with the title for the application, the university logo and logic for log-in functionality.
 
-#### Include the assets with the university logo
+### Include the assets with the university logo
 
 Add the following line to the `options` --> `assets` array under both the `build` and the `test` sections in the `angular.json` file:
 
@@ -309,7 +310,7 @@ Add the following line to the `options` --> `assets` array under both the `build
 { "glob": "**/*", "input": "./node_modules/@uoh/ngx-theme/assets", "output": "/assets/" }
 ```
 
-#### Consuming the header module
+### Consuming the header module
 
 In order to import the module add the following lines to your `app.module.ts`:
 
@@ -386,11 +387,11 @@ export class AppComponent {
 
 ---
 
-### The footer module
+## The footer module
 
 This module contains a footer with details about the university and the current version of the application (optional).
 
-#### Consuming the footer module
+### Consuming the footer module
 
 In order to import the module add the following lines to your `app.module.ts`:
 
@@ -409,39 +410,15 @@ Then add the `uoh-footer` component to the bottom section of your `app.component
 <uoh-footer [version]="false"></uoh-footer>
 ```
 
-> Note: If you use `uoh-accessibility` remember to include the `uoh-footer` inside it. However, if you choose not to use the `uoh-accessibility` component, you will need to include the `UohBodyModule` in your `app.module.ts` file and put the `uoh-footer` (and all the other components) inside the `uoh-body` component (as you would do with the `uoh-accessibility`). For example:
-
-```xml
-<uoh-body [dir]="dir">
-  <uoh-spinner></uoh-spinner>
-  <uoh-header></uoh-header>
-  <uoh-content>
-    <mat-card class="small-card">
-      <mat-card-content>
-        <div style="text-align:center">
-          <h1>
-            Welcome to {{ title }}!
-          </h1>
-        </div>
-        <h2>University of Haifa</h2>
-      </mat-card-content>
-    </mat-card>
-  </uoh-content>
-  <uoh-footer></uoh-footer>
-</uoh-body>
-```
-
-> Note that the `uoh-body` accepts a `dir` input exactly as the `uoh-accessibility` component.
-
 The footer component accepts a `version` input variable. If it is omitted, the component will try to automatically retrieve the version number from your app's `package.json` file. Alternatively, you can pass a string to it in order to set a custom version name or `false` (as in the above example) if you don't want it to be displayed.
 
 ---
 
-### The back-to-top module
+## The back-to-top module
 
 This module adds a button that returns the focus to the top of the page.
 
-#### Consuming the back-to-top module
+### Consuming the back-to-top module
 
 In order to import this module add the following lines to your `app.module.ts`:
 
@@ -480,11 +457,11 @@ If you want to add this functionality only for mobile you will have to add the f
 
 ---
 
-### The spinner module
+## The spinner module
 
 This module includes a spinner loader with the logo of the university.
 
-#### Consuming the spinner module
+### Consuming the spinner module
 
 In order to import the spinner module add the following lines to your `app.module.ts`:
 

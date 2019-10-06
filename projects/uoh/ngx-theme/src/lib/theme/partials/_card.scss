@@ -20,7 +20,7 @@
       border-radius: 4px;
     }
 
-    @if $content-padding != true {
+    @if $content-padding != true and $breakpoint != null {
       // Set the minimal margin before collapsing the card border and shadow.
       @media only screen and (min-width: #{$breakpoint + 1}) and (max-width: #{$breakpoint + ($min-margin * 2)}) {
         .uoh-#{$key}-card {
