@@ -7,7 +7,7 @@ import { Direction } from '@angular/cdk/bidi';
     <ng-content select="uoh-spinner"></ng-content>
     <ng-content select="uoh-header"></ng-content>
     <ng-content select="uoh-back-to-top"></ng-content>
-    <div class="uoh-content">
+    <div uohContent>
       <ng-content></ng-content>
     </div>
     <ng-content select="uoh-footer"></ng-content>

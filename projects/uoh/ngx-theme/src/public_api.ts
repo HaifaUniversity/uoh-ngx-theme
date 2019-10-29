@@ -12,3 +12,4 @@ export * from './lib/footer/footer.module';
 export * from './lib/body/body.module';
 export * from './lib/accessibility/accessibility.models';
 export * from './lib/header/header.models';
+export * from './lib/content/content.service';
