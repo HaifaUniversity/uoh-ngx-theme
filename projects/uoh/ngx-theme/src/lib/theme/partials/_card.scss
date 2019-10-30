@@ -28,13 +28,18 @@
         }
       }
 
-      // Collapse the card border and shadow when the max-width is reached.
       @include uoh-screen-max($key) {
+        // Collapse the card border and shadow when the max-width is reached.
         .uoh-#{$key}-card.uoh-collapsible-card {
           box-shadow: none !important;
           border: none !important;
           margin-top: 0 !important;
           margin-bottom: 0 !important;
+        }
+        // Add a margin to non collapsible cards when the max-width is reached. Thus the box-shadow won't be cut.
+        .uoh-#{$key}-card:not(.uoh-collapsible-card) {
+          margin-left: 16px;
+          margin-right: 16px;
         }
       }
     }

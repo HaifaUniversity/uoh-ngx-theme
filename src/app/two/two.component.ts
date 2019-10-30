@@ -4,7 +4,7 @@ import { UohContent } from '@uoh/ngx-theme';
 @Component({
   selector: 'app-two',
   template: `
-    <mat-card uohCard="medium" [uohCardCollapse]="true">
+    <mat-card uohCard="medium" uohCardCollapse="false">
       <mat-card-header>
         <h1>Two works!</h1>
       </mat-card-header>
