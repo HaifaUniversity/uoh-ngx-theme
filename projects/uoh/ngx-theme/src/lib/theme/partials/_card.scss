@@ -22,15 +22,15 @@
 
     @if $content-padding != true and $breakpoint != null {
       // Set the minimal margin before collapsing the card border and shadow.
-      @media only screen and (min-width: #{$breakpoint + 1}) and (max-width: #{$breakpoint + ($min-margin * 2)}) {
-        .uoh-#{$key}-card {
+      @media screen and (min-width: #{$breakpoint + 0.01}) and (max-width: #{$breakpoint - 0.99 + ($min-margin * 2)}) {
+        .uoh-#{$key}-card.uoh-collapsible-card {
           margin: #{$min-margin};
         }
       }
 
       // Collapse the card border and shadow when the max-width is reached.
       @include uoh-screen-max($key) {
-        .uoh-#{$key}-card {
+        .uoh-#{$key}-card.uoh-collapsible-card {
           box-shadow: none !important;
           border: none !important;
           margin-top: 0 !important;

@@ -87,8 +87,8 @@ Furthermore, you can use one of the following mixins or functions to implement a
 #### Mixins:
 
 - `uoh-screen`: Sets the content to the screen breakpoints min and max widths.
-- `uoh-screen-min`: Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 1024px.
-- `uoh-screen-max`: Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to max-width: 1439px.
+- `uoh-screen-min`: Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 960px.
+- `uoh-screen-max`: Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to max-width: 1279.99px.
 
 Usage:
 
@@ -101,7 +101,7 @@ Usage:
 }
 
 // Will result in:
-@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+@media screen and (min-width: 960px) and (max-width: 1279.99px) {
   .my-component {
     display: none;
   }
@@ -115,7 +115,7 @@ Usage:
 }
 
 // Will result in:
-@media only screen and (min-width: 600px) and (max-width: 1919px) {
+@media screen and (min-width: 600px) and (max-width: 1919.99px) {
   .my-component {
     display: none;
   }
@@ -130,7 +130,7 @@ Usage:
 }
 
 // Will result in:
-@media only screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
   // and (max-width: 600px) for uoh-screen-max
   .my-component {
     display: none;
@@ -448,7 +448,7 @@ If you want to add this functionality only for mobile you will have to add the f
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .uoh-back-to-top {
     display: block;
   }

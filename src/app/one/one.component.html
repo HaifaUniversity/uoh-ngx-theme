@@ -1,5 +1,5 @@
 <form (ngSubmit)="openSnackBar(nameInput.value, optionInput.value)">
-  <mat-card class="uoh-small-card">
+  <mat-card uohCard="small" [uohCardCollapse]="true">
     <mat-card-header>
       <mat-card-title>One works!</mat-card-title>
     </mat-card-header>

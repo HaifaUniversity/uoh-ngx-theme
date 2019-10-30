@@ -13,3 +13,4 @@ export * from './lib/body/body.module';
 export * from './lib/accessibility/accessibility.models';
 export * from './lib/header/header.models';
 export * from './lib/content/content.service';
+export * from './lib/card/card.module';

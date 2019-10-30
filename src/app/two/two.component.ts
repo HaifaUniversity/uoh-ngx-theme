@@ -4,8 +4,14 @@ import { UohContent } from '@uoh/ngx-theme';
 @Component({
   selector: 'app-two',
   template: `
-    <h1>Two works!</h1>
-    <button (click)="test()">test</button>
+    <mat-card uohCard="medium" [uohCardCollapse]="true">
+      <mat-card-header>
+        <h1>Two works!</h1>
+      </mat-card-header>
+      <mat-card-content>
+        <button (click)="test()">test</button>
+      </mat-card-content>
+    </mat-card>
   `
 })
 export class TwoComponent {

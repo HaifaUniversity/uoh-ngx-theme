@@ -13,4 +13,8 @@
     background-color: mat-color($background, background);
     color: mat-color($foreground, text);
   }
+
+  .uoh-content.uoh-collapsed-content {
+    background-color: mat-color($background, card);
+  }
 }

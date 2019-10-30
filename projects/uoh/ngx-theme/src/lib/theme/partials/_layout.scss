@@ -2,12 +2,12 @@
 $uoh-breakpoints: (
   xsmall: 0,
   small: 600px,
-  medium: 1024px,
-  large: 1440px,
+  medium: 960px,
+  large: 1280px,
   xlarge: 1920px
 );
 
-// Returns the minimum value for a breakpoint. For example: 'medium' will return 1024px.
+// Returns the minimum value for a breakpoint. For example: 'medium' will return 960px.
 @function uoh-breakpoint-min($name, $breakpoints: $uoh-breakpoints) {
   @if not map-has-key($breakpoints, $name) {
     @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
@@ -30,19 +30,19 @@ $uoh-breakpoints: (
   @return if($i < length($breakpoint-names), nth($breakpoint-names, $i + 1), null);
 }
 
-// Returns the max value for a breakpoint. For example: 'medium' will return 1439px.
+// Returns the max value for a breakpoint. For example: 'medium' will return 1279.99px.
 @function uoh-breakpoint-max($name, $breakpoints: $uoh-breakpoints) {
   $next-name: uoh-breakpoint-next($name, $breakpoints);
 
-  @return if($next-name, map-get($breakpoints, $next-name) - 1, null);
+  @return if($next-name, map-get($breakpoints, $next-name) - 0.01, null);
 }
 
-// Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 1024px.
+// Sets the content to the screen breakpoint's min-width. For example: 'medium' will set the content to min-width: 960px.
 @mixin uoh-screen-min($name, $breakpoints: $uoh-breakpoints) {
   $min: uoh-breakpoint-min($name, $breakpoints);
 
   @if $min {
-    @media only screen and (min-width: #{$min}) {
+    @media screen and (min-width: #{$min}) {
       @content;
     }
   } @else {
@@ -50,12 +50,12 @@ $uoh-breakpoints: (
   }
 }
 
-// Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to max-width: 1439px.
+// Sets the content to the screen breakpoint's max-width. For example: 'medium' will set the content to max-width: 1279.99.
 @mixin uoh-screen-max($name, $breakpoints: $uoh-breakpoints) {
   $max: uoh-breakpoint-max($name, $breakpoints);
 
   @if $max {
-    @media only screen and (max-width: #{$max}) {
+    @media screen and (max-width: #{$max}) {
       @content;
     }
   } @else {
@@ -64,13 +64,13 @@ $uoh-breakpoints: (
 }
 
 // Sets the content to the screen breakpoints min and max widths.
-// Note that if only the $lower parameter is passed, the contents will be set only for that breakpoint. For example: $lower = 'medium' will result in min-width: 1024px and max-width: 1439px.
+// Note that if only the $lower parameter is passed, the contents will be set only for that breakpoint. For example: $lower = 'medium' will result in min-width: 960px and max-width: 1279.99px.
 @mixin uoh-screen($lower, $upper: $lower, $breakpoints: $uoh-breakpoints) {
   $min: uoh-breakpoint-min($lower, $breakpoints);
   $max: uoh-breakpoint-max($upper, $breakpoints);
 
   @if $min != null and $max != null {
-    @media only screen and (min-width: #{$min}) and (max-width: #{$max}) {
+    @media screen and (min-width: #{$min}) and (max-width: #{$max}) {
       @content;
     }
   } @else if $max == null {
