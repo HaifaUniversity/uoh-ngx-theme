@@ -6,6 +6,16 @@ A collection of University of Haifa modules to be integrated in an Angular proje
 
 ## Installation
 
+With schematics (the scss theme, the material icons, some html tags, the favicon and the logo are added automatically):
+
+```bash
+$ ng add @uoh/ngx-theme
+```
+
+> Note: The scss mixins will be imported in the `stylePreprocessorOptions` --> `includePaths` section in the `angular.json` file. Thus, they will be available throughout all the scss in your app.
+
+Or to configure it by yourself:
+
 ```bash
 $ npm install @uoh/ngx-theme --save
 ```
@@ -21,8 +31,10 @@ This library includes the following modules:
 - A body module to wrap your application with the theme, in case you do not use the accessibility module
 - A header module with the logo of the University of Haifa and log-in logic
 - A footer module with the details of the university and the version of the application (optional)
+- A card module with cards of different sizes that collapse into the full size of the screen (also applicable to `mat-card`)
 - A back-to-top module with a button to jump to the top of the page after scrolling
 - A spinner module with a loader animation with the logo of the university
+- A content service that exposes the width, height, top, right, bottom, left, x and y of the `uoh-content`.
 
 ---
 
@@ -39,7 +51,9 @@ Secondly, add the following tag to the `head` section of your `index.html` file 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
-### Include the favicon
+> Note: If you used `ng add` to install the theme, the above line is not required.
+
+### Include the favicon (if you did not use `ng add`)
 
 Add the following line to the `options` --> `assets` array under both the `build` and the `test` sections in the `angular.json` file:
 
@@ -47,12 +61,12 @@ Add the following line to the `options` --> `assets` array under both the `build
 { "glob": "favicon.ico", "input": "./node_modules/@uoh/ngx-theme/assets", "output": "/" }
 ```
 
-### Include the theme
+### Include the theme (if you did not use `ng add`)
 
 Add the following lines to the `styles.scss` file in your application:
 
 ```scss
-@import '~@uoh/ngx-theme/theme';
+@import '~@uoh/ngx-theme/theme'; // Or in angular 6 and above add './node_modules/@uoh/ngx-theme/theme' to build->options->stylePreprocessorOptions->includePaths` section in the `angular.json` file
 
 @include uoh-theme();
 ```
@@ -187,14 +201,6 @@ On mobile this will be transformed to something similar as the following:
 ```
 
 > Please, note that the `row-title` class transforms the cell into the title of the row (kind of a header) in the mobile version.
-
-### Cards
-
-The theme includes a set of card classes with max-width according to the layout breakpoints: `uoh-card-xsmall` with `max-width: 599px`, `uoh-card-small` with `max-width: 1023px` and so on. These classes can be applied to any html tag. If the class is applied to a non `mat-card` component, it will add elevation (box-shadow) and rounded borders to it.
-
-> Please, note that if there is no `content-padding` (see the `Include the theme` section above), the borders of the uoh-cards will collapse when the breakpoint is reached. For example: if the `uoh-card-xsmall` is used, the box-shadow will disappear when the screen less or equal to 599px.
-
-> Please, note also that there is no max-width set for the `uoh-card-xlarge`.
 
 ### Include your custom component theme:
 
@@ -414,6 +420,36 @@ The footer component accepts a `version` input variable. If it is omitted, the c
 
 ---
 
+### The card module
+
+The theme includes a set of cards with different sizes according to the layout breakpoints: `uoh-card-xsmall` with `max-width: 599.99px`, `uoh-card-small` with `max-width: 959.99px` and so on.
+The card module includes both a `uohCard` directive (applicable also to `mat-card` components) and a `uoh-card` component.
+
+Usage:
+
+```xml
+<uoh-card size="xsmall" collapse="true">
+  <h3>Test!</h3>
+  <p>Hello this is a test for uoh-card</p>
+</uoh-card>
+```
+
+Or use the directive to apply it to other html tag:
+
+```xml
+<mat-card uohCard="medium" uohCardCollapse="false">
+  <mat-card-content>
+    <p>Hello this is a test for uoh-card</p>
+  </mat-card-content>
+</mat-card>
+```
+
+The `uoh-card` accepts a `size` (the default is `medium`) and a `collapse` input (which defaults to `true`). If the collapse is set to `true` and there is no `content-padding` (see the `Include the theme` section above), the borders of the uoh-cards will collapse when the breakpoint is reached. For example: if the `size` is set to `xsmall` is used, the box-shadow will disappear when the screen less or equal to 599.99px.
+
+> Please, note also that there is no max-width set for the `xlarge` size.
+
+---
+
 ## The back-to-top module
 
 This module adds a button that returns the focus to the top of the page.
@@ -542,6 +578,13 @@ export class AppComponent {
   }
 }
 ```
+
+---
+
+## The UohContent service
+
+This service can be used to get the properties of the `uoh-content` (that is, the tag that wraps all your app contents).
+You can get the following properties: width, height, top, right, bottom, left, x and y (the last two if they are supported by the browser).
 
 ## License
 
