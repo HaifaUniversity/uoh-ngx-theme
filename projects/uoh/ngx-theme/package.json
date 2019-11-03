@@ -1,6 +1,12 @@
 {
   "name": "@uoh/ngx-theme",
   "version": "4.0.0",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:collection": "cp schematics/collection.json ../../dist/uoh/ngx-theme/schematics/collection.json",
+    "postbuild": "npm run copy:collection"
+  },
+  "schematics": "./schematics/collection.json",
   "repository": {
     "type": "git",
     "url": "git@github.com:HaifaUniversity/uoh-ngx-theme.git"
