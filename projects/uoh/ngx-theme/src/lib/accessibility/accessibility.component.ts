@@ -90,7 +90,9 @@ export class AccessibilityComponent implements OnInit {
   private readonly FONT_SIZE_PREFIX = 'font-size-';
 
   constructor(private overlayContainer: OverlayContainer) {
-    this.theme = new UohAccessibilityClass(overlayContainer, 'theme', '');
+    const defaultTheme =
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? this.DARK_THEME : '';
+    this.theme = new UohAccessibilityClass(overlayContainer, 'theme', defaultTheme);
     this.fontSize = new UohAccessibilityClass(overlayContainer, 'font-size', `${this.FONT_SIZE_PREFIX}0`);
   }
 
