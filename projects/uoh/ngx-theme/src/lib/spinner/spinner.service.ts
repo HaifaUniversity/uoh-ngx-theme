@@ -25,6 +25,15 @@ export class UohSpinner {
   }
 
   /**
+   * Add alias
+   * 
+   * @return {void}
+   */
+  show(): void {
+    this.add();
+  }
+
+  /**
    * Removes one spinner from screen.
    */
   remove(): void {
@@ -32,6 +41,15 @@ export class UohSpinner {
     if (this.counter < 1) {
       this.loading$.next(false);
     }
+  }
+
+  /**
+   * Remove alias.
+   * 
+   * @return {void}
+   */
+  hide(): void {
+    this.remove();
   }
 
   /**
