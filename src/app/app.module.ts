@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
   UohAccessibilityModule,
   UohSpinnerModule,
@@ -44,6 +45,7 @@ import { routing } from './app.routing';
     MatSnackBarModule,
     MatMenuModule,
     MatIconModule,
+    MatProgressBarModule,
     UohAccessibilityModule,
     UohSpinnerModule,
     UohHeaderModule,
