@@ -1,4 +1,4 @@
-@mixin uoh-footer-theme($theme) {
+@mixin uoh-footer-theme($theme, $color: 50, $link-color: 700) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
@@ -6,11 +6,11 @@
   $foreground: map-get($theme, foreground);
 
   .uoh-footer footer {
-    background-color: mat-color($primary, 50);
-    color: mat-contrast($primary, 50);
+    background-color: mat-color($primary, $color);
+    color: mat-contrast($primary, $color);
   }
 
   .uoh-footer footer a {
-    color: mat-color($primary, 700);
+    color: mat-color($primary, $link-color);
   }
 }
