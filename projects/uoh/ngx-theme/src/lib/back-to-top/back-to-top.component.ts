@@ -1,11 +1,24 @@
 import { Component, HostListener, Input, HostBinding } from '@angular/core';
 
 import { UohBackToTop } from './back-to-top.service';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'uoh-back-to-top',
   templateUrl: './back-to-top.component.html',
-  styleUrls: ['./back-to-top.component.scss']
+  styleUrls: ['./back-to-top.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0)' }),
+        animate('300ms ease-in', style({ opacity: 1, transform: 'scale(1)' }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'scale(1)' }),
+        animate('300ms ease-out', style({ opacity: 0, transform: 'scale(0)' }))
+      ])
+    ])
+  ]
 })
 export class BackToTopComponent {
   display = false;
