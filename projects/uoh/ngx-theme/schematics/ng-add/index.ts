@@ -23,14 +23,16 @@ interface Architect {
   test: Config;
 }
 
-function instanceOfAsset(asset: any): asset is Asset {
-  return !!asset.glob;
-}
-
+/**
+ * Checks if a Asset exists in a given list.
+ * @param assets A list of Assets.
+ * @param asset The Asset to check.
+ */
 function assetExists(assets: Array<string | Asset>, asset: Asset): boolean {
   try {
-    for (const item of assets) {
-      if (instanceOfAsset(item) && item.glob === asset.glob) {
+    for (const value of assets) {
+      const item = value as any;
+      if (!!item.glob && item.glob === asset.glob) {
         return true;
       }
     }
@@ -41,6 +43,11 @@ function assetExists(assets: Array<string | Asset>, asset: Asset): boolean {
   return false;
 }
 
+/**
+ * Adds a list of assets to the angular config.
+ * @param config The configuration from the angular.json file.
+ * @param assets The list of Assets to add.
+ */
 function addAssets(config: Config, assets: Array<Asset>): void {
   try {
     for (const asset of assets) {
@@ -53,10 +60,14 @@ function addAssets(config: Config, assets: Array<Asset>): void {
   }
 }
 
-function getStylesPath(styles: Array<string>): string | undefined {
+/**
+ * Returns the path to the styles file from a list of file paths.
+ * @param files The list of files to check.
+ */
+function getStylesPath(files: Array<string>): string | undefined {
   let fallback: string | undefined = undefined;
 
-  for (const item of styles) {
+  for (const item of files) {
     if (item.includes('styles.scss')) {
       return item;
     } else if (!fallback && item.endsWith('.scss')) {
@@ -67,6 +78,10 @@ function getStylesPath(styles: Array<string>): string | undefined {
   return fallback;
 }
 
+/**
+ * Adds the uoh theme to the angular configuration.
+ * @param config The configuration from the angular.json.
+ */
 function includeTheme(config: Config): void {
   try {
     const base = './';
@@ -86,6 +101,11 @@ function includeTheme(config: Config): void {
   }
 }
 
+/**
+ * Adds the uoh theme mixin to the styles.scss file.
+ * @param tree The schematics Tree.
+ * @param stylesPath The path to the styles.scss file.
+ */
 function addThemeMixin(tree: Tree, stylesPath: string): void {
   const stylesFile = tree.read(stylesPath);
   if (!stylesFile) {
@@ -103,6 +123,10 @@ function addThemeMixin(tree: Tree, stylesPath: string): void {
   }
 }
 
+/**
+ * Schematics to add the uoh-theme to the angular.json file.
+ * @param _options The options entered by the user in the cli.
+ */
 function setConfig(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const workspaceConfig = tree.read('/angular.json');
@@ -143,6 +167,10 @@ function setConfig(_options: any): Rule {
   };
 }
 
+/**
+ * Schematic to add attributes to the index.html file.
+ * @param _options The options entered by the user in the cli.
+ */
 function setIndex(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const indexFile = tree.read('/src/index.html');
@@ -176,6 +204,10 @@ function setIndex(_options: any): Rule {
   };
 }
 
+/**
+ * Angular ngAdd schematics that adds all the uoh-theme configurations.
+ * @param _options The options entered by the user in the cli.
+ */
 export function ngAdd(_options: any): Rule {
   return (_, _context: SchematicContext) => {
     _context.addTask(new NodePackageInstallTask());
