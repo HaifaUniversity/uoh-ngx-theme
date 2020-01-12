@@ -34,6 +34,12 @@
       "description": "Whether the UohBackToTopModule should be included",
       "x-prompt": "Include the back-to-top module?"
     },
+    "clearTemplate": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the template should be cleared",
+      "x-prompt": "Clear the template file (default app.component.html) in which the components will be added?"
+    },
     "modulePath": {
       "type": "string",
       "default": "/src/app/app.module.ts",

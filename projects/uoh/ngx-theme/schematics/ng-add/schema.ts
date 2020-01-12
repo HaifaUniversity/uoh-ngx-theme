@@ -4,6 +4,7 @@ export interface Schema {
   footer: boolean;
   spinner: boolean;
   backToTop: boolean;
+  clearTemplate: boolean;
   modulePath: string;
   configPath: string;
   indexPath: string;
