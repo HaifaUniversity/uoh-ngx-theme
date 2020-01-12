@@ -36,7 +36,7 @@ function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
       tree.commitUpdate(recorder);
     }
   } catch (e) {
-    console.warn('Cannot add the theme modules to the app.module file', e);
+    console.warn(`Cannot add the theme modules to the ${path} file`, e);
   }
 }
 

@@ -6,4 +6,5 @@ export interface Schema {
   backToTop: boolean;
   module: string;
   config: string;
+  index: string;
 }

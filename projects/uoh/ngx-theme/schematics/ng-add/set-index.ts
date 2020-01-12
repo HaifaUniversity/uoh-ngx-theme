@@ -7,9 +7,9 @@ import { Schema } from './schema';
  */
 export function setIndex(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const indexFile = tree.read('/src/index.html');
+    const indexFile = tree.read(_options.index);
     if (!indexFile) {
-      throw new SchematicsException('Could not find the index.html file');
+      throw new SchematicsException(`Could not find the ${_options.index} file`);
     }
 
     try {
@@ -29,10 +29,10 @@ export function setIndex(_options: Schema): Rule {
         const head = html.substring(0, position);
         const rest = html.substring(position);
 
-        tree.overwrite('/src/index.html', `${head}\t${additions}\n\t${rest}`);
+        tree.overwrite(_options.index, `${head}\t${additions}\n\t${rest}`);
       }
     } catch (e) {
-      console.warn('Cannot set the html tags in the index.html file', e);
+      console.warn(`Cannot set the html tags in the ${_options.index} file`, e);
     }
 
     return tree;
