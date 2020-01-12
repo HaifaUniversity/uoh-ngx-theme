@@ -33,6 +33,11 @@
       "default": true,
       "description": "Whether the UohBackToTopModule should be included",
       "x-prompt": "Include the back-to-top module?"
+    },
+    "module": {
+      "type": "string",
+      "default": "/src/app/app.module.ts",
+      "description": "The path to the module to import the theme modules (default: '/src/app/app.module.ts')"
     }
   }
 }

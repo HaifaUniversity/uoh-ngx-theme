@@ -4,4 +4,5 @@ export interface Schema {
   footer: boolean;
   spinner: boolean;
   backToTop: boolean;
+  module: string;
 }

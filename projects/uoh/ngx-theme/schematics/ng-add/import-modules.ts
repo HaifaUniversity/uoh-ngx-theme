@@ -8,10 +8,10 @@ import { Schema } from './schema';
 /**
  * Add the import statement for the UohModule.
  * @param tree The schematics tree
+ * @param path The path to the module importing the uoh module
  * @param uohModule The uoh module to import
  */
-function addUohModuleImport(tree: Tree, uohModule: string) {
-  const path = '/src/app/app.module.ts';
+function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
   const appModule = tree.read(path);
   if (!appModule) {
     throw new SchematicsException('Could not find the app.module.ts file');
@@ -47,25 +47,25 @@ function addUohModuleImport(tree: Tree, uohModule: string) {
 export function importModules(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     if (_options.header) {
-      addUohModuleImport(tree, 'Header');
+      addUohModuleImport(tree, _options.module, 'Header');
     }
 
     if (_options.footer) {
-      addUohModuleImport(tree, 'Footer');
+      addUohModuleImport(tree, _options.module, 'Footer');
     }
 
     if (_options.spinner) {
-      addUohModuleImport(tree, 'Spinner');
+      addUohModuleImport(tree, _options.module, 'Spinner');
     }
 
     if (_options.backToTop) {
-      addUohModuleImport(tree, 'BackToTop');
+      addUohModuleImport(tree, _options.module, 'BackToTop');
     }
 
     if (_options.accessibility) {
-      addUohModuleImport(tree, 'Accessibility');
+      addUohModuleImport(tree, _options.module, 'Accessibility');
     } else {
-      addUohModuleImport(tree, 'Body');
+      addUohModuleImport(tree, _options.module, 'Body');
     }
     return tree;
   };
