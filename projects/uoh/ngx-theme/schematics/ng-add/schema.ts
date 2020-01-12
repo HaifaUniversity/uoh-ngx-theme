@@ -5,4 +5,5 @@ export interface Schema {
   spinner: boolean;
   backToTop: boolean;
   module: string;
+  config: string;
 }

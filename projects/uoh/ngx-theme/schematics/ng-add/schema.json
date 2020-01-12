@@ -38,6 +38,11 @@
       "type": "string",
       "default": "/src/app/app.module.ts",
       "description": "The path to the module to import the theme modules (default: '/src/app/app.module.ts')"
+    },
+    "config": {
+      "type": "string",
+      "default": "/angular.json",
+      "description": "The path to the angular configuration file (angular.json)"
     }
   }
 }

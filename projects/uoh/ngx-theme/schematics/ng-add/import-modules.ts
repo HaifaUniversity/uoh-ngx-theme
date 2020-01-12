@@ -14,7 +14,7 @@ import { Schema } from './schema';
 function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
   const appModule = tree.read(path);
   if (!appModule) {
-    throw new SchematicsException('Could not find the app.module.ts file');
+    throw new SchematicsException(`Could not find the ${path} file`);
   }
 
   try {
