@@ -53,6 +53,16 @@
       "type": "string",
       "default": "",
       "description": "The path to the styles file (empty to detect it automatically)"
+    },
+    "templatePath": {
+      "type": "string",
+      "default": "/src/app/app.component.html",
+      "description": "The path to the template file to add the components to"
+    },
+    "dir": {
+      "type": "string",
+      "default": "rtl",
+      "description": "The base html direction (rtl or ltr)"
     }
   }
 }

@@ -8,4 +8,6 @@ export interface Schema {
   configPath: string;
   indexPath: string;
   stylesPath: string;
+  templatePath: string;
+  dir: 'ltr' | 'rtl';
 }
