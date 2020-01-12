@@ -1,6 +1,11 @@
 import { Rule, SchematicContext, Tree, SchematicsException, chain } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { experimental } from '@angular-devkit/core';
+import * as ts from 'typescript';
+import { addImportToModule } from '@schematics/angular/utility/ast-utils';
+import { buildRelativePath } from '@schematics/angular/utility/find-module';
+import { InsertChange } from '@schematics/angular/utility/change';
+import { Schema } from './schema';
 
 interface Asset {
   glob: string;
@@ -127,7 +132,7 @@ function addThemeMixin(tree: Tree, stylesPath: string): void {
  * Schematics to add the uoh-theme to the angular.json file.
  * @param _options The options entered by the user in the cli.
  */
-function setConfig(_options: any): Rule {
+function setConfig(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const workspaceConfig = tree.read('/angular.json');
     if (!workspaceConfig) {
@@ -171,7 +176,7 @@ function setConfig(_options: any): Rule {
  * Schematic to add attributes to the index.html file.
  * @param _options The options entered by the user in the cli.
  */
-function setIndex(_options: any): Rule {
+function setIndex(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const indexFile = tree.read('/src/index.html');
     if (!indexFile) {
@@ -205,13 +210,79 @@ function setIndex(_options: any): Rule {
 }
 
 /**
+ * Add the import statement for the UohModule.
+ * @param tree The schematics tree
+ * @param path The path to the module in which the UohModule should be imported
+ * @param source The source file of the module in which the UohModule should be imported
+ * @param uohModule The uoh module to import
+ */
+function addUohModuleImport(tree: Tree, path: string, source: ts.SourceFile, uohModule: string) {
+  const relativePath = buildRelativePath(path, '/node_modules/@uoh/ngx-theme');
+  const changes = addImportToModule(source, path, `Uoh${uohModule}Module`, relativePath);
+
+  const recorder = tree.beginUpdate(path);
+  for (const change of changes) {
+    if (change instanceof InsertChange) {
+      recorder.insertLeft(change.pos, change.toAdd);
+    }
+  }
+
+  tree.commitUpdate(recorder);
+}
+
+/**
+ * Adds the import statements to the theme modules to the app module.
+ * @param _options The options entered by the user in the cli.
+ */
+function addImportsToAppModule(_options: Schema): Rule {
+  return (tree: Tree, _context: SchematicContext) => {
+    const path = '/src/app/app.module.ts';
+    const appModule = tree.read(path);
+    if (!appModule) {
+      throw new SchematicsException('Could not find the app.module.ts file');
+    }
+
+    try {
+      const text = appModule.toString('utf-8');
+      const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
+
+      if (_options.header) {
+        addUohModuleImport(tree, path, source, 'Header');
+      }
+
+      if (_options.footer) {
+        addUohModuleImport(tree, path, source, 'Footer');
+      }
+
+      if (_options.spinner) {
+        addUohModuleImport(tree, path, source, 'Spinner');
+      }
+
+      if (_options.backToTop) {
+        addUohModuleImport(tree, path, source, 'BackToTop');
+      }
+
+      if (_options.accessibility) {
+        addUohModuleImport(tree, path, source, 'Accessibility');
+      } else {
+        addUohModuleImport(tree, path, source, 'Body');
+      }
+    } catch (e) {
+      console.warn('Cannot add the theme modules to the app.module file', e);
+    }
+
+    return tree;
+  };
+}
+
+/**
  * Angular ngAdd schematics that adds all the uoh-theme configurations.
  * @param _options The options entered by the user in the cli.
  */
-export function ngAdd(_options: any): Rule {
+export function ngAdd(_options: Schema): Rule {
   return (_, _context: SchematicContext) => {
     _context.addTask(new NodePackageInstallTask());
 
-    return chain([setConfig(_options), setIndex(_options)]);
+    return chain([setConfig(_options), setIndex(_options), addImportsToAppModule(_options)]);
   };
 }

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "uoh-theme-ng-add",
+  "title": "University of Haifa Theme ng-add schematic",
+  "type": "object",
+  "properties": {
+    "accessibility": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the UohAccessibilityModule should be included",
+      "x-prompt": "Include the accessibility module (if you choose no the body module will be included instead)?"
+    },
+    "header": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the UohHeaderModule should be included",
+      "x-prompt": "Include the header module?"
+    },
+    "footer": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the UohFooterModule should be included",
+      "x-prompt": "Include the footer module?"
+    },
+    "spinner": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the UohSpinnerModule should be included",
+      "x-prompt": "Include the spinner module?"
+    },
+    "backToTop": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the UohBackToTopModule should be included",
+      "x-prompt": "Include the back-to-top module?"
+    }
+  }
+}
