@@ -192,9 +192,10 @@ function setIndex(_options: Schema): Rule {
         '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'
       ];
       const html = indexFile.toString('utf-8');
-      const additions = attribs.filter(attrib => !html.includes(attrib)).reduce((prev, curr) => `${prev}\n\t\t${curr}`);
+      const missing = attribs.filter(attrib => !html.includes(attrib));
 
-      if (additions) {
+      if (missing.length > 0) {
+        const additions = missing.reduce((prev, curr) => `${prev}\n\t\t${curr}`);
         const position = html.indexOf('</head>');
         const head = html.substring(0, position);
         const rest = html.substring(position);
@@ -212,22 +213,36 @@ function setIndex(_options: Schema): Rule {
 /**
  * Add the import statement for the UohModule.
  * @param tree The schematics tree
- * @param path The path to the module in which the UohModule should be imported
- * @param source The source file of the module in which the UohModule should be imported
  * @param uohModule The uoh module to import
  */
-function addUohModuleImport(tree: Tree, path: string, source: ts.SourceFile, uohModule: string) {
-  const relativePath = buildRelativePath(path, '/node_modules/@uoh/ngx-theme');
-  const changes = addImportToModule(source, path, `Uoh${uohModule}Module`, relativePath);
-
-  const recorder = tree.beginUpdate(path);
-  for (const change of changes) {
-    if (change instanceof InsertChange) {
-      recorder.insertLeft(change.pos, change.toAdd);
-    }
+function addUohModuleImport(tree: Tree, uohModule: string) {
+  const path = '/src/app/app.module.ts';
+  const appModule = tree.read(path);
+  if (!appModule) {
+    throw new SchematicsException('Could not find the app.module.ts file');
   }
 
-  tree.commitUpdate(recorder);
+  try {
+    const text = appModule.toString('utf-8');
+    const classifiedName = `Uoh${uohModule}Module`;
+
+    if (!text.includes(classifiedName)) {
+      const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
+      const relativePath = buildRelativePath(path, '/node_modules/@uoh/ngx-theme');
+      const changes = addImportToModule(source, path, classifiedName, relativePath);
+
+      const recorder = tree.beginUpdate(path);
+      for (const change of changes) {
+        if (change instanceof InsertChange) {
+          recorder.insertLeft(change.pos, change.toAdd);
+        }
+      }
+
+      tree.commitUpdate(recorder);
+    }
+  } catch (e) {
+    console.warn('Cannot add the theme modules to the app.module file', e);
+  }
 }
 
 /**
@@ -236,41 +251,27 @@ function addUohModuleImport(tree: Tree, path: string, source: ts.SourceFile, uoh
  */
 function addImportsToAppModule(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const path = '/src/app/app.module.ts';
-    const appModule = tree.read(path);
-    if (!appModule) {
-      throw new SchematicsException('Could not find the app.module.ts file');
+    if (_options.header) {
+      addUohModuleImport(tree, 'Header');
     }
 
-    try {
-      const text = appModule.toString('utf-8');
-      const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
-
-      if (_options.header) {
-        addUohModuleImport(tree, path, source, 'Header');
-      }
-
-      if (_options.footer) {
-        addUohModuleImport(tree, path, source, 'Footer');
-      }
-
-      if (_options.spinner) {
-        addUohModuleImport(tree, path, source, 'Spinner');
-      }
-
-      if (_options.backToTop) {
-        addUohModuleImport(tree, path, source, 'BackToTop');
-      }
-
-      if (_options.accessibility) {
-        addUohModuleImport(tree, path, source, 'Accessibility');
-      } else {
-        addUohModuleImport(tree, path, source, 'Body');
-      }
-    } catch (e) {
-      console.warn('Cannot add the theme modules to the app.module file', e);
+    if (_options.footer) {
+      addUohModuleImport(tree, 'Footer');
     }
 
+    if (_options.spinner) {
+      addUohModuleImport(tree, 'Spinner');
+    }
+
+    if (_options.backToTop) {
+      addUohModuleImport(tree, 'BackToTop');
+    }
+
+    if (_options.accessibility) {
+      addUohModuleImport(tree, 'Accessibility');
+    } else {
+      addUohModuleImport(tree, 'Body');
+    }
     return tree;
   };
 }
