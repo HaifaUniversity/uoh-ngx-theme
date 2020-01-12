@@ -109,7 +109,7 @@ function includeTheme(config: Config): void {
  */
 export function setConfig(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const workspaceConfig = tree.read(_options.config);
+    const workspaceConfig = tree.read(_options.configPath);
     if (!workspaceConfig) {
       throw new SchematicsException('Could not find Angular workspace configuration');
     }
@@ -132,7 +132,7 @@ export function setConfig(_options: Schema): Rule {
       addAssets(architect.build, assets);
       addAssets(architect.test, assets);
 
-      const stylesPath = getStylesPath(architect.build.options.styles);
+      const stylesPath = _options.stylesPath ? _options.stylesPath : getStylesPath(architect.build.options.styles);
 
       if (stylesPath) {
         includeTheme(architect.build);
@@ -140,7 +140,7 @@ export function setConfig(_options: Schema): Rule {
         addThemeMixin(tree, stylesPath);
       }
 
-      tree.overwrite(_options.config, JSON.stringify(workspace, null, 2));
+      tree.overwrite(_options.configPath, JSON.stringify(workspace, null, 2));
     }
 
     return tree;

@@ -4,7 +4,8 @@ export interface Schema {
   footer: boolean;
   spinner: boolean;
   backToTop: boolean;
-  module: string;
-  config: string;
-  index: string;
+  modulePath: string;
+  configPath: string;
+  indexPath: string;
+  stylesPath: string;
 }

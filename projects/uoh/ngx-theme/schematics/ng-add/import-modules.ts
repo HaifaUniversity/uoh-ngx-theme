@@ -47,25 +47,25 @@ function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
 export function importModules(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     if (_options.header) {
-      addUohModuleImport(tree, _options.module, 'Header');
+      addUohModuleImport(tree, _options.modulePath, 'Header');
     }
 
     if (_options.footer) {
-      addUohModuleImport(tree, _options.module, 'Footer');
+      addUohModuleImport(tree, _options.modulePath, 'Footer');
     }
 
     if (_options.spinner) {
-      addUohModuleImport(tree, _options.module, 'Spinner');
+      addUohModuleImport(tree, _options.modulePath, 'Spinner');
     }
 
     if (_options.backToTop) {
-      addUohModuleImport(tree, _options.module, 'BackToTop');
+      addUohModuleImport(tree, _options.modulePath, 'BackToTop');
     }
 
     if (_options.accessibility) {
-      addUohModuleImport(tree, _options.module, 'Accessibility');
+      addUohModuleImport(tree, _options.modulePath, 'Accessibility');
     } else {
-      addUohModuleImport(tree, _options.module, 'Body');
+      addUohModuleImport(tree, _options.modulePath, 'Body');
     }
     return tree;
   };
