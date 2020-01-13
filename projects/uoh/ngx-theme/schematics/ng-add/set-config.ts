@@ -73,7 +73,7 @@ function addThemeMixin(tree: Tree, stylesPath: string): void {
     const styles = stylesFile.toString('utf-8');
 
     if (!styles.includes('uoh-theme')) {
-      tree.overwrite(stylesPath, `@include uoh-theme();\n${styles}`);
+      tree.overwrite(stylesPath, `@import "theme";\n\n@include uoh-theme();\n${styles}`);
     }
   } catch (e) {
     console.warn('Cannot set the styles', e);
@@ -86,15 +86,14 @@ function addThemeMixin(tree: Tree, stylesPath: string): void {
  */
 function includeTheme(config: Config): void {
   try {
-    const base = './';
-    const include = './node_modules/@uoh/ngx-theme/theme';
+    const include = './node_modules/@uoh/ngx-theme';
 
     if (!config.options.stylePreprocessorOptions) {
       config.options.stylePreprocessorOptions = {
-        includePaths: [base, include]
+        includePaths: [include]
       };
     } else if (!config.options.stylePreprocessorOptions.includePaths) {
-      config.options.stylePreprocessorOptions.includePaths = [base, include];
+      config.options.stylePreprocessorOptions.includePaths = [include];
     } else if (!config.options.stylePreprocessorOptions.includePaths.includes(include)) {
       config.options.stylePreprocessorOptions.includePaths.push(include);
     }
