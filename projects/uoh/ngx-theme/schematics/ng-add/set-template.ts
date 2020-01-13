@@ -15,9 +15,11 @@ function hasComponent(template: string, selector: string): boolean {
  * @param template The template.
  * @param selector The selector for the component.
  */
-function getComponent(template: string, selector: string): string {
+function getComponent(template: string, selector: string, attribs = ''): string {
   if (!hasComponent(template, selector)) {
-    return `<${selector}></${selector}>\n`;
+    attribs = attribs ? ` ${attribs}` : '';
+
+    return `<${selector}${attribs}></${selector}>\n`;
   }
 
   return '';
@@ -36,7 +38,7 @@ function getComponents(_options: Schema, template: string): string {
   }
 
   if (_options.header) {
-    components += getComponent(template, 'uoh-header');
+    components += getComponent(template, 'uoh-header', 'header="אוניברסיטת חיפה"');
   }
 
   if (_options.backToTop) {
