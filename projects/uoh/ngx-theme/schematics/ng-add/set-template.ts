@@ -57,8 +57,8 @@ function getComponents(_options: Schema, template: string): string {
  */
 function wrap(_options: Schema, template: string): string {
   return _options.accessibility
-    ? `<uoh-accessibility dir="${_options.dir}">\n${template}</uoh-accessibility>`
-    : `<uoh-body>\n${template}</uoh-body>`;
+    ? `<uoh-accessibility dir="${_options.dir}">\n${template}\n</uoh-accessibility>\n`
+    : `<uoh-body>\n${template}\n</uoh-body>\n`;
 }
 
 /**
@@ -76,7 +76,7 @@ export function setTemplate(_options: Schema): Rule {
       const template = indexFile.toString('utf-8');
       if (!hasComponent(template, 'uoh-accessibility') && !hasComponent(template, 'uoh-body')) {
         const components = getComponents(_options, template);
-        const content = _options.clearTemplate ? `${components}\n` : `${components}\n${template}`;
+        const content = _options.clearTemplate ? `${components}\n` : `${components}\n\n${template}`;
         const updatedTemplate = wrap(_options, content);
 
         tree.overwrite(_options.templatePath, updatedTemplate);
