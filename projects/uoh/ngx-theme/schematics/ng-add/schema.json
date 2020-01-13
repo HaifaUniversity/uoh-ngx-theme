@@ -34,6 +34,19 @@
       "description": "Whether the UohBackToTopModule should be included",
       "x-prompt": "Include the back-to-top module?"
     },
+    "dir": {
+      "type": "string",
+      "default": "rtl",
+      "description": "The base html direction (rtl or ltr)",
+      "x-prompt": {
+        "message": "Choose the base html direction:",
+        "type": "list",
+        "items": [
+          { "value": "rtl", "label": "right-to-left" },
+          { "value": "ltr", "label": "left-to-right" }
+        ]
+      }
+    },
     "clearTemplate": {
       "type": "boolean",
       "default": true,
@@ -64,11 +77,6 @@
       "type": "string",
       "default": "/src/app/app.component.html",
       "description": "The path to the template file to add the components to"
-    },
-    "dir": {
-      "type": "string",
-      "default": "rtl",
-      "description": "The base html direction (rtl or ltr)"
     }
   }
 }
