@@ -14,6 +14,7 @@ function hasComponent(template: string, selector: string): boolean {
  * Returns the selector tags of the component if it does not exist in the template.
  * @param template The template.
  * @param selector The selector for the component.
+ * @param attribs Attributes for the component.
  */
 function getComponent(template: string, selector: string, attribs = ''): string {
   if (!hasComponent(template, selector)) {
