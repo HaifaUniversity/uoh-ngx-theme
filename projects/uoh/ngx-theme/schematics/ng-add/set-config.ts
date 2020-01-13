@@ -73,7 +73,11 @@ function addThemeMixin(tree: Tree, stylesPath: string): void {
     const styles = stylesFile.toString('utf-8');
 
     if (!styles.includes('uoh-theme')) {
-      tree.overwrite(stylesPath, `@import "theme";\n\n@include uoh-theme();\n${styles}`);
+      const insertion = `@import "theme";\n\n@include uoh-theme();\n`;
+      const recorder = tree.beginUpdate(stylesPath);
+
+      recorder.insertLeft(styles.length, insertion);
+      tree.commitUpdate(recorder);
     }
   } catch (e) {
     console.warn('Cannot set the styles', e);
