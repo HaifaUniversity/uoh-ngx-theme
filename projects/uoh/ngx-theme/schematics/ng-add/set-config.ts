@@ -137,7 +137,7 @@ export function setConfig(_options: Schema): Rule {
         addThemeMixin(tree, stylesPath);
       }
 
-      updateWorkspace(workspace);
+      return updateWorkspace(workspace);
     }
 
     return tree;
