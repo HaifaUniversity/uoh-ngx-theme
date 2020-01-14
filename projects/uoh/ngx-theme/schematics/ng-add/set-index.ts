@@ -1,28 +1,8 @@
-import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
-import { Schema } from './schema';
-import { getWorkspace } from '@schematics/angular/utility/config';
-import { getProjectFromWorkspace } from '../utils/get-project';
-import { getProjectTargetOptions } from '../utils/get-project-target-options';
+import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { SetupSchema } from './schema';
+import { getIndexPath } from '../utils/get-index';
 
-function removeMaterialFonts(html: string): string {
-  const matches = html.match(/(<link([^>]+)>)/gi);
-  if (matches && matches.length) {
-    const fonts = matches.filter(item => item.includes('Roboto'));
-
-    if (fonts && fonts.length) {
-      return fonts.reduce((prev, curr) => prev.replace(curr, ''), html);
-    }
-  }
-
-  return html;
-}
-
-function addElements(tree: Tree, indexPath: string): void {
-  const indexFile = tree.read(indexPath);
-  if (!indexFile) {
-    throw new SchematicsException(`Could not find the ${indexPath} file`);
-  }
-
+function addElements(tree: Tree, indexPath: string, html: string): void {
   try {
     const attribs = [
       '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
@@ -31,7 +11,6 @@ function addElements(tree: Tree, indexPath: string): void {
       '<meta name="theme-color" content="#0664AA">',
       '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'
     ];
-    const html = removeMaterialFonts(indexFile.toString('utf-8'));
     const missing = attribs.filter(attrib => !html.includes(attrib));
 
     if (missing.length > 0) {
@@ -50,14 +29,13 @@ function addElements(tree: Tree, indexPath: string): void {
 /**
  * Schematic to add attributes to the index.html file.
  * @param _options The options entered by the user in the cli.
+ * @param index The index file contents stored before installing material.
  */
-export function setIndex(_options: Schema): Rule {
+export function setIndex(_options: SetupSchema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const workspace = getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, _options.project);
-    const buildOptions = getProjectTargetOptions(project, 'build');
+    const indexPath = getIndexPath(tree, _options.project);
 
-    addElements(tree, buildOptions.index);
+    addElements(tree, indexPath, _options.snapshot.index);
 
     return tree;
   };
