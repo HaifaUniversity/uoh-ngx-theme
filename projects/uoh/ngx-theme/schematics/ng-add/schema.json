@@ -4,6 +4,13 @@
   "title": "University of Haifa Theme ng-add schematic",
   "type": "object",
   "properties": {
+    "project": {
+      "type": "string",
+      "description": "Name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
     "accessibility": {
       "type": "boolean",
       "default": true,
@@ -53,30 +60,10 @@
       "description": "Whether the template should be cleared",
       "x-prompt": "Clear the template file (default app.component.html) in which the components will be added?"
     },
-    "modulePath": {
-      "type": "string",
-      "default": "/src/app/app.module.ts",
-      "description": "The path to the module to import the theme modules (default: '/src/app/app.module.ts')"
-    },
-    "configPath": {
-      "type": "string",
-      "default": "/angular.json",
-      "description": "The path to the angular configuration file (angular.json)"
-    },
-    "indexPath": {
-      "type": "string",
-      "default": "/src/index.html",
-      "description": "The path to the index file"
-    },
-    "stylesPath": {
-      "type": "string",
-      "default": "",
-      "description": "The path to the styles file (empty to detect it automatically)"
-    },
     "templatePath": {
       "type": "string",
-      "default": "/src/app/app.component.html",
-      "description": "The path to the template file to add the components to"
+      "default": "",
+      "description": "The path to the template file to add the components to (default: app.component.html in the folder of the project main module)"
     }
   }
 }

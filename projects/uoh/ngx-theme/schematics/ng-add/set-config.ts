@@ -1,7 +1,10 @@
 import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
-import { experimental } from '@angular-devkit/core';
-import { Asset, Architect, Config } from './models';
+import { WorkspaceTool } from '@angular-devkit/core/src/experimental/workspace';
+import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
+import { Asset, Config } from './models';
 import { Schema } from './schema';
+import { getProjectFromWorkspace } from '../utils/get-project';
+import { getProjectTargetOptions } from '../utils/get-project-target-options';
 
 /**
  * Checks if a Asset exists in a given list.
@@ -112,18 +115,8 @@ function includeTheme(config: Config): void {
  */
 export function setConfig(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const workspaceConfig = tree.read(_options.configPath);
-    if (!workspaceConfig) {
-      throw new SchematicsException('Could not find Angular workspace configuration');
-    }
-
-    // convert workspace to string
-    const workspaceContent = workspaceConfig.toString('utf-8');
-
-    // parse workspace string into JSON object
-    const workspace: experimental.workspace.WorkspaceSchema = JSON.parse(workspaceContent);
-    const projectName = workspace.defaultProject as string;
-    const project = workspace.projects[projectName];
+    const workspace = getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, _options.project);
 
     const assets: Array<Asset> = [
       { glob: 'favicon.ico', input: './node_modules/@uoh/ngx-theme/assets', output: '/' },
@@ -131,11 +124,12 @@ export function setConfig(_options: Schema): Rule {
     ];
 
     if (project.architect) {
-      const architect: Architect = project.architect as Architect;
+      const architect: WorkspaceTool = project.targets ? project.targets : project.architect;
       addAssets(architect.build, assets);
       addAssets(architect.test, assets);
 
-      const stylesPath = _options.stylesPath ? _options.stylesPath : getStylesPath(architect.build.options.styles);
+      const buildOptions = getProjectTargetOptions(project, 'build');
+      const stylesPath = getStylesPath(buildOptions.styles);
 
       if (stylesPath) {
         includeTheme(architect.build);
@@ -143,7 +137,7 @@ export function setConfig(_options: Schema): Rule {
         addThemeMixin(tree, stylesPath);
       }
 
-      tree.overwrite(_options.configPath, JSON.stringify(workspace, null, 2));
+      updateWorkspace(workspace);
     }
 
     return tree;

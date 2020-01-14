@@ -1,9 +1,13 @@
 import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
 import * as ts from 'typescript';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { buildRelativePath } from '@schematics/angular/utility/find-module';
 import { InsertChange } from '@schematics/angular/utility/change';
+import { getWorkspace } from '@schematics/angular/utility/config';
 import { Schema } from './schema';
+import { getProjectFromWorkspace } from '../utils/get-project';
+import { getProjectMainFile } from '../utils/get-project-main-file';
 
 /**
  * Add the import statement for the UohModule.
@@ -46,26 +50,30 @@ function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
  */
 export function importModules(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
+    const workspace = getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, _options.project);
+    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
+
     if (_options.header) {
-      addUohModuleImport(tree, _options.modulePath, 'Header');
+      addUohModuleImport(tree, appModulePath, 'Header');
     }
 
     if (_options.footer) {
-      addUohModuleImport(tree, _options.modulePath, 'Footer');
+      addUohModuleImport(tree, appModulePath, 'Footer');
     }
 
     if (_options.spinner) {
-      addUohModuleImport(tree, _options.modulePath, 'Spinner');
+      addUohModuleImport(tree, appModulePath, 'Spinner');
     }
 
     if (_options.backToTop) {
-      addUohModuleImport(tree, _options.modulePath, 'BackToTop');
+      addUohModuleImport(tree, appModulePath, 'BackToTop');
     }
 
     if (_options.accessibility) {
-      addUohModuleImport(tree, _options.modulePath, 'Accessibility');
+      addUohModuleImport(tree, appModulePath, 'Accessibility');
     } else {
-      addUohModuleImport(tree, _options.modulePath, 'Body');
+      addUohModuleImport(tree, appModulePath, 'Body');
     }
     return tree;
   };
