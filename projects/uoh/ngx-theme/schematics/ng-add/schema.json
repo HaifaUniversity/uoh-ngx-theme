@@ -63,7 +63,7 @@
     "templatePath": {
       "type": "string",
       "default": "",
-      "description": "The path to the template file to add the components to (default: app.component.html in the folder of the project main module)"
+      "description": "The path to the template file to add the components to (default: app.component.html in the folder or subfolder where the project main module is located)"
     }
   }
 }

@@ -97,6 +97,8 @@ function getTemplatePath(tree: Tree, _options: Schema): string {
   } catch (e) {
     console.warn(`Cannot get the default app template file`, e);
   }
+
+  return '';
 }
 
 /**
@@ -106,6 +108,10 @@ function getTemplatePath(tree: Tree, _options: Schema): string {
 export function setTemplate(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const templatePath = getTemplatePath(tree, _options);
+    if (!templatePath) {
+      throw new SchematicsException(`Could not find the template file`);
+    }
+
     const templateFile = tree.read(templatePath);
     if (!templateFile) {
       throw new SchematicsException(`Could not find the ${_options.templatePath} file`);
