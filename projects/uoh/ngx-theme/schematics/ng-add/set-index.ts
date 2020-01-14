@@ -4,6 +4,19 @@ import { getWorkspace } from '@schematics/angular/utility/config';
 import { getProjectFromWorkspace } from '../utils/get-project';
 import { getProjectTargetOptions } from '../utils/get-project-target-options';
 
+function removeMaterialFonts(html: string): string {
+  const matches = html.match(/(<link([^>]+)>)/gi);
+  if (matches && matches.length) {
+    const fonts = matches.filter(item => item.includes('Roboto'));
+
+    if (fonts && fonts.length) {
+      return fonts.reduce((prev, curr) => prev.replace(curr, ''), html);
+    }
+  }
+
+  return html;
+}
+
 function addElements(tree: Tree, indexPath: string): void {
   const indexFile = tree.read(indexPath);
   if (!indexFile) {
@@ -18,7 +31,7 @@ function addElements(tree: Tree, indexPath: string): void {
       '<meta name="theme-color" content="#0664AA">',
       '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'
     ];
-    const html = indexFile.toString('utf-8');
+    const html = removeMaterialFonts(indexFile.toString('utf-8'));
     const missing = attribs.filter(attrib => !html.includes(attrib));
 
     if (missing.length > 0) {

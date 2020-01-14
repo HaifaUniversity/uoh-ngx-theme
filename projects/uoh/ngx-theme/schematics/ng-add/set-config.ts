@@ -109,6 +109,19 @@ function includeTheme(config: Config): void {
   }
 }
 
+function removeMaterialTheme(styles: Array<string>): Array<string> {
+  return styles.filter(item => !item.includes('@angular/material'));
+}
+
+function removeMaterialStyles(architect: WorkspaceTool): void {
+  try {
+    architect.build.options.styles = removeMaterialTheme(architect.build.options.styles);
+    architect.test.options.styles = removeMaterialTheme(architect.test.options.styles);
+  } catch (e) {
+    console.warn('Cannot remove the material styles', e);
+  }
+}
+
 /**
  * Schematics to add the uoh-theme to the angular.json file.
  * @param _options The options entered by the user in the cli.
@@ -123,8 +136,9 @@ export function setConfig(_options: Schema): Rule {
       { glob: '**/*', input: './node_modules/@uoh/ngx-theme/assets', output: '/assets/' }
     ];
 
-    if (project.architect) {
-      const architect: WorkspaceTool = project.targets ? project.targets : project.architect;
+    const architect: WorkspaceTool | undefined = project.targets ? project.targets : project.architect;
+    if (architect) {
+      removeMaterialStyles(architect);
       addAssets(architect.build, assets);
       addAssets(architect.test, assets);
 
