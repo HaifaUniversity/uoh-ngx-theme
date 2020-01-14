@@ -114,7 +114,7 @@ export function setTemplate(_options: Schema): Rule {
 
     const templateFile = tree.read(templatePath);
     if (!templateFile) {
-      throw new SchematicsException(`Could not find the ${_options.templatePath} file`);
+      throw new SchematicsException(`Could not find the ${templatePath} file`);
     }
 
     try {
@@ -124,10 +124,10 @@ export function setTemplate(_options: Schema): Rule {
         const content = _options.clearTemplate ? `${components}\n` : `${components}\n\n${template}`;
         const updatedTemplate = wrap(_options, content);
 
-        tree.overwrite(_options.templatePath, updatedTemplate);
+        tree.overwrite(templatePath, updatedTemplate);
       }
     } catch (e) {
-      console.warn(`Cannot set the html tags in the ${_options.templatePath} file`, e);
+      console.warn(`Cannot set the html tags in the ${templatePath} file`, e);
     }
 
     return tree;
