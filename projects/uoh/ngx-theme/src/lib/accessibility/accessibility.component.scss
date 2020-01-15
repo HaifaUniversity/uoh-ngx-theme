@@ -10,8 +10,13 @@
   position: fixed;
   z-index: 999;
   top: 90px;
-  left: 14px;
+  right: 14px;
   text-align: center;
+}
+
+:host-context([dir='rtl']) .uoh-accessibility-btn {
+  right: auto;
+  left: 14px;
 }
 
 .mat-sidenav {
