@@ -5,9 +5,9 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { buildRelativePath } from '@schematics/angular/utility/find-module';
 import { InsertChange } from '@schematics/angular/utility/change';
 import { getWorkspace } from '@schematics/angular/utility/config';
-import { Schema } from './schema';
-import { getProjectFromWorkspace } from '../utils/get-project';
-import { getProjectMainFile } from '../utils/get-project-main-file';
+import { Schema } from '../schema';
+import { getProjectFromWorkspace } from '../../utils/get-project';
+import { getProjectMainFile } from '../../utils/get-project-main-file';
 
 /**
  * Add the import statement for the UohModule.

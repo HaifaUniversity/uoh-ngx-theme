@@ -1,10 +1,10 @@
 import { Rule, SchematicContext, chain } from '@angular-devkit/schematics';
 
 import { SetupSchema } from './schema';
-import { setConfig } from './set-config';
-import { setIndex } from './set-index';
-import { importModules } from './import-modules';
-import { setTemplate } from './set-template';
+import { setConfig } from './rules/set-config';
+import { setIndex } from './rules/set-index';
+import { importModules } from './rules/import-modules';
+import { setTemplate } from './rules/set-template';
 
 export function setupProject(_options: SetupSchema): Rule {
   return (_, _context: SchematicContext) => {

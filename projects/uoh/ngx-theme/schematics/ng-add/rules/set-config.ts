@@ -1,10 +1,10 @@
 import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
 import { WorkspaceTool } from '@angular-devkit/core/src/experimental/workspace';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
-import { Asset, Config } from './models';
-import { Schema } from './schema';
-import { getProjectFromWorkspace } from '../utils/get-project';
-import { getProjectTargetOptions } from '../utils/get-project-target-options';
+import { Asset, Config } from '../models';
+import { Schema } from '../schema';
+import { getProjectFromWorkspace } from '../../utils/get-project';
+import { getProjectTargetOptions } from '../../utils/get-project-target-options';
 
 /**
  * Checks if a Asset exists in a given list.

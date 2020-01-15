@@ -1,6 +1,6 @@
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { SetupSchema } from './schema';
-import { getIndexPath } from '../utils/get-index';
+import { SetupSchema } from '../schema';
+import { getIndexPath } from '../../utils/get-index';
 
 function addElements(tree: Tree, indexPath: string, html: string): void {
   try {

@@ -1,10 +1,10 @@
 import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
-import { Schema } from './schema';
+import { Schema } from '../schema';
 import { getWorkspace } from '@schematics/angular/utility/config';
-import { getProjectFromWorkspace } from '../utils/get-project';
+import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getProjectMainFile } from '../utils/get-project-main-file';
-import { searchSubdirs } from '../utils/search-subdirs';
+import { getProjectMainFile } from '../../utils/get-project-main-file';
+import { searchSubdirs } from '../../utils/search-subdirs';
 
 /**
  * Checks if the component exists in the template.
