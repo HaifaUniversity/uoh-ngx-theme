@@ -1,6 +1,7 @@
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { SetupSchema } from '../schema';
-import { getIndexPath } from '../../utils/get-index';
+import { Schema } from '../schema';
+import { getIndexPath, readIndex } from '../../utils/get-index';
+import { Snapshot } from '../models';
 
 function addElements(tree: Tree, indexPath: string, html: string): void {
   try {
@@ -30,12 +31,14 @@ function addElements(tree: Tree, indexPath: string, html: string): void {
  * Schematic to add attributes to the index.html file.
  * @param _options The options entered by the user in the cli.
  * @param index The index file contents stored before installing material.
+ * @param snapshot The snapshot of the configuration files before the installation of material (to undo some material schematics).
  */
-export function setIndex(_options: SetupSchema): Rule {
+export function setIndex(_options: Schema, snapshot?: Snapshot): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const indexPath = getIndexPath(tree, _options.project);
+    const html = snapshot && snapshot.index ? snapshot.index : readIndex(tree, indexPath);
 
-    addElements(tree, indexPath, _options.snapshot.index);
+    addElements(tree, indexPath, html);
 
     return tree;
   };

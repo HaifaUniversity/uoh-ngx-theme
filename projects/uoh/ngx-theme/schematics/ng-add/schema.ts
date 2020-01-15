@@ -9,10 +9,3 @@ export interface Schema {
   templatePath: string;
   dir: 'ltr' | 'rtl';
 }
-
-export interface SetupSchema extends Schema {
-  snapshot: {
-    index: string;
-    styles: string;
-  };
-}

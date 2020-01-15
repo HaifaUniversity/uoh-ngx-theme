@@ -14,7 +14,7 @@ export interface Config {
   };
 }
 
-export interface Architect {
-  build: Config;
-  test: Config;
+export interface Snapshot {
+  index: string;
+  styles: string;
 }

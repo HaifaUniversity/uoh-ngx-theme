@@ -1,7 +1,7 @@
 import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
 import { WorkspaceTool } from '@angular-devkit/core/src/experimental/workspace';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
-import { Asset, Config } from '../models';
+import { Asset, Config, Snapshot } from '../models';
 import { Schema } from '../schema';
 import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getProjectTargetOptions } from '../../utils/get-project-target-options';
@@ -125,8 +125,9 @@ function removeMaterialStyles(architect: WorkspaceTool): void {
 /**
  * Schematics to add the uoh-theme to the angular.json file.
  * @param _options The options entered by the user in the cli.
+ * @param snapshot The snapshot of the configuration files before the installation of material (to undo some material schematics).
  */
-export function setConfig(_options: Schema): Rule {
+export function setConfig(_options: Schema, snapshot?: Snapshot): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, _options.project);
