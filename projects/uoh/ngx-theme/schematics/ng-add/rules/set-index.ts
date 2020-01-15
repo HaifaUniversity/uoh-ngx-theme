@@ -1,6 +1,7 @@
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { Schema } from '../schema';
-import { getIndexPath, readIndex } from '../../utils/get-index';
+import { getIndexPath } from '../../utils/get-index';
+import { readStringFile } from '../../utils/read-file';
 import { Snapshot } from '../models';
 
 function addElements(tree: Tree, indexPath: string, html: string): void {
@@ -36,7 +37,7 @@ function addElements(tree: Tree, indexPath: string, html: string): void {
 export function setIndex(_options: Schema, snapshot?: Snapshot): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const indexPath = getIndexPath(tree, _options.project);
-    const html = snapshot && snapshot.index ? snapshot.index : readIndex(tree, indexPath);
+    const html = snapshot && snapshot.index ? snapshot.index : readStringFile(tree, indexPath);
 
     addElements(tree, indexPath, html);
 

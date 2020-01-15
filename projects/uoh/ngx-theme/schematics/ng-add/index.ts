@@ -2,8 +2,10 @@ import { Tree, Rule, SchematicContext } from '@angular-devkit/schematics';
 import { NodePackageInstallTask, RunSchematicTask } from '@angular-devkit/schematics/tasks';
 
 import { Schema } from './schema';
-import { getIndexPath, readIndex } from '../utils/get-index';
+import { getIndexPath } from '../utils/get-index';
 import { Snapshot } from './models';
+import { getStylesPath } from '../utils/get-styles';
+import { readStringFile } from '../utils/read-file';
 
 /**
  * Create a snapshot of some configuration files before the installation of material (to undo some of its schematics changes).
@@ -12,8 +14,10 @@ import { Snapshot } from './models';
  */
 function createSnapshot(tree: Tree, project: string): Snapshot {
   const indexPath = getIndexPath(tree, project);
-  const index = readIndex(tree, indexPath);
-  const styles = '';
+  const index = readStringFile(tree, indexPath);
+
+  const stylesPath = getStylesPath(tree, project);
+  const styles = stylesPath ? readStringFile(tree, stylesPath) : '';
 
   return { index, styles };
 }

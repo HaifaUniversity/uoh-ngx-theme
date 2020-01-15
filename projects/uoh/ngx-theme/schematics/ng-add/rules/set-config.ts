@@ -1,10 +1,11 @@
-import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { WorkspaceTool } from '@angular-devkit/core/src/experimental/workspace';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
 import { Asset, Config, Snapshot } from '../models';
 import { Schema } from '../schema';
 import { getProjectFromWorkspace } from '../../utils/get-project';
-import { getProjectTargetOptions } from '../../utils/get-project-target-options';
+import { getStylesPathFromProject } from '../../utils/get-styles';
+import { readStringFile } from '../../utils/read-file';
 
 /**
  * Checks if a Asset exists in a given list.
@@ -44,43 +45,16 @@ function addAssets(config: Config, assets: Array<Asset>): void {
 }
 
 /**
- * Returns the path to the styles file from a list of file paths.
- * @param files The list of files to check.
- */
-function getStylesPath(files: Array<string>): string | undefined {
-  let fallback: string | undefined = undefined;
-
-  for (const item of files) {
-    if (item.includes('styles.scss')) {
-      return item;
-    } else if (!fallback && item.endsWith('.scss')) {
-      fallback = item;
-    }
-  }
-
-  return fallback;
-}
-
-/**
  * Adds the uoh theme mixin to the styles.scss file.
  * @param tree The schematics Tree.
  * @param stylesPath The path to the styles.scss file.
+ * @param styles The styles file contents.
  */
-function addThemeMixin(tree: Tree, stylesPath: string): void {
-  const stylesFile = tree.read(stylesPath);
-  if (!stylesFile) {
-    throw new SchematicsException(`Could not find the ${stylesPath} file`);
-  }
-
+function addThemeMixin(tree: Tree, stylesPath: string, styles: string): void {
   try {
-    const styles = stylesFile.toString('utf-8');
-
     if (!styles.includes('uoh-theme')) {
-      const insertion = `@import "theme";\n\n@include uoh-theme();\n`;
-      const recorder = tree.beginUpdate(stylesPath);
-
-      recorder.insertLeft(styles.length, insertion);
-      tree.commitUpdate(recorder);
+      const updated = `${styles}\n@import "theme";\n\n@include uoh-theme();\n`;
+      tree.overwrite(stylesPath, updated);
     }
   } catch (e) {
     console.warn('Cannot set the styles', e);
@@ -109,19 +83,6 @@ function includeTheme(config: Config): void {
   }
 }
 
-function removeMaterialTheme(styles: Array<string>): Array<string> {
-  return styles.filter(item => !item.includes('@angular/material'));
-}
-
-function removeMaterialStyles(architect: WorkspaceTool): void {
-  try {
-    architect.build.options.styles = removeMaterialTheme(architect.build.options.styles);
-    architect.test.options.styles = removeMaterialTheme(architect.test.options.styles);
-  } catch (e) {
-    console.warn('Cannot remove the material styles', e);
-  }
-}
-
 /**
  * Schematics to add the uoh-theme to the angular.json file.
  * @param _options The options entered by the user in the cli.
@@ -139,17 +100,19 @@ export function setConfig(_options: Schema, snapshot?: Snapshot): Rule {
 
     const architect: WorkspaceTool | undefined = project.targets ? project.targets : project.architect;
     if (architect) {
-      removeMaterialStyles(architect);
       addAssets(architect.build, assets);
       addAssets(architect.test, assets);
+      includeTheme(architect.build);
+      includeTheme(architect.test);
 
-      const buildOptions = getProjectTargetOptions(project, 'build');
-      const stylesPath = getStylesPath(buildOptions.styles);
+      const stylesPath = getStylesPathFromProject(project);
 
       if (stylesPath) {
-        includeTheme(architect.build);
-        includeTheme(architect.test);
-        addThemeMixin(tree, stylesPath);
+        if (snapshot) {
+          console.log(`*** snapshot ${snapshot.styles} ***`);
+        }
+        const styles = snapshot && snapshot.styles !== undefined ? snapshot.styles : readStringFile(tree, stylesPath);
+        addThemeMixin(tree, stylesPath, styles);
       }
 
       return updateWorkspace(workspace);
