@@ -1,6 +1,6 @@
 # University of Haifa Angular Theme
 
-A collection of University of Haifa modules to be integrated in an Angular project using Material Design.
+A collection of University of Haifa modules to be integrated in an Angular project using Material Design (see the [CHANGELOG](./CHANGELOG.md)).
 
 ---
 
