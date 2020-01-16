@@ -4,7 +4,7 @@
 
 ### Features:
 
-- Add `ng add` schematics (for further information see the [README](./projects/uoh/ngx-theme/README.md) file).
+- Add `ng add` schematics (for further information see the [README](./README.md) file).
 
 ### Added:
 
