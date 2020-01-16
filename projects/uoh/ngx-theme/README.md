@@ -6,15 +6,37 @@ A collection of University of Haifa modules to be integrated in an Angular proje
 
 ## Installation
 
-With schematics (the scss theme, the material icons, some html tags, the favicon and the logo are added automatically):
+### With schematics (recommended):
+
+- installs `@angular/material` & its dependencies
+- installs the material icons
+- sets the scss theme
+- adds some basic modules to the `app.module` (the accessibility/body, header, footer, back-to-top & spinner modules) and sets them into the `app.component` html
+- adds some compatibility html tags to the index file
+- adds the University of Haifa favicon and logo
 
 ```bash
 $ ng add @uoh/ngx-theme
 ```
 
-> Note: The scss mixins will be imported in the `stylePreprocessorOptions` --> `includePaths` section in the `angular.json` file. Thus, they will be available throughout all the scss in your app.
+#### Easily import the theme mixins into your component scss
 
-Or to configure it by yourself:
+The scss mixins will be imported in the `stylePreprocessorOptions` --> `includePaths` section in the `angular.json` file. Thus, they will be available throughout all the scss in your app.
+Thus, for example, you can import & use the theme mixins in the following way:
+
+```scss
+// app.component.scss
+@import 'theme';
+
+// Hide the .my-class elements on medium screens
+@include uoh-screen(medium) {
+  .my-class {
+    display: none;
+  }
+}
+```
+
+### Or to configure it by yourself:
 
 ```bash
 $ npm install @uoh/ngx-theme --save
