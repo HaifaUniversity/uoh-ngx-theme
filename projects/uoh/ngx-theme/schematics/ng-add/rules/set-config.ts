@@ -108,9 +108,6 @@ export function setConfig(_options: Schema, snapshot?: Snapshot): Rule {
       const stylesPath = getStylesPathFromProject(project);
 
       if (stylesPath) {
-        if (snapshot) {
-          console.log(`*** snapshot ${snapshot.styles} ***`);
-        }
         const styles = snapshot && snapshot.styles !== undefined ? snapshot.styles : readStringFile(tree, stylesPath);
         addThemeMixin(tree, stylesPath, styles);
       }

@@ -8,12 +8,12 @@ A collection of University of Haifa modules to be integrated in an Angular proje
 
 ### With schematics (recommended):
 
-- installs `@angular/material` & its dependencies
-- installs the material icons
-- sets the scss theme
-- adds some basic modules to the `app.module` (the accessibility/body, header, footer, back-to-top & spinner modules) and sets them into the `app.component` html
-- adds some compatibility html tags to the index file
-- adds the University of Haifa favicon and logo
+- Installs `@angular/material` & its dependencies.
+- Installs the material icons.
+- Adds the University of Haifa favicon and logo to the `angular.json` file.
+- Sets the scss theme in the styles file.
+- Adds some basic modules to the `app.module` (the accessibility/body, header, footer, back-to-top & spinner modules) and sets them into the `app.component` html.
+- Adds some compatibility html tags to the index file.
 
 ```bash
 $ ng add @uoh/ngx-theme
@@ -48,14 +48,14 @@ $ npm install @uoh/ngx-theme --save
 
 This library includes the following modules:
 
-- SCSS file including color themes and design configurations
-- An accessibility module containing accessibility features
-- A body module to wrap your application with the theme, in case you do not use the accessibility module
-- A header module with the logo of the University of Haifa and log-in logic
-- A footer module with the details of the university and the version of the application (optional)
-- A card module with cards of different sizes that collapse into the full size of the screen (also applicable to `mat-card`)
-- A back-to-top module with a button to jump to the top of the page after scrolling
-- A spinner module with a loader animation with the logo of the university
+- SCSS file including color themes and design configurations.
+- An accessibility module containing accessibility features.
+- A body module to wrap your application with the theme, in case you do not use the accessibility module.
+- A header module with the logo of the University of Haifa and log-in logic.
+- A footer module with the details of the university and the version of the application (optional).
+- A card module with cards of different sizes that collapse into the full size of the screen (also applicable to `mat-card`).
+- A back-to-top module with a button to jump to the top of the page after scrolling.
+- A spinner module with a loader animation with the logo of the university.
 - A content service that exposes the width, height, top, right, bottom, left, x and y of the `uoh-content`.
 
 ---
