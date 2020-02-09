@@ -5,7 +5,8 @@
     "build": "../../../node_modules/.bin/tsc -p tsconfig.schematics.json",
     "copy:schema": "cp schematics/ng-add/schema.json ../../../dist/uoh/ngx-theme/schematics/ng-add/schema.json",
     "copy:collection": "cp schematics/collection.json ../../../dist/uoh/ngx-theme/schematics/collection.json",
-    "postbuild": "npm run copy:schema && npm run copy:collection"
+    "set-material-version": "node schematics/set-material-version.js",
+    "postbuild": "npm run copy:schema && npm run copy:collection && npm run set-material-version"
   },
   "schematics": "./schematics/collection.json",
   "repository": {
