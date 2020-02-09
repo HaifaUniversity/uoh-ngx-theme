@@ -3,15 +3,6 @@ const path = require('path');
 
 const readJSON = filePath => {
   const data = fs.readFileSync(filePath, 'utf8');
-  // let content;
-
-  // fs.readFile(filePath, 'utf8', (err, data) => {
-  //   if (err) throw err;
-  //   console.log('file adat', data);
-  //   content = JSON.parse(data);
-  // });
-
-  console.log('data', data);
 
   return JSON.parse(data);
 };
