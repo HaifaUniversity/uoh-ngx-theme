@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, externalSchematic, Tree } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 import { Schema } from './schema';
@@ -10,12 +10,16 @@ const materialVersion = `~0.0.0-PLACEHOLDER`;
 export function installMaterial(_options: Schema): Rule {
   return (host: Tree, _context: SchematicContext) => {
     const materialInstalled = getPackageVersionFromPackageJson(host, '@angular/material');
+    const cdkInstalled = getPackageVersionFromPackageJson(host, '@angular/cdk');
 
     if (!materialInstalled) {
       addPackageToPackageJson(host, '@angular/material', materialVersion);
-      _context.addTask(new NodePackageInstallTask());
     }
 
-    return externalSchematic('@angular/material', 'ng-add', { ..._options, theme: 'custom' });
+    if (!cdkInstalled) {
+      addPackageToPackageJson(host, '@angular/cdk', materialVersion);
+    }
+
+    _context.addTask(new NodePackageInstallTask());
   };
 }
