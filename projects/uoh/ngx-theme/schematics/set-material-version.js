@@ -36,4 +36,4 @@ const setMaterialVersion = (configPath, schematicsFile) => {
   setSchematicsMaterialVersion(schematicsFile, version);
 };
 
-setMaterialVersion('package.json', '../../../dist/uoh/ngx-theme/schematics/ng-add/install-material.js');
+setMaterialVersion('package.json', '../../../dist/uoh/ngx-theme/schematics/ng-add/index.js');

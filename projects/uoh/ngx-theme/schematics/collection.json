@@ -6,11 +6,6 @@
       "factory": "./ng-add/index#ngAdd",
       "schema": "./ng-add/schema.json"
     },
-    "ng-add-install-material": {
-      "description": "Install angular material",
-      "factory": "./ng-add/install-material#installMaterial",
-      "schema": "./ng-add/schema.json"
-    },
     "ng-add-setup-project": {
       "description": "Setup the University of Haifa theme",
       "factory": "./ng-add/setup-project#setupProject",
