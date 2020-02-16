@@ -13,8 +13,3 @@ export interface Config {
     };
   };
 }
-
-export interface Snapshot {
-  index: string;
-  styles: string;
-}
