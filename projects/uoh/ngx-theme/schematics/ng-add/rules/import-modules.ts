@@ -54,6 +54,7 @@ export function importModules(_options: Schema): Rule {
     const project = getProjectFromWorkspace(workspace, _options.project);
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
 
+    // TODO: Import the BrowserAnimationsModule.
     if (_options.header) {
       addUohModuleImport(tree, appModulePath, 'Header');
     }

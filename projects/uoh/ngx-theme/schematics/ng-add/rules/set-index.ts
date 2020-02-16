@@ -10,6 +10,7 @@ function addElements(tree: Tree, indexPath: string, html: string): void {
       '<meta name="mobile-web-app-capable" content="yes">',
       '<meta name="apple-mobile-web-app-capable" content="yes">',
       '<meta name="theme-color" content="#0664AA">',
+      // TODO: Use <link> instead of @import to import the font.
       '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'
     ];
     const missing = attribs.filter(attrib => !html.includes(attrib));
