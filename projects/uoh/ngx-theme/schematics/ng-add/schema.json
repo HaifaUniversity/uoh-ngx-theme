@@ -54,6 +54,12 @@
         ]
       }
     },
+    "animations": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to add the BrowserAnimationsModule",
+      "x-prompt": "Add the animations module to the app module?"
+    },
     "clearTemplate": {
       "type": "boolean",
       "default": true,

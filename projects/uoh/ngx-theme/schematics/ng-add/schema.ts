@@ -8,4 +8,5 @@ export interface Schema {
   clearTemplate: boolean;
   templatePath: string;
   dir: 'ltr' | 'rtl';
+  animations: boolean;
 }
