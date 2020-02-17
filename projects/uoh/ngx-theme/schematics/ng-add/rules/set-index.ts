@@ -30,12 +30,12 @@ function addElements(tree: Tree, indexPath: string, html: string): void {
 
 /**
  * Schematic to add attributes to the index.html file.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  * @param index The index file contents stored before installing material.
  */
-export function setIndex(_options: Schema): Rule {
-  return (tree: Tree, _context: SchematicContext) => {
-    const indexPath = getIndexPath(tree, _options.project);
+export function setIndex(options: Schema): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const indexPath = getIndexPath(tree, options.project);
     const html = readStringFile(tree, indexPath);
 
     addElements(tree, indexPath, html);

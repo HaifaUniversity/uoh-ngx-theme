@@ -33,25 +33,25 @@ function getComponent(template: string, selector: string, attribs = ''): string 
 
 /**
  * Returns a string containing the uoh components selector tags.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  * @param template The template.
  */
-function getComponents(_options: Schema, template: string): string {
+function getComponents(options: Schema, template: string): string {
   let components = '';
 
-  if (_options.spinner) {
+  if (options.spinner) {
     components += getComponent(template, 'uoh-spinner');
   }
 
-  if (_options.header) {
+  if (options.header) {
     components += getComponent(template, 'uoh-header', 'header="אוניברסיטת חיפה"');
   }
 
-  if (_options.backToTop) {
+  if (options.backToTop) {
     components += getComponent(template, 'uoh-back-to-top');
   }
 
-  if (_options.footer) {
+  if (options.footer) {
     components += getComponent(template, 'uoh-footer');
   }
 
@@ -60,29 +60,29 @@ function getComponents(_options: Schema, template: string): string {
 
 /**
  * Wraps the template with the uoh-accessibility or the uoh-body component.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  * @param template The template.
  */
-function wrap(_options: Schema, template: string): string {
-  return _options.accessibility
-    ? `<uoh-accessibility dir="${_options.dir}">\n${template}\n</uoh-accessibility>\n`
+function wrap(options: Schema, template: string): string {
+  return options.accessibility
+    ? `<uoh-accessibility dir="${options.dir}">\n${template}\n</uoh-accessibility>\n`
     : `<uoh-body>\n${template}\n</uoh-body>\n`;
 }
 
 /**
  * Get the path for the template file in which the uoh components will be added.
  * @param tree The schematics tree.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  */
-function getTemplatePath(tree: Tree, _options: Schema): string {
-  if (_options.templatePath) {
+function getTemplatePath(tree: Tree, options: Schema): string {
+  if (options.templatePath) {
     // The user set a custom path for the template in the cli.
-    return _options.templatePath;
+    return options.templatePath;
   }
 
   try {
     const workspace = getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, _options.project);
+    const project = getProjectFromWorkspace(workspace, options.project);
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
     const dirPath = appModulePath.substring(0, appModulePath.lastIndexOf('/'));
     const path = `${dirPath}/app.component.html`;
@@ -103,11 +103,11 @@ function getTemplatePath(tree: Tree, _options: Schema): string {
 
 /**
  * Schematic to add the components to the app html template.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  */
-export function setTemplate(_options: Schema): Rule {
-  return (tree: Tree, _context: SchematicContext) => {
-    const templatePath = getTemplatePath(tree, _options);
+export function setTemplate(options: Schema): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const templatePath = getTemplatePath(tree, options);
     if (!templatePath) {
       throw new SchematicsException(`Could not find the template file`);
     }
@@ -120,9 +120,9 @@ export function setTemplate(_options: Schema): Rule {
     try {
       const template = templateFile.toString('utf-8');
       if (!hasComponent(template, 'uoh-accessibility') && !hasComponent(template, 'uoh-body')) {
-        const components = getComponents(_options, template);
-        const content = _options.clearTemplate ? `${components}\n` : `${components}\n\n${template}`;
-        const updatedTemplate = wrap(_options, content);
+        const components = getComponents(options, template);
+        const content = options.clearTemplate ? `${components}\n` : `${components}\n\n${template}`;
+        const updatedTemplate = wrap(options, content);
 
         tree.overwrite(templatePath, updatedTemplate);
       }

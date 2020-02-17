@@ -9,10 +9,10 @@ const materialVersion = `~0.0.0-PLACEHOLDER`;
 
 /**
  * Angular ngAdd schematics that adds all the uoh-theme configurations.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  */
-export function ngAdd(_options: Schema): Rule {
-  return (host: Tree, _context: SchematicContext) => {
+export function ngAdd(options: Schema): Rule {
+  return (host: Tree, context: SchematicContext) => {
     const materialInstalled = getPackageVersionFromPackageJson(host, '@angular/material');
     const cdkInstalled = getPackageVersionFromPackageJson(host, '@angular/cdk');
 
@@ -24,8 +24,8 @@ export function ngAdd(_options: Schema): Rule {
       addPackageToPackageJson(host, '@angular/cdk', materialVersion);
     }
 
-    const installPackages = _context.addTask(new NodePackageInstallTask());
+    const installPackages = context.addTask(new NodePackageInstallTask());
 
-    _context.addTask(new RunSchematicTask('ng-add-setup-project', _options), [installPackages]);
+    context.addTask(new RunSchematicTask('ng-add-setup-project', options), [installPackages]);
   };
 }

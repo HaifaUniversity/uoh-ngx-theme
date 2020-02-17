@@ -85,12 +85,12 @@ function includeTheme(config: Config): void {
 
 /**
  * Schematics to add the uoh-theme to the angular.json file.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  */
-export function setConfig(_options: Schema): Rule {
-  return (tree: Tree, _context: SchematicContext) => {
+export function setConfig(options: Schema): Rule {
+  return (tree: Tree, context: SchematicContext) => {
     const workspace = getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, _options.project);
+    const project = getProjectFromWorkspace(workspace, options.project);
 
     const assets: Array<Asset> = [
       { glob: 'favicon.ico', input: './node_modules/@uoh/ngx-theme/assets', output: '/' },

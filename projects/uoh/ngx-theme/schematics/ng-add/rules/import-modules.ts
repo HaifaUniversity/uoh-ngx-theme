@@ -46,32 +46,32 @@ function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
 
 /**
  * Adds the import statements to the theme modules to the app module.
- * @param _options The options entered by the user in the cli.
+ * @param options The options entered by the user in the cli.
  */
-export function importModules(_options: Schema): Rule {
+export function importModules(options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const workspace = getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, _options.project);
+    const project = getProjectFromWorkspace(workspace, options.project);
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
 
     // TODO: Import the BrowserAnimationsModule.
-    if (_options.header) {
+    if (options.header) {
       addUohModuleImport(tree, appModulePath, 'Header');
     }
 
-    if (_options.footer) {
+    if (options.footer) {
       addUohModuleImport(tree, appModulePath, 'Footer');
     }
 
-    if (_options.spinner) {
+    if (options.spinner) {
       addUohModuleImport(tree, appModulePath, 'Spinner');
     }
 
-    if (_options.backToTop) {
+    if (options.backToTop) {
       addUohModuleImport(tree, appModulePath, 'BackToTop');
     }
 
-    if (_options.accessibility) {
+    if (options.accessibility) {
       addUohModuleImport(tree, appModulePath, 'Accessibility');
     } else {
       addUohModuleImport(tree, appModulePath, 'Body');
