@@ -2,7 +2,6 @@ import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devk
 import * as ts from 'typescript';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { buildRelativePath } from '@schematics/angular/utility/find-module';
 import { InsertChange } from '@schematics/angular/utility/change';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { Schema } from '../schema';
@@ -23,7 +22,7 @@ const noopAnimationsModuleName = 'NoopAnimationsModule';
  * @param uohModule The uoh module to import
  */
 function addUohModuleImport(tree: Tree, path: string, uohModule: string) {
-  addNgModuleImport(tree, path, '/node_modules/@uoh/ngx-theme', `Uoh${uohModule}Module`);
+  addNgModuleImport(tree, path, '@uoh/ngx-theme', `Uoh${uohModule}Module`);
 }
 
 /**
@@ -44,8 +43,7 @@ function addNgModuleImport(tree: Tree, path: string, modulePath: string, classif
 
     if (!text.includes(classifiedName)) {
       const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
-      const relativePath = buildRelativePath(path, modulePath);
-      const changes = addImportToModule(source, path, classifiedName, relativePath);
+      const changes = addImportToModule(source, path, classifiedName, modulePath);
 
       const recorder = tree.beginUpdate(path);
       for (const change of changes) {
