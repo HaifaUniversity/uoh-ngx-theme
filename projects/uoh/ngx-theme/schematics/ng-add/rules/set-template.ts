@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree, SchematicsException } from '@angular-devkit/schematics';
+import { Rule, Tree, SchematicsException } from '@angular-devkit/schematics';
 import { Schema } from '../schema';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getProjectFromWorkspace } from '../../utils/get-project';
@@ -106,7 +106,7 @@ function getTemplatePath(tree: Tree, options: Schema): string {
  * @param options The options entered by the user in the cli.
  */
 export function setTemplate(options: Schema): Rule {
-  return (tree: Tree, context: SchematicContext) => {
+  return (tree: Tree, _) => {
     const templatePath = getTemplatePath(tree, options);
     if (!templatePath) {
       throw new SchematicsException(`Could not find the template file`);

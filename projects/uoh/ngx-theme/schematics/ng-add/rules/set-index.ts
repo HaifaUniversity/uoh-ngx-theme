@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { Rule, Tree } from '@angular-devkit/schematics';
 import { Schema } from '../schema';
 import { getIndexPath } from '../../utils/get-index';
 import { readStringFile } from '../../utils/read-file';
@@ -34,7 +34,7 @@ function addElements(tree: Tree, indexPath: string, html: string): void {
  * @param index The index file contents stored before installing material.
  */
 export function setIndex(options: Schema): Rule {
-  return (tree: Tree, context: SchematicContext) => {
+  return (tree: Tree, _) => {
     const indexPath = getIndexPath(tree, options.project);
     const html = readStringFile(tree, indexPath);
 

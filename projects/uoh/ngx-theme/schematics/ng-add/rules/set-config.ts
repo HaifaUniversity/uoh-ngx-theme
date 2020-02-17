@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { Rule, Tree } from '@angular-devkit/schematics';
 import { WorkspaceTool } from '@angular-devkit/core/src/experimental/workspace';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
 import { Asset, Config } from '../models';
@@ -88,7 +88,7 @@ function includeTheme(config: Config): void {
  * @param options The options entered by the user in the cli.
  */
 export function setConfig(options: Schema): Rule {
-  return (tree: Tree, context: SchematicContext) => {
+  return (tree: Tree, _) => {
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
