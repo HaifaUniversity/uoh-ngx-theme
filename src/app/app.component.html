@@ -31,7 +31,10 @@
     <div class="uoh-success">This is a success message.</div>
     <button class="uoh-error-fill uoh-hide-on-xlarge" (click)="load()">Load</button>
     <button class="uoh-success-fill" *ngIf="!user" (click)="logIn()">Log in</button>
-    <p><a [routerLink]="['one']">Go to one</a> <a [routerLink]="['two']">Go to two</a></p>
+    <p>
+      <a [routerLink]="['one']">Go to one</a> <a [routerLink]="['two']">Go to two</a>
+      <a [routerLink]="['three']">Go to three</a>
+    </p>
   </div>
   <!-- </uoh-content> -->
   <uoh-footer [version]="false"></uoh-footer>

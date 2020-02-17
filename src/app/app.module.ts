@@ -13,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import { CdkTableModule } from '@angular/cdk/table';
 import {
   UohAccessibilityModule,
   UohSpinnerModule,
@@ -27,10 +29,11 @@ import {
 import { AppComponent } from './app.component';
 import { OneComponent } from './one/one.component';
 import { TwoComponent } from './two/two.component';
+import { ThreeComponent } from './three/three.component';
 import { routing } from './app.routing';
 
 @NgModule({
-  declarations: [AppComponent, OneComponent, TwoComponent],
+  declarations: [AppComponent, OneComponent, TwoComponent, ThreeComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -46,6 +49,8 @@ import { routing } from './app.routing';
     MatMenuModule,
     MatIconModule,
     MatProgressBarModule,
+    CdkTableModule,
+    MatTableModule,
     UohAccessibilityModule,
     UohSpinnerModule,
     UohHeaderModule,
