@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.2.0
+
+## Fixes:
+
+- Schematics `ng add` installs the material and cdk versions correctly.
+
+### BREAKING CHANGES:
+
+- The `Varela` font was changed with the `Rubik` font to add `bold` and `italics`.
+- The font is no longer included in the `_theme.scss` file via the `@import` mixin. To import the font add a `link` html in your `index.html`: `<link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">` or use the `ng add @uoh/ngx-theme` schematics.
+
 ## 4.1.0
 
 ### Features:

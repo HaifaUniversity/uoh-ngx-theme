@@ -8,8 +8,9 @@ A collection of University of Haifa modules to be integrated in an Angular proje
 
 ### With schematics (recommended):
 
-- Installs `@angular/material` & its dependencies.
-- Installs the material icons.
+- Installs `@angular/material` & `@angular/cdk`.
+- Adds the material icons to the `index.html`.
+- Adds the theme font (`Rubik`) to the `index.html`.
 - Adds the University of Haifa favicon and logo to the `angular.json` file.
 - Sets the scss theme in the styles file.
 - Adds some basic modules to the `app.module` (the accessibility/body, header, footer, back-to-top & spinner modules) and sets them into the `app.component` html.
@@ -64,7 +65,16 @@ This library includes the following modules:
 
 This theme contains a default and a dark color theme, a layout design and presets for responsive tables. It also contains scss functions and mixins to make the application styling easier.
 
-### Install Material design and its icons font
+### Add the theme font (if you did not use `ng add`)
+
+Add a `link` tag to the `head` section of your `index.html` file to import the `Rubik` font (the theme font).
+For example:
+
+```xml
+<link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+```
+
+### Install Material design and its icons font (if you did not use `ng add`)
 
 First, install [angular material](https://material.angular.io/guide/getting-started).
 Secondly, add the following tag to the `head` section of your `index.html` file (required for the accessibility, header and back-to-top modules):
@@ -72,8 +82,6 @@ Secondly, add the following tag to the `head` section of your `index.html` file 
 ```xml
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
-
-> Note: If you used `ng add` to install the theme, the above line is not required.
 
 ### Include the favicon (if you did not use `ng add`)
 
