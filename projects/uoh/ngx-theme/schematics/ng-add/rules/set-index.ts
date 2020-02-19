@@ -1,32 +1,6 @@
-import { Rule, Tree } from '@angular-devkit/schematics';
+import { Rule, Tree, SchematicContext } from '@angular-devkit/schematics';
 import { Schema } from '../schema';
-import { getIndexPath } from '../../utils/get-index';
-import { readStringFile } from '../../utils/read-file';
-
-function addElements(tree: Tree, indexPath: string, html: string): void {
-  try {
-    const attribs = [
-      '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
-      '<meta name="mobile-web-app-capable" content="yes">',
-      '<meta name="apple-mobile-web-app-capable" content="yes">',
-      '<meta name="theme-color" content="#0664AA">',
-      '<link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">',
-      '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'
-    ];
-    const missing = attribs.filter(attrib => !html.includes(attrib));
-
-    if (missing.length > 0) {
-      const additions = missing.reduce((prev, curr) => `${prev}\n\t\t${curr}`);
-      const position = html.indexOf('</head>');
-      const head = html.substring(0, position);
-      const rest = html.substring(position);
-
-      tree.overwrite(indexPath, `${head}\t${additions}\n\t${rest}`);
-    }
-  } catch (e) {
-    console.warn(`Cannot set the html tags in the ${indexPath} file`, e);
-  }
-}
+import { setIndexHtml } from '../../utils/set-index-html';
 
 /**
  * Schematic to add attributes to the index.html file.
@@ -34,11 +8,12 @@ function addElements(tree: Tree, indexPath: string, html: string): void {
  * @param index The index file contents stored before installing material.
  */
 export function setIndex(options: Schema): Rule {
-  return (tree: Tree, _) => {
-    const indexPath = getIndexPath(tree, options.project);
-    const html = readStringFile(tree, indexPath);
-
-    addElements(tree, indexPath, html);
+  return (tree: Tree, context: SchematicContext) => {
+    try {
+      setIndexHtml(tree, options.project);
+    } catch (e) {
+      context.logger.warn(`Cannot set the index.html for the project ${options.project}`, e);
+    }
 
     return tree;
   };
