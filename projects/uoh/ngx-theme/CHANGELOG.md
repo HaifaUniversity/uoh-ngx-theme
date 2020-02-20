@@ -2,7 +2,7 @@
 
 ## 5.0.0
 
-## Fixes:
+### Fixes:
 
 - Schematics `ng add` installs the material and cdk versions correctly.
 
