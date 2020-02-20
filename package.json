@@ -49,7 +49,7 @@
     "@angular/cli": "^9.0.3",
     "@angular/compiler-cli": "^9.0.2",
     "@angular/language-service": "^9.0.2",
-    "@schematics/angular": "^8.3.22",
+    "@schematics/angular": "^9.0.3",
     "@types/jasmine": "^3.5.0",
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "^12.11.1",
