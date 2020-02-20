@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
   private getVersion(): string {
     // Try to automatically retrieve the version number
     try {
-      const app = require('../../../../package.json');
+      const app = require('package.json');
       if (app && app.version) {
         return app.version;
       }

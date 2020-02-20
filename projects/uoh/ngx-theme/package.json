@@ -28,9 +28,9 @@
     "url": "https://github.com/HaifaUniversity/uoh-ngx-theme/issues"
   },
   "peerDependencies": {
-    "@angular/common": ">=7.0.0 <9.0.0",
-    "@angular/core": ">=7.0.0 <9.0.0",
-    "@angular/cdk": ">=7.0.0 <9.0.0",
-    "@angular/material": ">=7.0.0 <9.0.0"
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/cdk": "^9.0.0",
+    "@angular/material": "^9.0.0"
   }
 }
