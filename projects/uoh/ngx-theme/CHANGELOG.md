@@ -6,6 +6,10 @@
 
 - Schematics `ng add` installs the material and cdk versions correctly.
 
+### Features:
+
+- Add `ng update` schematics.
+
 ### BREAKING CHANGES:
 
 - The `Varela` font was changed with the `Rubik` font to add `bold` and `italics`.
