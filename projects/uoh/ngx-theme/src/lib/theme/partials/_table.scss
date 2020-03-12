@@ -58,14 +58,9 @@
       height: auto;
     }
 
-    .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell {
-      font-size: 1.1em;
-    }
-
     .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:first-child {
       border-top: 1px solid rgba(0, 0, 0, 0.12);
       padding-top: 20px;
-      font-size: 1.15em;
     }
 
     .uoh-table.mat-table tr.mat-footer-row td.mat-footer-cell:last-child {
@@ -130,9 +125,7 @@
 
     table.uoh-table td.row-title,
     .uoh-table.mat-table td.row-title {
-      font-size: 1.07em;
       font-weight: bold;
-      line-height: 1.3em;
     }
 
     table.uoh-table td.row-title::before,
