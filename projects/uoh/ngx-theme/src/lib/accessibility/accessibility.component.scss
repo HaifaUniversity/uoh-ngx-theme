@@ -42,7 +42,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-@include uoh-screen-max(medium) {
+@include uoh-screen-max(small) {
   .uoh-accessibility-btn {
     display: none;
   }
