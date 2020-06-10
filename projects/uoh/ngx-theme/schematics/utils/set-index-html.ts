@@ -14,7 +14,7 @@ function getMissingTags(html: string, attribs: Array<string>): Array<string> {
   const singleSpace = minified.replace(/ {2,}/gm, ' ');
   const corrected = singleSpace.replace(/ {0,}\/>/gm, '>');
 
-  return attribs.filter(attrib => !corrected.includes(attrib));
+  return attribs.filter((attrib) => !corrected.includes(attrib));
 }
 
 function addToHead(head: string, tags: Array<string>): string {
@@ -28,12 +28,13 @@ function addToHead(head: string, tags: Array<string>): string {
 
 function addIndexHtmlTags(tree: Tree, indexPath: string, html: string): void {
   const attribs = [
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />',
     '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
     '<meta name="mobile-web-app-capable" content="yes">',
     '<meta name="apple-mobile-web-app-capable" content="yes">',
     '<meta name="theme-color" content="#0664AA">',
     '<link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">',
-    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'
+    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">',
   ];
 
   const head = getHead(html);
