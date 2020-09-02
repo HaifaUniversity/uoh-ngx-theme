@@ -19,12 +19,17 @@
           </ng-template>
         </div>
         <div *ngIf="user" class="uoh-header-user" role="row">
-          <button mat-icon-button *ngIf="isXSmall$ | async; else fullUserTemplate" [matMenuTriggerFor]="userMenu">
+          <button
+            mat-icon-button
+            type="button"
+            *ngIf="isXSmall$ | async; else fullUserTemplate"
+            [matMenuTriggerFor]="userMenu"
+          >
             <mat-icon>account_circle</mat-icon>
             <mat-icon>arrow_drop_down</mat-icon>
           </button>
           <ng-template #fullUserTemplate>
-            <button mat-button [matMenuTriggerFor]="userMenu">
+            <button mat-button type="button" [matMenuTriggerFor]="userMenu">
               <mat-icon class="uoh-header-user-icon">account_circle</mat-icon>
               <span class="uoh-header-user-text"> {{ user.name }} </span>
               <mat-icon>arrow_drop_down</mat-icon>
@@ -39,7 +44,7 @@
               </span>
             </div>
             <mat-divider></mat-divider>
-            <button mat-menu-item (click)="onLogOut()">
+            <button mat-menu-item type="button" (click)="onLogOut()">
               <mat-icon>power_settings_new</mat-icon>
               <span> {{ labels.logOut }} </span>
             </button>
@@ -94,7 +99,7 @@
             </a>
           </ng-container>
           <ng-container *ngSwitchCase="linksView.Menu">
-            <button mat-icon-button [matMenuTriggerFor]="linksMoreMenu">
+            <button mat-icon-button type="button" [matMenuTriggerFor]="linksMoreMenu">
               <mat-icon aria-hidden="false" [attr.aria-label]="labels.links">more_vert</mat-icon>
             </button>
             <mat-menu #linksMoreMenu>

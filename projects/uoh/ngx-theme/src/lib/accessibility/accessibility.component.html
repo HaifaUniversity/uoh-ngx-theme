@@ -3,13 +3,17 @@
     <h3 class="uoh-accessibility-header"><mat-icon>accessible</mat-icon>{{ labels.header }}</h3>
     <mat-list class="uoh-accessibility-menu">
       <mat-list-item>
-        <button mat-button (click)="increaseFontSize()"><mat-icon>zoom_in</mat-icon> {{ labels.increaseFont }}</button>
+        <button mat-button type="button" (click)="increaseFontSize()">
+          <mat-icon>zoom_in</mat-icon> {{ labels.increaseFont }}
+        </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="decreaseFontSize()"><mat-icon>zoom_out</mat-icon> {{ labels.decreaseFont }}</button>
+        <button mat-button type="button" (click)="decreaseFontSize()">
+          <mat-icon>zoom_out</mat-icon> {{ labels.decreaseFont }}
+        </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="toggleTheme()">
+        <button mat-button type="button" (click)="toggleTheme()">
           <ng-template [ngIf]="isDarkTheme()" [ngIfElse]="darkThemeButton">
             <mat-icon>invert_colors_off</mat-icon>
             {{ labels.lowContrast }}
@@ -21,7 +25,7 @@
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="reset()"><mat-icon>autorenew</mat-icon> {{ labels.reset }}</button>
+        <button mat-button type="button" (click)="reset()"><mat-icon>autorenew</mat-icon> {{ labels.reset }}</button>
       </mat-list-item>
       <mat-list-item>
         <a mat-button [href]="manifestUrl" target="_blank">
@@ -32,7 +36,7 @@
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button mat-fab (click)="sidenav.toggle()" class="uoh-accessibility-btn">
+    <button mat-fab type="button" (click)="sidenav.toggle()" class="uoh-accessibility-btn">
       <mat-icon aria-hidden="false" [attr.aria-label]="labels.header">accessible</mat-icon>
     </button>
     <ng-content select="uoh-spinner"></ng-content>
