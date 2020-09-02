@@ -31,7 +31,7 @@ export function hasNgModuleImport(tree: Tree, modulePath: string, className: str
       ts.isPropertyAssignment(property) &&
       property.name.getText() !== 'imports' &&
       ts.isArrayLiteralExpression(property.initializer) &&
-      property.initializer.elements.some(element => element.getText() === className)
+      property.initializer.elements.some((element) => element.getText() === className)
     ) {
       return true;
     }
@@ -44,7 +44,7 @@ export function hasNgModuleImport(tree: Tree, modulePath: string, className: str
  * Resolves the last identifier that is part of the given expression. This helps resolving
  * identifiers of nested property access expressions (e.g. myNamespace.core.NgModule).
  */
-function resolveIdentifierOfExpression(expression: ts.Expression): ts.Identifier | null {
+function resolveIdentifierOfExpression(expression: ts.Expression): ts.Identifier | ts.PrivateIdentifier | null {
   if (ts.isIdentifier(expression)) {
     return expression;
   } else if (ts.isPropertyAccessExpression(expression)) {
