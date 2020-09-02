@@ -4,10 +4,12 @@ import { UohSpinner, UohHeaderUser } from '@uoh/ngx-theme';
 import { of, Observable } from 'rxjs';
 import { delay, concatMap } from 'rxjs/operators';
 
+import { version } from '../../package.json';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'app';
@@ -18,9 +20,10 @@ export class AppComponent implements OnInit {
     { c1: 'משתמש 2', c2: 'תפקיד משתמש 2' },
     { c1: 'משתמש 3', c2: 'תפקיד משתמש 3' },
     { c1: 'משתמש 4', c2: 'תפקיד משתמש 4' },
-    { c1: 'משתמש 5', c2: 'תפקיד משתמש 5' }
+    { c1: 'משתמש 5', c2: 'תפקיד משתמש 5' },
   ];
   test$: Observable<string>;
+  version = version;
 
   constructor(private spinner: UohSpinner) {}
 
@@ -31,7 +34,7 @@ export class AppComponent implements OnInit {
   load(): void {
     // this.spinner.add();
     this.test$ = of(1000, 2000, 2340).pipe(
-      concatMap(val =>
+      concatMap((val) =>
         of(`Delayed by ${val}`).pipe(
           this.spinner.addOnEvent(),
           delay(val)
@@ -46,7 +49,7 @@ export class AppComponent implements OnInit {
     this.user = {
       name: 'משתמש לדוגמה',
       details: 'juanito@manito.com<br>תאריך לידה: 01/01/01',
-      lastLogin: 'כניסה\nאחרונה למערכת ב-20/12/2018 12:00:00'
+      lastLogin: 'כניסה\nאחרונה למערכת ב-20/12/2018 12:00:00',
     };
   }
 
