@@ -4,7 +4,7 @@ import { UohSpinner, UohHeaderUser } from '@uoh/ngx-theme';
 import { of, Observable } from 'rxjs';
 import { delay, concatMap } from 'rxjs/operators';
 
-import { version } from '../../package.json';
+import { version } from 'package.json';
 
 @Component({
   selector: 'app-root',
