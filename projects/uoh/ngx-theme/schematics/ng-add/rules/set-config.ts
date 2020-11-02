@@ -7,6 +7,12 @@ import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getStylesPathFromProject } from '../../utils/get-styles';
 import { readStringFile } from '../../utils/read-file';
 
+const ASSETS_TO_ADD: Array<Asset> = [
+  { glob: 'favicon.ico', input: './node_modules/@uoh/ngx-theme/assets', output: '/' },
+  { glob: '**/*', input: './node_modules/@uoh/ngx-theme/assets', output: '/assets/' },
+];
+const ASSET_TO_REMOVE = 'src/favicon.ico';
+
 /**
  * Checks if a Asset exists in a given list.
  * @param assets A list of Assets.
@@ -44,6 +50,19 @@ function addAssets(config: Config, assets: Array<Asset>): void {
   }
 }
 
+function removeAsset(config: Config, target: Asset | string): void {
+  try {
+    for (let i = 0; i < config.options.assets.length; i++) {
+      const asset = config.options.assets[i];
+      if (target === asset || (target as Asset).glob === (asset as Asset).glob) {
+        config.options.assets.splice(i, 1);
+      }
+    }
+  } catch (e) {
+    console.warn(e);
+  }
+}
+
 /**
  * Adds the uoh theme mixin to the styles.scss file.
  * @param tree The schematics Tree.
@@ -71,7 +90,7 @@ function includeTheme(config: Config): void {
 
     if (!config.options.stylePreprocessorOptions) {
       config.options.stylePreprocessorOptions = {
-        includePaths: [include]
+        includePaths: [include],
       };
     } else if (!config.options.stylePreprocessorOptions.includePaths) {
       config.options.stylePreprocessorOptions.includePaths = [include];
@@ -92,15 +111,12 @@ export function setConfig(options: Schema): Rule {
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    const assets: Array<Asset> = [
-      { glob: 'favicon.ico', input: './node_modules/@uoh/ngx-theme/assets', output: '/' },
-      { glob: '**/*', input: './node_modules/@uoh/ngx-theme/assets', output: '/assets/' }
-    ];
-
     const architect: WorkspaceTool | undefined = project.targets ? project.targets : project.architect;
     if (architect) {
-      addAssets(architect.build, assets);
-      addAssets(architect.test, assets);
+      removeAsset(architect.build, ASSET_TO_REMOVE);
+      removeAsset(architect.test, ASSET_TO_REMOVE);
+      addAssets(architect.build, ASSETS_TO_ADD);
+      addAssets(architect.test, ASSETS_TO_ADD);
       includeTheme(architect.build);
       includeTheme(architect.test);
 

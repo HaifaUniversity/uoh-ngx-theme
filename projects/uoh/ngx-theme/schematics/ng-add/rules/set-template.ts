@@ -52,7 +52,7 @@ function getComponents(options: Schema, template: string): string {
   }
 
   if (options.footer) {
-    components += getComponent(template, 'uoh-footer');
+    components += getComponent(template, 'uoh-footer', '[version]="version"');
   }
 
   return components;
