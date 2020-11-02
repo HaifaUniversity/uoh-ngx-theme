@@ -5,6 +5,11 @@
       "version": "5.0.0",
       "description": "Updates University of Haifa theme to v5",
       "factory": "./ng-update/index#updateToV5"
+    },
+    "migration-v9": {
+      "version": "9.0.0",
+      "description": "Updates University of Haifa theme to v9",
+      "factory": "./ng-update/index#updateToV9"
     }
   }
 }

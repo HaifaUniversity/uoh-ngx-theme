@@ -1,4 +1,4 @@
-import { Rule, Tree, SchematicContext, SchematicsException } from '@angular-devkit/schematics';
+import { Rule, Tree, SchematicContext, SchematicsException, chain } from '@angular-devkit/schematics';
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
@@ -11,12 +11,19 @@ import { Schema } from '../schema';
 import { insertImport, isImported } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getProperties, propertyExists } from '../../utils/properties.util';
+import { shouldSetFooter } from '../../utils/set-footer';
+import { resolveJSONModule } from './resolve-json-module';
 
 const VERSION_PROPERTY = 'version';
 const PACKAGE = 'package.json';
 const PACKAGE_VERSION = 'version';
 const APP_COMPONENT = 'app.component.ts';
 
+/**
+ * Retrieves the path to the app.component.ts file.
+ * @param tree The schematics tree.
+ * @param project The workspace project.
+ */
 function getAppComponentPath(tree: Tree, project: WorkspaceProject) {
   const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
   const dirPath = appModulePath.substring(0, appModulePath.lastIndexOf('/'));
@@ -37,6 +44,11 @@ function getAppComponentPath(tree: Tree, project: WorkspaceProject) {
   return '';
 }
 
+/**
+ * Imports the version from package.json and adds a property in the given ts file (normally app.component.ts).
+ * @param path The path to file.
+ * @param tree The schematics tree.
+ */
 function addVersion(path: string, tree: Tree): Change[] {
   const source = tree.read(path);
 
@@ -67,10 +79,11 @@ function addVersion(path: string, tree: Tree): Change[] {
   return !!importChange ? [importChange, versionChange] : [versionChange];
 }
 
-export function setFooterVersion(options: Schema): Rule {
+function addFooterVersion(options?: Schema): Rule {
   return (tree: Tree, _context: SchematicContext): Tree => {
+    const projectName = !!options && !!options.project ? options.project : undefined;
     const workspace = getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(workspace, projectName);
     const appComponentPath = getAppComponentPath(tree, project);
     const changes = addVersion(appComponentPath, tree);
 
@@ -85,5 +98,17 @@ export function setFooterVersion(options: Schema): Rule {
     tree.commitUpdate(recorder);
 
     return tree;
+  };
+}
+
+/**
+ * Retrieves the package version and sets it as an input in the footer.
+ * @param options The options entered in the cli.
+ */
+export function setFooterVersion(options?: Schema): Rule {
+  return (tree: Tree, _context: SchematicContext): Rule => {
+    const rules: Rule[] = shouldSetFooter(tree, options) ? [resolveJSONModule(), addFooterVersion(options)] : [];
+
+    return chain(rules);
   };
 }
