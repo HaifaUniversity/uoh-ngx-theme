@@ -1,6 +1,6 @@
 {
   "name": "@uoh/ngx-theme",
-  "version": "9.0.5",
+  "version": "10.0.0",
   "scripts": {
     "build": "../../../node_modules/.bin/tsc -p tsconfig.schematics.json",
     "copy:schema": "cp schematics/ng-add/schema.json ../../../dist/uoh/ngx-theme/schematics/ng-add/schema.json",
@@ -31,6 +31,7 @@
     "@angular/common": "^10.0.0",
     "@angular/core": "^10.0.0",
     "@angular/cdk": "^10.0.0",
-    "@angular/material": "^10.0.0"
+    "@angular/material": "^10.0.0",
+    "@schematics/angular": "^10.2.0"
   }
 }

@@ -3,13 +3,13 @@ import { Tree, SchematicsException } from '@angular-devkit/schematics';
 /**
  * Returns the contents of the given file as utf-8 string.
  * @param tree The schematics tree.
- * @param stylesPath The path to the file.
+ * @param path The path to the file.
  */
 export function readStringFile(tree: Tree, path: string): string {
-  const stylesFile = tree.read(path);
-  if (!stylesFile) {
+  const source = tree.read(path);
+  if (!source) {
     throw new SchematicsException(`Could not find the ${path} file`);
   }
 
-  return stylesFile.toString('utf-8');
+  return source.toString('utf-8');
 }
