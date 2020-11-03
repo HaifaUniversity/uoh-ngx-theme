@@ -1,17 +1,21 @@
 import { Rule, SchematicsException, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { parseJson, JsonParseMode } from '@angular-devkit/core';
 
-const TSCONFIG_PATH = 'tsconfig.base.json';
-const TSCONFIG_FALLBACK_PATH = 'tsconfig.json';
+const TSCONFIG_BASE_PATH = 'tsconfig.base.json';
+const TSCONFIG_PATH = 'tsconfig.json';
+
+function readBaseTsconfig(tree: Tree): Buffer | null {
+  try {
+    return tree.read(TSCONFIG_BASE_PATH);
+  } catch (e) {}
+
+  return null;
+}
 
 function readTsconfig(tree: Tree): Buffer | null {
-  const source = tree.read(TSCONFIG_PATH);
+  const source = readBaseTsconfig(tree);
 
-  if (!source) {
-    return tree.read(TSCONFIG_FALLBACK_PATH);
-  }
-
-  return source;
+  return !!source ? source : tree.read(TSCONFIG_PATH);
 }
 
 export function resolveJSONModule(): Rule {

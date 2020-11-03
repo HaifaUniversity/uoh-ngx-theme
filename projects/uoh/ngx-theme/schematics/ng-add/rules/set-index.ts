@@ -13,6 +13,7 @@ export function setIndex(options?: Schema): Rule {
       setIndexHtml(tree, projectName);
     } catch (e) {
       context.logger.warn(`Cannot set the index.html for the project ${projectName}`, e);
+      console.log(e);
     }
 
     return tree;

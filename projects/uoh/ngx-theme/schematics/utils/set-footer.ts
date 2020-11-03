@@ -23,7 +23,11 @@ export function isFooterImported(tree: Tree, projectName?: string): boolean {
 
     const root = ts.createSourceFile(appModulePath, text, ts.ScriptTarget.Latest, true);
 
-    return isImported(root, 'UohFooterModule', '@uoh/ngx-theme');
+    return (
+      isImported(root, 'UohFooterModule', '@uoh/ngx-theme') ||
+      isImported(root, 'UohFooterModule', '/node_modules/@uoh/ngx-theme') ||
+      isImported(root, 'UohFooterModule', '../../node_modules/@uoh/ngx-theme')
+    );
   } catch (e) {
     console.warn('Could not determine if the footer exists.');
   }
