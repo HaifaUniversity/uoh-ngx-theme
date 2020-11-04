@@ -1,14 +1,9 @@
 import { Tree } from '@angular-devkit/schematics';
-import {
-  Change,
-  InsertChange,
-  RemoveChange,
-  ReplaceChange,
-  applyToUpdateRecorder,
-} from '@schematics/angular/utility/change';
+import { InsertChange, RemoveChange, ReplaceChange } from '@schematics/angular/utility/change';
 
 import { getIndexPath } from './get-index';
 import { readStringFile } from './read-file';
+import { update } from './update.util';
 
 /**
  * A class that represents the head tag in the html file.
@@ -145,18 +140,6 @@ export function getHead(tree: Tree, path: string): HeadTag {
   const end = content.indexOf('</head>');
 
   return new HeadTag(start, end, content);
-}
-
-/**
- * Commits the given changes to the given file.
- * @param tree The schematics tree.
- * @param path The path to the file to update.
- * @param changes The changes to perform to the file.
- */
-export function update(tree: Tree, path: string, changes: Array<Change>): void {
-  const recorder = tree.beginUpdate(path);
-  applyToUpdateRecorder(recorder, changes);
-  tree.commitUpdate(recorder);
 }
 
 /**

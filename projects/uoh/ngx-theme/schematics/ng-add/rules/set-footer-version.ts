@@ -1,4 +1,4 @@
-import { Rule, Tree, SchematicContext, SchematicsException, chain } from '@angular-devkit/schematics';
+import { Rule, Tree, SchematicContext, chain } from '@angular-devkit/schematics';
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
@@ -9,15 +9,18 @@ import { searchSubdirs } from '../../utils/search-subdirs';
 
 import { Schema } from '../schema';
 import { insertImport, isImported } from '@schematics/angular/utility/ast-utils';
-import { Change, InsertChange } from '@schematics/angular/utility/change';
+import { Change, InsertChange, ReplaceChange } from '@schematics/angular/utility/change';
 import { getProperties, propertyExists } from '../../utils/properties.util';
 import { shouldSetFooter } from '../../utils/set-footer';
 import { resolveJSONModule } from './resolve-json-module';
+import { readStringFile } from '../../utils/read-file';
+import { update } from '../../utils/update.util';
 
 const VERSION_PROPERTY = 'version';
 const PACKAGE = 'package.json';
 const PACKAGE_VERSION = 'version';
 const APP_COMPONENT = 'app.component.ts';
+const FOOTER_SELECTOR = 'uoh-footer';
 
 /**
  * Retrieves the path to the app.component.ts file.
@@ -50,12 +53,7 @@ function getAppComponentPath(tree: Tree, project: WorkspaceProject) {
  * @param tree The schematics tree.
  */
 function addVersion(path: string, tree: Tree): Change[] {
-  const source = tree.read(path);
-
-  if (!source) {
-    throw new SchematicsException(`The file ${path} does not exist.`);
-  }
-  const text = source.toString('utf-8');
+  const text = readStringFile(tree, path);
 
   const root = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
 
@@ -79,6 +77,25 @@ function addVersion(path: string, tree: Tree): Change[] {
   return !!importChange ? [importChange, versionChange] : [versionChange];
 }
 
+function addVersionInput(path: string, tree: Tree): void {
+  const text = readStringFile(tree, path);
+
+  if (text.includes(`<${FOOTER_SELECTOR}`)) {
+    const start = text.indexOf(`<${FOOTER_SELECTOR}`);
+    const end = text.indexOf('>', start);
+
+    if (start > -1 && end > -1) {
+      const oldText = text.substring(start, end);
+
+      if (!oldText.includes('[version]')) {
+        const newText = `${oldText} [version]="version"`;
+        const changes = [new ReplaceChange(path, start, oldText, newText)];
+        update(tree, path, changes);
+      }
+    }
+  }
+}
+
 function addFooterVersion(options?: Schema): Rule {
   return (tree: Tree, _context: SchematicContext): Tree => {
     const projectName = !!options && !!options.project ? options.project : undefined;
@@ -96,6 +113,9 @@ function addFooterVersion(options?: Schema): Rule {
     }
 
     tree.commitUpdate(recorder);
+
+    const appComponentTemplate = appComponentPath.replace('ts', 'html');
+    addVersionInput(appComponentTemplate, tree);
 
     return tree;
   };
