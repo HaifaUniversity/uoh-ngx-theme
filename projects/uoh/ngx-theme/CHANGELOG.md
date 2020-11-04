@@ -1,5 +1,17 @@
 # Changelog
 
+## 10.0.0
+
+### Features:
+
+- Set the version number to be synchronized with angular and material.
+- The footer contains a copyright declaration instead of the university contact details.
+
+### Fixes:
+
+- Set the footer version import to be compatible with angular 10 via schematics.
+- Fix theme import in `app.module.ts` containing `node_modules` in the (relative) path (use absolute path).
+
 ## 5.0.0
 
 ### Fixes:
