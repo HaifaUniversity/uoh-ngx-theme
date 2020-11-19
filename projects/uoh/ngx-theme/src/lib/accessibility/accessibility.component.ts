@@ -3,6 +3,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { Direction } from '@angular/cdk/bidi';
 import { UohAccessibilityLabels } from './accessibility.models';
 
+// TODO: Expose the theme mode and font-size using a service.
 /**
  * Stores the selected accessibility css class (theme, font size) & sets it in the overlay (i.e. for dialogs).
  */
@@ -69,7 +70,7 @@ class UohAccessibilityClass {
 @Component({
   selector: 'uoh-accessibility',
   templateUrl: './accessibility.component.html',
-  styleUrls: ['./accessibility.component.scss']
+  styleUrls: ['./accessibility.component.scss'],
 })
 export class AccessibilityComponent implements OnInit {
   @HostBinding('class') class = 'uoh-accessibility';
@@ -81,7 +82,7 @@ export class AccessibilityComponent implements OnInit {
     lowContrast: 'ניגודיות בהירה',
     highContrast: 'ניגודיות כהה',
     reset: 'איפוס הגדרות',
-    manifest: 'הצהרת נגישות'
+    manifest: 'הצהרת נגישות',
   };
   @Input() manifestUrl = 'https://www.haifa.ac.il/index.php/he/accessibility-decleration';
   theme: UohAccessibilityClass;
