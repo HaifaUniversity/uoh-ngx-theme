@@ -15,7 +15,7 @@ import { UohHeaderMenuLink } from './header-menu-link.directive';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
