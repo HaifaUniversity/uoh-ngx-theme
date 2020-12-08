@@ -1,6 +1,6 @@
 import { Tree } from '@angular-devkit/schematics';
-import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
 import { getWorkspace } from '@schematics/angular/utility/config';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 
 import { getProjectTargetOptions } from './get-project-target-options';
 import { getProjectFromWorkspace } from './get-project';

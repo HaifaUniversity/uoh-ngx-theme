@@ -2,7 +2,7 @@ import { Rule, Tree, SchematicContext, chain } from '@angular-devkit/schematics'
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getProjectMainFile } from '../../utils/get-project-main-file';
 import { searchSubdirs } from '../../utils/search-subdirs';

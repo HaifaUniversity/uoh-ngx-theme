@@ -6,8 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
 import { SchematicsException } from '@angular-devkit/schematics';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 import { getProjectTargetOptions } from './get-project-target-options';
 
 /** Looks for the main TypeScript file in the given project and returns its path. */

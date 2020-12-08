@@ -1,11 +1,19 @@
 import { Rule, Tree } from '@angular-devkit/schematics';
-import { WorkspaceTool } from '@angular-devkit/core/src/experimental/workspace';
-import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
-import { Asset, Config } from '../models';
+import { getWorkspace } from '@schematics/angular/utility/config';
+import { Asset } from '../models';
 import { Schema } from '../schema';
 import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getStylesPathFromProject } from '../../utils/get-styles';
 import { readStringFile } from '../../utils/read-file';
+import { updateWorkspace } from '../../utils/update-workspace';
+import {
+  BrowserBuilderTarget,
+  ProjectType,
+  TestBuilderTarget,
+  WorkspaceTargets,
+} from '@schematics/angular/utility/workspace-models';
+
+type BuilderTarget = BrowserBuilderTarget | TestBuilderTarget;
 
 const ASSETS_TO_ADD: Array<Asset> = [
   { glob: 'favicon.ico', input: './node_modules/@uoh/ngx-theme/assets', output: '/' },
@@ -18,12 +26,14 @@ const ASSET_TO_REMOVE = 'src/favicon.ico';
  * @param assets A list of Assets.
  * @param asset The Asset to check.
  */
-function assetExists(assets: Array<string | Asset>, asset: Asset): boolean {
+function assetExists(assets: Array<string | object> | undefined, asset: Asset): boolean {
   try {
-    for (const value of assets) {
-      const item = value as any;
-      if (!!item.glob && item.glob === asset.glob) {
-        return true;
+    if (!!assets) {
+      for (const value of assets) {
+        const item = value as any;
+        if (!!item.glob && item.glob === asset.glob) {
+          return true;
+        }
       }
     }
   } catch (e) {
@@ -38,11 +48,13 @@ function assetExists(assets: Array<string | Asset>, asset: Asset): boolean {
  * @param config The configuration from the angular.json file.
  * @param assets The list of Assets to add.
  */
-function addAssets(config: Config, assets: Array<Asset>): void {
+function addAssets(config: BuilderTarget, assets: Array<Asset>): void {
   try {
-    for (const asset of assets) {
-      if (!assetExists(config.options.assets, asset)) {
-        config.options.assets.push(asset);
+    if (!!assets) {
+      for (const asset of assets) {
+        if (!!config.options && !!config.options.assets && !assetExists(config.options.assets, asset)) {
+          config.options.assets.push(asset);
+        }
       }
     }
   } catch (e) {
@@ -50,12 +62,14 @@ function addAssets(config: Config, assets: Array<Asset>): void {
   }
 }
 
-function removeAsset(config: Config, target: Asset | string): void {
+function removeAsset(config: BuilderTarget, target: Asset | string): void {
   try {
-    for (let i = 0; i < config.options.assets.length; i++) {
-      const asset = config.options.assets[i];
-      if (target === asset || (target as Asset).glob === (asset as Asset).glob) {
-        config.options.assets.splice(i, 1);
+    if (!!config && !!config.options && !!config.options.assets) {
+      for (let i = 0; i < config.options.assets.length; i++) {
+        const asset = config.options.assets[i];
+        if (target === asset || (target as Asset).glob === (asset as Asset).glob) {
+          config.options.assets.splice(i, 1);
+        }
       }
     }
   } catch (e) {
@@ -84,7 +98,7 @@ function addThemeMixin(tree: Tree, stylesPath: string, styles: string): void {
  * Adds the uoh theme to the angular configuration.
  * @param config The configuration from the angular.json.
  */
-function includeTheme(config: Config): void {
+function includeTheme(config: any): void {
   try {
     const include = './node_modules/@uoh/ngx-theme';
 
@@ -111,14 +125,21 @@ export function setConfig(options: Schema): Rule {
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    const architect: WorkspaceTool | undefined = project.targets ? project.targets : project.architect;
+    const architect: WorkspaceTargets<ProjectType.Application> | undefined = project.targets
+      ? project.targets
+      : project.architect;
     if (architect) {
-      removeAsset(architect.build, ASSET_TO_REMOVE);
-      removeAsset(architect.test, ASSET_TO_REMOVE);
-      addAssets(architect.build, ASSETS_TO_ADD);
-      addAssets(architect.test, ASSETS_TO_ADD);
-      includeTheme(architect.build);
-      includeTheme(architect.test);
+      if (!!architect.build) {
+        removeAsset(architect.build, ASSET_TO_REMOVE);
+        addAssets(architect.build, ASSETS_TO_ADD);
+        includeTheme(architect.build);
+      }
+
+      if (!!architect.test) {
+        removeAsset(architect.test, ASSET_TO_REMOVE);
+        addAssets(architect.test, ASSETS_TO_ADD);
+        includeTheme(architect.test);
+      }
 
       const stylesPath = getStylesPathFromProject(project);
 
