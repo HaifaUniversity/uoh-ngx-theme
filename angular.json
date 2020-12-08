@@ -127,16 +127,16 @@
       "prefix": "uoh",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/uoh/ngx-theme/tsconfig.lib.json",
             "project": "projects/uoh/ngx-theme/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/uoh/ngx-theme/ng-package.prod.json"
-            ,              "tsConfig": "projects/uoh/ngx-theme/tsconfig.lib.prod.json"
-}
+              "project": "projects/uoh/ngx-theme/ng-package.prod.json",
+              "tsConfig": "projects/uoh/ngx-theme/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
