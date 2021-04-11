@@ -1,7 +1,7 @@
 import { Component, Input, HostBinding, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Direction } from '@angular/cdk/bidi';
-import { UohAccessibilityLabels } from './accessibility.models';
+import { UohAccessibilityLabels, UOH_MAX_FONT_SIZE, UOH_MIN_FONT_SIZE } from './accessibility.models';
 
 // TODO: Expose the theme mode and font-size using a service.
 /**
@@ -111,7 +111,7 @@ export class AccessibilityComponent implements OnInit {
    */
   increaseFontSize(): void {
     let num = this.getFontSizeNum(this.fontSize.value);
-    if (num < 5) {
+    if (num < UOH_MAX_FONT_SIZE) {
       num++;
       this.setFontSize(num);
     }
@@ -122,7 +122,7 @@ export class AccessibilityComponent implements OnInit {
    */
   decreaseFontSize(): void {
     let num = this.getFontSizeNum(this.fontSize.value);
-    if (num > -2) {
+    if (num > UOH_MIN_FONT_SIZE) {
       num--;
       this.setFontSize(num);
     }
