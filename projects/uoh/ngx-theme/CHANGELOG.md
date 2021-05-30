@@ -1,5 +1,21 @@
 # Changelog
 
+## 11.2.0
+
+### Features:
+
+- Uses angular 11.2.
+
+### Fixes:
+
+- Missing `@schematics` imports.
+
+## 11.0.0
+
+### Features:
+
+- Uses angular 11.
+
 ## 10.0.0
 
 ### Features:
