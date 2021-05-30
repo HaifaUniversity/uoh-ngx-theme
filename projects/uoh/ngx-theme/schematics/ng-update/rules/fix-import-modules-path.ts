@@ -1,5 +1,5 @@
 import { Rule, Tree, SchematicContext } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '../../utils/config';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getProjectMainFile } from '../../utils/get-project-main-file';

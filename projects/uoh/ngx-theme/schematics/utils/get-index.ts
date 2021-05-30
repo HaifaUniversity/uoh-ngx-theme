@@ -1,5 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '../utils/config';
 import { getProjectFromWorkspace } from './get-project';
 import { getProjectTargetOptions } from './get-project-target-options';
 

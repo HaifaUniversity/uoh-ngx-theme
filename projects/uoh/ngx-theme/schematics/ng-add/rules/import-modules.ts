@@ -3,7 +3,7 @@ import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeSc
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '../../utils/config';
 import { Schema } from '../schema';
 import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getProjectMainFile } from '../../utils/get-project-main-file';

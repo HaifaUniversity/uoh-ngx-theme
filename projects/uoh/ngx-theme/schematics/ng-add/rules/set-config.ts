@@ -1,5 +1,5 @@
 import { Rule, Tree } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '../../utils/config';
 import { Asset } from '../models';
 import { Schema } from '../schema';
 import { getProjectFromWorkspace } from '../../utils/get-project';

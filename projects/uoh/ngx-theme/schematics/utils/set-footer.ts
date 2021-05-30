@@ -1,6 +1,6 @@
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { Tree, SchematicsException } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '../utils/config';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getProjectFromWorkspace } from './get-project';
 import { getProjectMainFile } from './get-project-main-file';

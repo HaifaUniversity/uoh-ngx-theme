@@ -1,6 +1,6 @@
 import { Rule, Tree, SchematicsException } from '@angular-devkit/schematics';
 import { Schema } from '../schema';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '../../utils/config';
 import { getProjectFromWorkspace } from '../../utils/get-project';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getProjectMainFile } from '../../utils/get-project-main-file';
