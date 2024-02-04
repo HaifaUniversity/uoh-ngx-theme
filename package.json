@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build_schematics": "cd projects/uoh/ngx-theme && npm run build",
-    "build_lib": "ng build --prod @uoh/ngx-theme && node build-theme && node build-assets",
+    "build_lib": "ng build --prod @uoh/ngx-theme && node build-theme && node build-assets && npm run build_schematics",
     "ver_patch_lib": "cd projects/uoh/ngx-theme/ && npm version patch",
     "ver_minor_lib": "cd projects/uoh/ngx-theme/ && npm version minor",
     "ver_major_lib": "cd projects/uoh/ngx-theme/ && npm version major",
