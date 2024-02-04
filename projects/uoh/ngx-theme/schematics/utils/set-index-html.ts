@@ -50,7 +50,7 @@ const INSERT_ATTRIBS: Array<HeadAttrib> = [
   new HeadAttrib('meta http-equiv="X-UA-Compatible"', 'meta http-equiv="X-UA-Compatible" content="IE=edge"'),
   new HeadAttrib('meta name="mobile-web-app-capable"', 'meta name="mobile-web-app-capable" content="yes"'),
   new HeadAttrib('meta name="apple-mobile-web-app-capable"', 'meta name="apple-mobile-web-app-capable" content="yes"'),
-  new HeadAttrib('meta name="theme-color"', 'meta name="theme-color" content="#0664AA"'),
+  new HeadAttrib('meta name="theme-color"', 'meta name="theme-color" content="#08bbe7"'),
   new HeadAttrib(
     'link href="https://fonts.googleapis.com/icon?family=Material+Icons"',
     'link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"'

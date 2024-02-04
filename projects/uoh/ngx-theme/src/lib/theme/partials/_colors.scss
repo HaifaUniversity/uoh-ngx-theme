@@ -1,13 +1,13 @@
 // University of Haifa palette colors blue and red
 $hu-blue: (
-  50: #e1ecf5,
+  50: #a1f8fd,
   100: #b4d1e6,
   200: #83b2d5,
   300: #5193c4,
   400: #2b7bb7,
-  500: #0664aa,
+  500: #08bbe7,
   600: #055189,
-  700: #043d67,
+  700: #1f3343,
   800: #03375f,
   900: #032f54,
   A100: #adc9ff,
@@ -28,8 +28,8 @@ $hu-blue: (
     A100: #000000,
     A200: #000000,
     A400: #000000,
-    A700: #ffffff
-  )
+    A700: #ffffff,
+  ),
 );
 
 $hu-red: (
@@ -61,8 +61,8 @@ $hu-red: (
     A100: #000000,
     A200: #000000,
     A400: #000000,
-    A700: #000000
-  )
+    A700: #000000,
+  ),
 );
 
 $hu-light-blue: (
@@ -94,8 +94,8 @@ $hu-light-blue: (
     A100: #000000,
     A200: #000000,
     A400: #000000,
-    A700: #000000
-  )
+    A700: #000000,
+  ),
 );
 
 $hu-light-red: (
@@ -127,8 +127,8 @@ $hu-light-red: (
     A100: #000000,
     A200: #000000,
     A400: #000000,
-    A700: #000000
-  )
+    A700: #000000,
+  ),
 );
 
 $hu-dark-gray: (
@@ -160,8 +160,8 @@ $hu-dark-gray: (
     A100: #000000,
     A200: #000000,
     A400: #ffffff,
-    A700: #ffffff
-  )
+    A700: #ffffff,
+  ),
 );
 
 // Error and success colors taken from the material palettes
