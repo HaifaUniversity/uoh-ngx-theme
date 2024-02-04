@@ -17,7 +17,7 @@
     "ver_major": "npm version major && npm run ver_major_lib && npm run ver_commit && npm run git_tags",
     "npm_pack": "cd dist/uoh/ngx-theme && npm pack",
     "package": "npm run build_lib && npm run npm_pack",
-    "publish_pack": "npm run package && npm publish dist/uoh/ngx-theme/uoh-ngx-theme-11.2.3.tgz --tag=latest",
+    "publish_pack": "npm run package && npm publish dist/uoh/ngx-theme/uoh-ngx-theme-11.2.3.tgz --access public",
     "publish_patch": "npm run ver_patch && npm run publish_pack",
     "publish_minor": "npm run ver_minor && npm run publish_pack",
     "publish_major": "npm run ver_major && npm run publish_pack",
